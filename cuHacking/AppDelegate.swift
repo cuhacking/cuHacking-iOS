@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //Connectd app to Firebase.
         FirebaseApp.configure()
+        
+        UITabBar.appearance().tintColor = LightTheme.tabBarTintColour
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = CUTabBarController()
+        window?.makeKeyAndVisible()
         return true
     }
 
