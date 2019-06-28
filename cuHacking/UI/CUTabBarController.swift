@@ -27,5 +27,6 @@ class CUTabBarController : UITabBarController {
         //Setting view controllers
         viewControllers = [navigationController, scheduleViewController, mapViewController]
     }
+
 }
 
