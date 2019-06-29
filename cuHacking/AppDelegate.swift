@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Connectd app to Firebase.
         FirebaseApp.configure()
         
-        UITabBar.appearance().tintColor = LightTheme.tabBarTintColour
+        //Setting the theme
+        LightTheme().apply(toAppplication: application)
+        
+        //Creating inital screen
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = CUTabBarController()
         window?.makeKeyAndVisible()

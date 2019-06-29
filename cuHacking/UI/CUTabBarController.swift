@@ -23,10 +23,9 @@ class CUTabBarController : UITabBarController {
         //Third tab - Map vc
         let mapViewController = MapViewController()
         mapViewController.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "MapIcon")!, tag: 2)
-        
+       
         //Setting view controllers
         viewControllers = [navigationController, scheduleViewController, mapViewController]
     }
-
 }
 

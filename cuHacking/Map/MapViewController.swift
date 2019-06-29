@@ -7,6 +7,6 @@
 //
 
 import UIKit
-class MapViewController : UIViewController{
+class MapViewController : CUViewController{
     
 }
