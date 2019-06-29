@@ -7,17 +7,23 @@ target 'cuHacking' do
 
   # Pods for cuHacking
   pod 'Firebase/Core'
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.13.2'
 
   target 'cuHackingTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'Firebase/Core'
+    pod 'Fabric', '~> 1.10.2'
+    pod 'Crashlytics', '~> 3.13.2'
   end
 
   target 'cuHackingUITests' do
     inherit! :search_paths
     # Pods for testing
     pod 'Firebase/Core'
+    pod 'Fabric', '~> 1.10.2'
+    pod 'Crashlytics', '~> 3.13.2'
   end
 
 end

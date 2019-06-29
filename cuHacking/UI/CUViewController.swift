@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class CUViewController : ViewController {
+class CUViewController : UIViewController {
     override func loadView() {
         let view = CUView()
         self.view = view

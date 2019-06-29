@@ -7,10 +7,22 @@
 //
 
 import UIKit
+import Firebase
+import Crashlytics
+
 class InformationViewController : CUViewController {
     override func viewDidLoad() {
         setupNavigationController()
-
+        createCrashButton()
+    }
+    
+    private func createCrashButton() {
+        let crashButton = UIButton(frame: CGRect(x: 20, y: 100, width: 100, height: 50))
+        crashButton.addTarget(self, action: #selector(crashApp), for: .touchUpInside)
+        crashButton.setTitle("Crash!", for: .normal)
+        crashButton.backgroundColor = .red
+        crashButton.layer.cornerRadius = 4
+        self.view.addSubview(crashButton)
     }
     
     private func setupNavigationController(){
@@ -25,6 +37,10 @@ class InformationViewController : CUViewController {
             self.navigationItem.leftBarButtonItem = qrBarItem
         }
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    @objc func crashApp(){
+        Crashlytics.sharedInstance().crash()
     }
     
     @objc func showProfile(){
