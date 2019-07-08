@@ -14,6 +14,7 @@ class InformationViewController : CUViewController {
     override func viewDidLoad() {
         setupNavigationController()
         createCrashButton()
+        super.viewDidLoad()
     }
     
     private func createCrashButton() {
@@ -36,7 +37,6 @@ class InformationViewController : CUViewController {
             let qrBarItem = UIBarButtonItem(image: UIImage(named: "QRIcon")!, style: .plain, target: self, action: #selector(showQRScanner))
             self.navigationItem.leftBarButtonItem = qrBarItem
         }
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     @objc func crashApp(){

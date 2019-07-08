@@ -28,5 +28,7 @@ extension Theme {
         UITabBar.appearance().tintColor = tabBarTint
         CUView.appearance().backgroundColor = backgroundColour
         UILabel.appearance().textColor = labelTextColour
+//        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor.red], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor.orange], for: .selected)
     }
 }

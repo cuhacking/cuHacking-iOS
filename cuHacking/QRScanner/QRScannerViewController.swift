@@ -30,6 +30,10 @@ class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjects
         verifyCameraPermission()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.tabBarController?.tabBar.isHidden = false
         self.navigationController?.undoTransparent()

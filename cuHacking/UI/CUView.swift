@@ -7,6 +7,4 @@
 //
 
 import UIKit
-class CUView : UIView {
-    
-}
+class CUView : UIView {}

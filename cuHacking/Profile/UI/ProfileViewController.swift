@@ -9,8 +9,8 @@
 import UIKit
 class ProfileViewController : CUViewController {
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
         setupNavigationController()
+        super.viewDidLoad()
     }
     func setupNavigationController(){
         self.navigationController?.navigationBar.topItem?.title = "Profile"

@@ -21,8 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         //Setting the theme
-        LightTheme().apply(toAppplication: application)
         
+        if #available(iOS 13.0, *) {
+            SystemTheme().apply(toAppplication: application)
+        } else {
+            // Fallback on earlier versions
+            LightTheme().apply(toAppplication: application)
+        }
+
         //Creating inital screen
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = CUTabBarController()
