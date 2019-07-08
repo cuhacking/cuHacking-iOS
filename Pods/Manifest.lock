@@ -47,6 +47,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.2.0):
     - GoogleUtilities/Logger
+  - Mapbox-iOS-SDK (5.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - Crashlytics (~> 3.13.2)
   - Fabric (~> 1.10.2)
   - Firebase/Core
+  - Mapbox-iOS-SDK (~> 5.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -68,6 +70,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
+    - Mapbox-iOS-SDK
     - nanopb
 
 SPEC CHECKSUMS:
@@ -79,8 +82,9 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: f20243a1d828e0e9a3798b995174dedc16f1b32a
   GoogleAppMeasurement: a35a645835bae31b6bdc0576396bc23908f12a22
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
+  Mapbox-iOS-SDK: 4106f0f6808a0362233a703fb22369b3af3e9b8c
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
 
-PODFILE CHECKSUM: 28967789b582b4b94083df238c2860e28ce6325b
+PODFILE CHECKSUM: 1532be9e17b89805f379e3408bdea57c78ea91f6
 
 COCOAPODS: 1.5.3
