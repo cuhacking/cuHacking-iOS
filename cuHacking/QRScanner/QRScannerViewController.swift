@@ -13,10 +13,6 @@ class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjects
     var captureSession : AVCaptureSession!
     var previewLayer : AVCaptureVideoPreviewLayer!
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.tabBarController?.tabBar.isHidden = true
         self.navigationController?.makeTransparent()
