@@ -53,12 +53,14 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Swinject (2.6.2)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.13.2)
   - Fabric (~> 1.10.2)
   - Firebase/Core
   - Mapbox-iOS-SDK (~> 5.1)
+  - Swinject
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -72,6 +74,7 @@ SPEC REPOS:
     - GoogleUtilities
     - Mapbox-iOS-SDK
     - nanopb
+    - Swinject
 
 SPEC CHECKSUMS:
   Crashlytics: 611738c7847f8291a1a51084e35987b86ba6b3ee
@@ -84,7 +87,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   Mapbox-iOS-SDK: 4106f0f6808a0362233a703fb22369b3af3e9b8c
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
 
-PODFILE CHECKSUM: 1532be9e17b89805f379e3408bdea57c78ea91f6
+PODFILE CHECKSUM: eb495caed0b0a42113fdd9ef5db1f07a8dc4d30b
 
 COCOAPODS: 1.5.3

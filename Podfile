@@ -10,6 +10,8 @@ target 'cuHacking' do
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.13.2'
   pod 'Mapbox-iOS-SDK', '~> 5.1'
+  pod 'Swinject'
+
 
   target 'cuHackingTests' do
     inherit! :search_paths
@@ -18,6 +20,8 @@ target 'cuHacking' do
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.2'
     pod 'Mapbox-iOS-SDK', '~> 5.1'
+    pod 'Swinject'
+
 
   end
 
@@ -28,6 +32,8 @@ target 'cuHacking' do
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.2'
     pod 'Mapbox-iOS-SDK', '~> 5.1'
+    pod 'Swinject'
+
   end
 
 end
