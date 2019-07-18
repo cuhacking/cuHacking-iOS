@@ -43,6 +43,21 @@
 		6BA9AC4D22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BA9AC4E22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BA9AC4F22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
+		6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
+		6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
+		6BC82A8022E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
+		6BC82A8122E0ACB8006E2CFC /* LV04.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */; };
+		6BC82A8222E0ACB8006E2CFC /* LV04.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */; };
+		6BC82A8322E0ACB8006E2CFC /* LV04.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */; };
+		6BC82A8422E0ACB9006E2CFC /* LV01.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */; };
+		6BC82A8522E0ACB9006E2CFC /* LV01.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */; };
+		6BC82A8622E0ACB9006E2CFC /* LV01.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */; };
+		6BC82A8722E0ACB9006E2CFC /* LV02.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */; };
+		6BC82A8822E0ACB9006E2CFC /* LV02.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */; };
+		6BC82A8922E0ACB9006E2CFC /* LV02.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */; };
+		6BC82A8A22E0ACB9006E2CFC /* LV03.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */; };
+		6BC82A8B22E0ACB9006E2CFC /* LV03.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */; };
+		6BC82A8C22E0ACB9006E2CFC /* LV03.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */; };
 		6BF9290822C6D18A00007616 /* CUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF9290722C6D18A00007616 /* CUView.swift */; };
 		6BF9290922C6D18A00007616 /* CUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF9290722C6D18A00007616 /* CUView.swift */; };
 		6BF9290A22C6D18A00007616 /* CUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF9290722C6D18A00007616 /* CUView.swift */; };
@@ -110,6 +125,11 @@
 		6B87C35C22BFD66C00803F7C /* cuHackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cuHackingUITests.swift; sourceTree = "<group>"; };
 		6B87C35E22BFD66C00803F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV04.geojson; sourceTree = "<group>"; };
+		6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV01.geojson; sourceTree = "<group>"; };
+		6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV02.geojson; sourceTree = "<group>"; };
+		6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV03.geojson; sourceTree = "<group>"; };
 		6BF9290722C6D18A00007616 /* CUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUView.swift; sourceTree = "<group>"; };
 		6BF9290B22C6D1B300007616 /* CUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUViewController.swift; sourceTree = "<group>"; };
 		6BF9291422C6F82E00007616 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
@@ -217,6 +237,8 @@
 		6B29893822C5A8DD00B1550C /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				6BC82A7922E0ACB8006E2CFC /* FloorData */,
+				6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */,
 				6B29895022C5E86600B1550C /* MapViewController.swift */,
 			);
 			path = Map;
@@ -360,6 +382,17 @@
 				6B87C35E22BFD66C00803F7C /* Info.plist */,
 			);
 			path = cuHackingUITests;
+			sourceTree = "<group>";
+		};
+		6BC82A7922E0ACB8006E2CFC /* FloorData */ = {
+			isa = PBXGroup;
+			children = (
+				6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */,
+				6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */,
+				6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */,
+				6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */,
+			);
+			path = FloorData;
 			sourceTree = "<group>";
 		};
 		6BF9290F22C6D1E000007616 /* Theme */ = {
@@ -508,8 +541,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BC82A8422E0ACB9006E2CFC /* LV01.geojson in Resources */,
 				6B1B6AD822C7DC2E001E705D /* .mapbox in Resources */,
 				6B87C34722BFD66C00803F7C /* LaunchScreen.storyboard in Resources */,
+				6BC82A8722E0ACB9006E2CFC /* LV02.geojson in Resources */,
+				6BC82A8A22E0ACB9006E2CFC /* LV03.geojson in Resources */,
+				6BC82A8122E0ACB8006E2CFC /* LV04.geojson in Resources */,
 				6BA9AC4D22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
 				6B87C34422BFD66C00803F7C /* Assets.xcassets in Resources */,
 			);
@@ -519,8 +556,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BC82A8222E0ACB8006E2CFC /* LV04.geojson in Resources */,
 				6B29894C22C5E28300B1550C /* Assets.xcassets in Resources */,
+				6BC82A8522E0ACB9006E2CFC /* LV01.geojson in Resources */,
 				6BA9AC4E22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
+				6BC82A8B22E0ACB9006E2CFC /* LV03.geojson in Resources */,
+				6BC82A8822E0ACB9006E2CFC /* LV02.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,8 +569,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BC82A8322E0ACB8006E2CFC /* LV04.geojson in Resources */,
 				6B29894D22C5E28300B1550C /* Assets.xcassets in Resources */,
+				6BC82A8622E0ACB9006E2CFC /* LV01.geojson in Resources */,
 				6BA9AC4F22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
+				6BC82A8C22E0ACB9006E2CFC /* LV03.geojson in Resources */,
+				6BC82A8922E0ACB9006E2CFC /* LV02.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +762,7 @@
 				6BF9291922C6FB1900007616 /* SettingsViewController.swift in Sources */,
 				6B26322C22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
 				6BF9291522C6F82E00007616 /* UINavigationController+Ext.swift in Sources */,
+				6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6B6AC21122CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */,
 				6B26323022C6514B0034CA72 /* QRScannerViewController.swift in Sources */,
@@ -739,6 +785,7 @@
 				6B26322D22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
 				6B87C35222BFD66C00803F7C /* cuHackingTests.swift in Sources */,
 				6B6AC21222CD527A00EAACDD /* SystemTheme.swift in Sources */,
+				6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6B6D4F4122D3D0E000A9D4F9 /* InformationRepository.swift in Sources */,
 				6BF9291A22C6FB1900007616 /* SettingsViewController.swift in Sources */,
 				6B6D4F3D22D3D06000A9D4F9 /* UserDefaultsAPI.swift in Sources */,
@@ -756,6 +803,7 @@
 				6B26322E22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
 				6B87C35D22BFD66C00803F7C /* cuHackingUITests.swift in Sources */,
 				6B6AC21322CD527A00EAACDD /* SystemTheme.swift in Sources */,
+				6BC82A8022E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6B6D4F4222D3D0E000A9D4F9 /* InformationRepository.swift in Sources */,
 				6BF9291B22C6FB1900007616 /* SettingsViewController.swift in Sources */,
 				6B6D4F3E22D3D06000A9D4F9 /* UserDefaultsAPI.swift in Sources */,
