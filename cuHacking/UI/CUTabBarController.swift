@@ -21,7 +21,8 @@ class CUTabBarController : UITabBarController {
         scheduleViewController.tabBarItem = UITabBarItem(title: "Schedule", image: UIImage(named: "ScheduleIcon")!, tag: 1)
         
         //Third tab - Map vc
-        let mapViewController = MapViewController()
+        let viewModel = MapViewModel(mapDataSource: MapDataSource())
+        let mapViewController = MapViewController(viewModel: viewModel!)
         mapViewController.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "MapIcon")!, tag: 2)
        
         //Setting view controllers
