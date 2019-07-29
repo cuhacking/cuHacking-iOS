@@ -9,11 +9,6 @@
 import UIKit
 import Mapbox
 
-//Level
-//-number
-//-geoJSONName
-
-
 class MapViewController : CUViewController, UITableViewDataSource, UITableViewDelegate, MGLMapViewDelegate{
     //MARK: Instance Variables
     private var selectedLevel = Level.one
@@ -61,35 +56,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     
     private func select(level : Level){
         self.selectedLevel = level
-        
-//        switch level {
-//        case 1:
-//            levels[0].isVisible = true
-//            levels[1].isVisible = false
-//            levels[2].isVisible = false
-//            levels[3].isVisible = false
-//            break
-//        case 2:
-//            levels[0].isVisible = false
-//            levels[1].isVisible = true
-//            levels[2].isVisible = false
-//            levels[3].isVisible = false
-//
-//            break
-//        case 3:
-//            levels[0].isVisible = false
-//            levels[1].isVisible = false
-//            levels[2].isVisible = true
-//            levels[3].isVisible = false
-//            break
-//        case 4:
-//            levels[0].isVisible = false
-//            levels[1].isVisible = false
-//            levels[2].isVisible = false
-//            levels[3].isVisible = true
-//        default:
-//            break
-//        }
+
     }
     var floorOne : MGLLineStyleLayer!
     var floorOutline : MGLLineStyleLayer!
@@ -101,18 +68,6 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     var nullFill : MGLFillStyleLayer!
 
     private func setupLevels(){
-        
-//        let levelNames = ["LV01", "LV02", "LV03","LV04"]
-//        for name in levelNames {
-//            let level = loadLevel(named: name)
-//            level.isVisible = false
-//            mapView.style?.addLayer(level)
-//            levels.append(level)
-//        }
-        
-//        let hallwayFill : NSPredicate
-//        let stairsFill : NSPredicate
-//        let nullFill : NSPredicate
         let source = viewModel.shapeSource
         mapView.style?.addSource(source)
         
@@ -158,9 +113,6 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         mapView.style?.addLayer(washroomFill)
         mapView.style?.addLayer(floorOutline)
         mapView.style?.addLayer(labelPredicate)
-
-
-
     }
     
     private func loadLevel(named name: String) -> MGLLineStyleLayer{
@@ -221,8 +173,6 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         stairsFill.predicate = viewModel.stairsFill
         hallwayFill.predicate = viewModel.hallwayFill
         nullFill.predicate = viewModel.nullFill
-     //   roomFill.predicate = NSPredicate(format: "type = room")
-      //  show(level: NUMBER_OF_FLOORS - indexPath.row)
         
     }
     

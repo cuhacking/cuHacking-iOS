@@ -52,18 +52,6 @@
 		6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
 		6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
 		6BC82A8022E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
-		6BC82A8122E0ACB8006E2CFC /* LV04.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */; };
-		6BC82A8222E0ACB8006E2CFC /* LV04.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */; };
-		6BC82A8322E0ACB8006E2CFC /* LV04.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */; };
-		6BC82A8422E0ACB9006E2CFC /* LV01.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */; };
-		6BC82A8522E0ACB9006E2CFC /* LV01.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */; };
-		6BC82A8622E0ACB9006E2CFC /* LV01.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */; };
-		6BC82A8722E0ACB9006E2CFC /* LV02.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */; };
-		6BC82A8822E0ACB9006E2CFC /* LV02.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */; };
-		6BC82A8922E0ACB9006E2CFC /* LV02.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */; };
-		6BC82A8A22E0ACB9006E2CFC /* LV03.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */; };
-		6BC82A8B22E0ACB9006E2CFC /* LV03.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */; };
-		6BC82A8C22E0ACB9006E2CFC /* LV03.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */; };
 		6BC82A8E22E11ABB006E2CFC /* MapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */; };
 		6BC82A8F22E11ABB006E2CFC /* MapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */; };
 		6BC82A9022E11ABB006E2CFC /* MapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */; };
@@ -137,10 +125,6 @@
 		6B87C35E22BFD66C00803F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV04.geojson; sourceTree = "<group>"; };
-		6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV01.geojson; sourceTree = "<group>"; };
-		6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV02.geojson; sourceTree = "<group>"; };
-		6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LV03.geojson; sourceTree = "<group>"; };
 		6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataSource.swift; sourceTree = "<group>"; };
 		6BF9290722C6D18A00007616 /* CUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUView.swift; sourceTree = "<group>"; };
 		6BF9290B22C6D1B300007616 /* CUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUViewController.swift; sourceTree = "<group>"; };
@@ -249,7 +233,7 @@
 		6B29893822C5A8DD00B1550C /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				6BC82A7922E0ACB8006E2CFC /* FloorData */,
+				6B4BD46A22E7501100BF03E7 /* RiverBuilding.geojson */,
 				6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */,
 				6B29895022C5E86600B1550C /* MapViewController.swift */,
 			);
@@ -406,18 +390,6 @@
 			path = cuHackingUITests;
 			sourceTree = "<group>";
 		};
-		6BC82A7922E0ACB8006E2CFC /* FloorData */ = {
-			isa = PBXGroup;
-			children = (
-				6B4BD46A22E7501100BF03E7 /* RiverBuilding.geojson */,
-				6BC82A7A22E0ACB8006E2CFC /* LV04.geojson */,
-				6BC82A7B22E0ACB8006E2CFC /* LV01.geojson */,
-				6BC82A7C22E0ACB8006E2CFC /* LV02.geojson */,
-				6BC82A7D22E0ACB8006E2CFC /* LV03.geojson */,
-			);
-			path = FloorData;
-			sourceTree = "<group>";
-		};
 		6BF9290F22C6D1E000007616 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,13 +536,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BC82A8422E0ACB9006E2CFC /* LV01.geojson in Resources */,
 				6B4BD46B22E7501100BF03E7 /* RiverBuilding.geojson in Resources */,
 				6B1B6AD822C7DC2E001E705D /* .mapbox in Resources */,
 				6B87C34722BFD66C00803F7C /* LaunchScreen.storyboard in Resources */,
-				6BC82A8722E0ACB9006E2CFC /* LV02.geojson in Resources */,
-				6BC82A8A22E0ACB9006E2CFC /* LV03.geojson in Resources */,
-				6BC82A8122E0ACB8006E2CFC /* LV04.geojson in Resources */,
 				6BA9AC4D22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
 				6B87C34422BFD66C00803F7C /* Assets.xcassets in Resources */,
 			);
@@ -580,13 +548,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BC82A8222E0ACB8006E2CFC /* LV04.geojson in Resources */,
 				6B29894C22C5E28300B1550C /* Assets.xcassets in Resources */,
-				6BC82A8522E0ACB9006E2CFC /* LV01.geojson in Resources */,
 				6B4BD46C22E7501100BF03E7 /* RiverBuilding.geojson in Resources */,
 				6BA9AC4E22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
-				6BC82A8B22E0ACB9006E2CFC /* LV03.geojson in Resources */,
-				6BC82A8822E0ACB9006E2CFC /* LV02.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,13 +558,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BC82A8322E0ACB8006E2CFC /* LV04.geojson in Resources */,
 				6B29894D22C5E28300B1550C /* Assets.xcassets in Resources */,
-				6BC82A8622E0ACB9006E2CFC /* LV01.geojson in Resources */,
 				6B4BD46D22E7501100BF03E7 /* RiverBuilding.geojson in Resources */,
 				6BA9AC4F22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
-				6BC82A8C22E0ACB9006E2CFC /* LV03.geojson in Resources */,
-				6BC82A8922E0ACB9006E2CFC /* LV02.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
