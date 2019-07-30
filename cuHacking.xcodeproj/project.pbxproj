@@ -46,6 +46,9 @@
 		6B87C34722BFD66C00803F7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C34522BFD66C00803F7C /* LaunchScreen.storyboard */; };
 		6B87C35222BFD66C00803F7C /* cuHackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C35122BFD66C00803F7C /* cuHackingTests.swift */; };
 		6B87C35D22BFD66C00803F7C /* cuHackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C35C22BFD66C00803F7C /* cuHackingUITests.swift */; };
+		6B91632A22EFB659009ADB0A /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91632922EFB659009ADB0A /* Int+Ext.swift */; };
+		6B91632B22EFB659009ADB0A /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91632922EFB659009ADB0A /* Int+Ext.swift */; };
+		6B91632C22EFB659009ADB0A /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91632922EFB659009ADB0A /* Int+Ext.swift */; };
 		6BA9AC4D22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BA9AC4E22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BA9AC4F22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
@@ -123,6 +126,7 @@
 		6B87C35822BFD66C00803F7C /* cuHackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cuHackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B87C35C22BFD66C00803F7C /* cuHackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cuHackingUITests.swift; sourceTree = "<group>"; };
 		6B87C35E22BFD66C00803F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B91632922EFB659009ADB0A /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataSource.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 			children = (
 				6BF9291422C6F82E00007616 /* UINavigationController+Ext.swift */,
 				6BFBDDBC22C7B3600085B854 /* UIView+Ext.swift */,
+				6B91632922EFB659009ADB0A /* Int+Ext.swift */,
 			);
 			path = "Extensions ";
 			sourceTree = "<group>";
@@ -760,6 +765,7 @@
 				6B29894922C5E08900B1550C /* LightTheme.swift in Sources */,
 				6B29894522C5C5A300B1550C /* InformationViewController.swift in Sources */,
 				6B29894B22C5E09000B1550C /* DarkTheme.swift in Sources */,
+				6B91632A22EFB659009ADB0A /* Int+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +780,7 @@
 				6B87C35222BFD66C00803F7C /* cuHackingTests.swift in Sources */,
 				6B6AC21222CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6BC82A8F22E11ABB006E2CFC /* MapDataSource.swift in Sources */,
+				6B91632B22EFB659009ADB0A /* Int+Ext.swift in Sources */,
 				6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6B6D4F4122D3D0E000A9D4F9 /* InformationRepository.swift in Sources */,
 				6B37336E22E3D1BA00F648A6 /* Level.swift in Sources */,
@@ -794,6 +801,7 @@
 				6B87C35D22BFD66C00803F7C /* cuHackingUITests.swift in Sources */,
 				6B6AC21322CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6BC82A9022E11ABB006E2CFC /* MapDataSource.swift in Sources */,
+				6B91632C22EFB659009ADB0A /* Int+Ext.swift in Sources */,
 				6BC82A8022E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6B6D4F4222D3D0E000A9D4F9 /* InformationRepository.swift in Sources */,
 				6B37336F22E3D1BA00F648A6 /* Level.swift in Sources */,

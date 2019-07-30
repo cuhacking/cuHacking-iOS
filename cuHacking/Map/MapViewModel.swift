@@ -23,11 +23,7 @@ class MapViewModel {
             return  NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'room'")
         }
     }
-    var labelPredicate : NSPredicate {
-        get{
-            return NSPredicate(format: "floor = \(currentLevel.rawValue)")
-        }
-    }
+
     var hallwayFill : NSPredicate {
         get{
             return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'hallway'")
@@ -54,12 +50,33 @@ class MapViewModel {
         }
     }
     
+    var roomLabelPredicate : NSPredicate {
+        get{
+            return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'room'")
+        }
+    }
+    
+    var washroomSymbolPredicate : NSPredicate {
+        get {
+            return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'washroom'")
+        }
+    }
+    
+    var elevatorSymbolPredicate : NSPredicate {
+        get {
+            return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'elevator'")
+        }
+    }
+    var stairsSymbolPredicate : NSPredicate {
+        get {
+            return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'stairs'")
+        }
+    }
     public init?(mapDataSource: MapDataSource){
         self.currentLevel = .one
         self.mapDataSource = mapDataSource
         let building = try! mapDataSource.loadBuilding(named: "RiverBuilding")
         self.shapeSource = MGLShapeSource(identifier: "RiverBuilding", shape: building, options: nil)
-        print("CURRENT LEVEL\(currentLevel.rawValue)")
     }
     
 }
