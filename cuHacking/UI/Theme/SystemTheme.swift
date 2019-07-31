@@ -14,4 +14,6 @@ struct SystemTheme : Theme {
     var barButtonTint: UIColor = UIColor(named: "CUBlack")!
     var navigationBarStyle: UIBarStyle = .default
     var labelTextColour: UIColor = .label
+    var cardBackground: UIColor = .systemBackground
+
 }

@@ -11,6 +11,7 @@ class CUViewController : UIViewController {
     override func loadView() {
         let view = CUView()
         self.view = view
+        super.loadView()
     }
     override func viewDidLoad() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

@@ -14,6 +14,7 @@ protocol Theme {
     var tabBarTint : UIColor { get }
     var labelTextColour : UIColor { get }
     var backgroundColour : UIColor { get }
+    var cardBackground : UIColor { get }
 }
 
 extension Theme {
@@ -27,6 +28,8 @@ extension Theme {
         UIBarButtonItem.appearance().tintColor = barButtonTint
         UITabBar.appearance().tintColor = tabBarTint
         CUView.appearance().backgroundColor = backgroundColour
+        CardView.appearance().backgroundColor = backgroundColour
+
         UILabel.appearance().textColor = labelTextColour
 //        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor.red], for: .normal)
 //        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor : UIColor.orange], for: .selected)

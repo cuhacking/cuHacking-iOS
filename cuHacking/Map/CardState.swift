@@ -7,3 +7,7 @@
 //
 
 import Foundation
+enum CardState {
+    case expanded
+    case collapsed
+}
