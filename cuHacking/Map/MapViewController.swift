@@ -27,8 +27,8 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     private let TABLE_VIEW_CELL_HEIGHT = 50
     private let viewModel : MapViewModel
     private var lineLayer : MGLLineStyleLayer!
-    private var symbolLayer, roomLabelLayer, washroomSymbolLayer, stairsSymbolLayer, elevatorSymbolLayer  : MGLSymbolStyleLayer!
-    private var fillLayer, roomFill, washroomFill, elevatorFill, hallwayFill, stairsFill, nullFill : MGLFillStyleLayer!
+    private var symbolLayer : MGLSymbolStyleLayer!
+    private var fillLayer : MGLFillStyleLayer!
     private var tableView : UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = false
@@ -95,70 +95,6 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         
         updateMapPredicates()
     }
-
-//    private func setupLevels(){
-//        let source = viewModel.shapeSource
-//
-//        floorOutline = MGLLineStyleLayer(identifier: "floor1", source:source)
-//        floorOutline.lineWidth = NSExpression(forConstantValue: 0.5)
-//        floorOutline.lineColor = NSExpression(forConstantValue: UIColor.brown)
-//
-//        roomFill = MGLFillStyleLayer(identifier: "roomFill", source: source)
-//        roomFill.fillColor = NSExpression(forConstantValue: UIColor.blue)
-//
-//        washroomFill = MGLFillStyleLayer(identifier: "washroomFill", source: source)
-//        washroomFill.fillColor = NSExpression(forConstantValue: UIColor.orange)
-//
-//        elevatorFill = MGLFillStyleLayer(identifier: "elevatorFill", source: source)
-//        elevatorFill.fillColor = NSExpression(forConstantValue: UIColor.purple)
-//
-//        hallwayFill = MGLFillStyleLayer(identifier: "hallwayFill", source: source)
-//        hallwayFill.fillColor = NSExpression(forConstantValue: UIColor.red)
-//
-//        stairsFill = MGLFillStyleLayer(identifier: "stairsFill", source: source)
-//        stairsFill.fillColor = NSExpression(forConstantValue: UIColor.yellow)
-//
-//        nullFill = MGLFillStyleLayer(identifier: "nullFill", source: source)
-//        nullFill.fillColor = NSExpression(forConstantValue: UIColor.white)
-//
-//        roomLabelLayer = MGLSymbolStyleLayer(identifier: "roomLabelLayer", source: source)
-//        roomLabelLayer.textFontSize = NSExpression(forConstantValue: 10)
-//        roomLabelLayer.text = NSExpression(forKeyPath: "room")
-//
-//        washroomSymbolLayer = MGLSymbolStyleLayer(identifier: "washroomSymbolLayer", source: source)
-//        washroomSymbolLayer.iconImageName = NSExpression(forConstantValue: "washroom")
-//        washroomSymbolLayer.iconScale = NSExpression(forConstantValue: 0.1)
-//        washroomSymbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 10)))
-//        washroomSymbolLayer.text = NSExpression(forKeyPath: "room")
-//        washroomSymbolLayer.textFontSize = NSExpression(forConstantValue: 8)
-//
-//        elevatorSymbolLayer = MGLSymbolStyleLayer(identifier: "elevatorSymbolLayer", source: source)
-//        elevatorSymbolLayer.iconImageName = NSExpression(forConstantValue: "elevator")
-//        elevatorSymbolLayer.iconScale = NSExpression(forConstantValue: 0.15)
-//
-//        stairsSymbolLayer = MGLSymbolStyleLayer(identifier: "stairsSymbolLayer", source: source)
-//        stairsSymbolLayer.iconImageName = NSExpression(forConstantValue: "stairs")
-//        stairsSymbolLayer.iconScale = NSExpression(forConstantValue: 0.1)
-//        stairsSymbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 10)))
-//        stairsSymbolLayer.text = NSExpression(forKeyPath: "room")
-//        stairsSymbolLayer.textFontSize = NSExpression(forConstantValue: 8)
-//
-//        updateMapPredicates()
-//
-//        mapView.style?.addSource(source)
-//        mapView.style?.addLayer(nullFill)
-//        mapView.style?.addLayer(roomFill)
-//        mapView.style?.addLayer(elevatorFill)
-//        mapView.style?.addLayer(hallwayFill)
-//        mapView.style?.addLayer(stairsFill)
-//        mapView.style?.addLayer(washroomFill)
-//        mapView.style?.addLayer(floorOutline)
-//        mapView.style?.addLayer(roomLabelLayer)
-//        mapView.style?.addLayer(washroomSymbolLayer)
-//        mapView.style?.addLayer(elevatorSymbolLayer)
-//        mapView.style?.addLayer(stairsSymbolLayer)
-//    }
-    
     private func setupFloorPicker(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -261,19 +197,6 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         fillLayer.predicate = viewModel.floorPredicate
         symbolLayer.predicate = viewModel.floorPredicate
     }
-//    private func updateMapPredicates(){
-//        floorOutline.predicate = viewModel.linePredicate
-//        roomLabelLayer.predicate = viewModel.roomLabelPredicate
-//        roomFill.predicate = viewModel.roomFill
-//        washroomFill.predicate = viewModel.washroomFill
-//        elevatorFill.predicate = viewModel.elevatorFill
-//        stairsFill.predicate = viewModel.stairsFill
-//        hallwayFill.predicate = viewModel.hallwayFill
-//        nullFill.predicate = viewModel.nullFill
-//        washroomSymbolLayer.predicate = viewModel.washroomSymbolPredicate
-//        elevatorSymbolLayer.predicate = viewModel.elevatorSymbolPredicate
-//        stairsSymbolLayer.predicate = viewModel.stairsSymbolPredicate
-//    }
     
     @objc func roomTapped(sender: UITapGestureRecognizer){
         let spot = sender.location(in: mapView)
