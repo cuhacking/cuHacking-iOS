@@ -27,8 +27,8 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     private let TABLE_VIEW_CELL_HEIGHT = 50
     private let viewModel : MapViewModel
     private var lineLayer : MGLLineStyleLayer!
+    private var fillLayer,backdropLayer : MGLFillStyleLayer!
     private var symbolLayer : MGLSymbolStyleLayer!
-    private var fillLayer : MGLFillStyleLayer!
     private var tableView : UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = false
@@ -59,6 +59,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     //MARK: Setup Methods
     private func setupMap(){
         let url = traitCollection.userInterfaceStyle == .light ? MGLStyle.lightStyleURL :  MGLStyle.darkStyleURL
+        
         mapView = MGLMapView(frame: view.bounds, styleURL: url)
         mapView.delegate = self
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -68,30 +69,44 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
             singleTap.require(toFail: recognizer)
         }
+
         mapView.addGestureRecognizer(singleTap)
         view.addSubview(mapView)
     }
     
-    private func setupLevels(){
+    private func setupLevels(style : MGLStyle){
+        print(" Mapview: \(mapView.style?.source(withIdentifier: viewModel.shapeSource.identifier))")
+        if let _ = style.source(withIdentifier: viewModel.shapeSource.identifier)  {
+            return
+        }
         let source = viewModel.shapeSource
-        mapView.style?.addSource(source)
+        print("Identifier:\(source.identifier) VS. \(viewModel.shapeSource.identifier)")
+        style.addSource(source)
+        print("foUND :\(style.source(withIdentifier: viewModel.shapeSource.identifier))")
 
+        backdropLayer = MGLFillStyleLayer(identifier: "river-building-backdrop-layer", source: source)
+        backdropLayer.fillColor = NSExpression(forConstantValue: UIColor.white)
+        
         lineLayer = MGLLineStyleLayer(identifier: "river-building-line-layer", source:source)
         lineLayer.lineWidth = NSExpression(forConstantValue: 0.5)
         lineLayer.lineColor = NSExpression(forConstantValue: UIColor.black)
 
         fillLayer = MGLFillStyleLayer(identifier: "river-building-fill-layer", source: source)
         let defaultFill = UIColor.purpleSix
-        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat, UIColor.purpleOne, UIColor.purpleTwo, UIColor.purpleThree, UIColor.purpleFour, UIColor.purpleFive, defaultFill)
+        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat, UIColor.purpleOne, UIColor.purpleTwo, UIColor.purpleThree, UIColor.purpleFour, UIColor.purpleFive, UIColor.white.withAlphaComponent(0),defaultFill)
       
         
         symbolLayer = MGLSymbolStyleLayer(identifier: "river-building-symbol-layer", source: source)
         symbolLayer.iconImageName = NSExpression(format: viewModel.symbolIconFormat, "washroom","elevator","stairs","")
-        symbolLayer.iconScale = NSExpression(forConstantValue: 0.1)
+        symbolLayer.iconScale = NSExpression(forConstantValue: 0.2)
+        symbolLayer.text = NSExpression(forKeyPath: "name")
+        symbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 15)))
+        symbolLayer.textFontSize = NSExpression(forConstantValue: 8)
        
-        mapView.style?.addLayer(fillLayer)
-        mapView.style?.addLayer(symbolLayer)
-        mapView.style?.addLayer(lineLayer)
+        style.addLayer(backdropLayer)
+        style.addLayer(fillLayer)
+        style.addLayer(symbolLayer)
+        style.addLayer(lineLayer)
         
         updateMapPredicates()
     }
@@ -109,10 +124,9 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         self.addChild(cardViewController)
         cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: CARD_HEIGHT)
         cardViewController.view.clipsToBounds = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MapViewController.handleTap))
-        cardViewController.view.addGestureRecognizer(tapGesture)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(MapViewController.handleCardPan(recognizer:)))
+        cardViewController.view.addGestureRecognizer(panGesture)
         self.view.addSubview(cardViewController.view)
-
     }
     func hideCard(){
         let frameAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 1) {
@@ -125,32 +139,29 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
             self.cardViewController.view.frame.origin.y = self.view.bounds.height-self.CARD_HEIGHT
         }
         frameAnimator.startAnimation()
-    }
-    @objc func handleTap(){
-        hideCard()
+        frameAnimator.addCompletion { (_) in
+            self.originalCenterY = self.cardViewController.view.center.y
+        }
     }
     
+    var originalCenterY : CGFloat = 0
     @objc func handleCardPan(recognizer: UIPanGestureRecognizer){
         let translation = recognizer.translation(in: self.view)
-        self.cardViewController.view.center.y += translation.y
-//        switch recognizer.state{
-//        case .began:
-//            //Start animation
-//          //  startInteractiveTransition(state: cardNextStae, duration: 0.9)
-//
-//        case .changed:
-//            //updateTransition
-//            let translation = recognizer.translation(in: self.cardViewController.view)
-//            var fractionCompleted = translation.y
-//            print("completed:\(fractionCompleted)")
-//            fractionCompleted = cardVisible ? fractionCompleted : -fractionCompleted
-//            updateInteractiveTransition(fractionCompleted: fractionCompleted)
-//        case .ended:
-//            //Continue transition
-//            continueInteractiveTransition()
-//        default:
-//            break
-//        }
+        if(translation.y < 0){return}
+        let newCenter = translation.y+originalCenterY
+        switch recognizer.state{
+        case .began,.changed:
+            self.cardViewController.view.center.y = newCenter
+        case .ended,.cancelled,.failed:
+            if (originalCenterY/newCenter <= 0.90){
+                hideCard()
+            }
+            else{
+                self.cardViewController.view.center.y = originalCenterY
+            }
+        default:
+            break
+        }
     }
     
     private func animateCardTransitionIfNeeded(state: CardState, duration: TimeInterval){
@@ -193,6 +204,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func updateMapPredicates(){
+        backdropLayer.predicate = viewModel.backdropPredicate
         lineLayer.predicate = viewModel.floorPredicate
         fillLayer.predicate = viewModel.floorPredicate
         symbolLayer.predicate = viewModel.floorPredicate
@@ -209,10 +221,16 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: MGLMapViewDelegate Methods
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
+        print("loaded")
         mapView.style?.setImage(UIImage(named: "washroom")!, forName: "washroom")
         mapView.style?.setImage(UIImage(named: "elevator")!, forName: "elevator")
         mapView.style?.setImage(UIImage(named: "stairs")!, forName: "stairs")
-        setupLevels()
+    }
+    
+    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+        print("Problem")
+
+        setupLevels(style: style)
     }
     
     //MARK: TableViewDelegate & TableViewDataSource Methods
@@ -248,10 +266,17 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 13.0, *) {
+          //  print("Okay: \(mapView.styleURL)")
+
             if(previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) == false){
                 return
             }
             let url = traitCollection.userInterfaceStyle == .light ? MGLStyle.lightStyleURL :  MGLStyle.darkStyleURL
+          //  print("Okay3: \(url)")
+            if (url == mapView.styleURL) {
+                return
+            }
+          //  print("here")
             mapView.styleURL = url
         }
     }

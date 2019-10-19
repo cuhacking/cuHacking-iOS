@@ -44,7 +44,8 @@ class InformationViewController : CUViewController {
     }
     
     @objc func showProfile(){
-        let profileViewController = ProfileViewController()
+        print("showing profile")
+        let profileViewController = SignInViewController(nibName: "SignInViewController", bundle: nil)
         self.navigationController?.pushViewController(profileViewController, animated: false)
     }
     @objc func showQRScanner(){
