@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,8 +59,8 @@
 		6B87C34222BFD66B00803F7C /* cuHacking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C34022BFD66B00803F7C /* cuHacking.xcdatamodeld */; };
 		6B87C34422BFD66C00803F7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C34322BFD66C00803F7C /* Assets.xcassets */; };
 		6B87C34722BFD66C00803F7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C34522BFD66C00803F7C /* LaunchScreen.storyboard */; };
-		6B87C35222BFD66C00803F7C /* cuHackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C35122BFD66C00803F7C /* cuHackingTests.swift */; };
-		6B87C35D22BFD66C00803F7C /* cuHackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C35C22BFD66C00803F7C /* cuHackingUITests.swift */; };
+		6B87C35222BFD66C00803F7C /* CUHackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C35122BFD66C00803F7C /* CUHackingTests.swift */; };
+		6B87C35D22BFD66C00803F7C /* CUHackingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C35C22BFD66C00803F7C /* CUHackingUITests.swift */; };
 		6B91632A22EFB659009ADB0A /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91632922EFB659009ADB0A /* Int+Ext.swift */; };
 		6B91632B22EFB659009ADB0A /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91632922EFB659009ADB0A /* Int+Ext.swift */; };
 		6B91632C22EFB659009ADB0A /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91632922EFB659009ADB0A /* Int+Ext.swift */; };
@@ -164,10 +164,10 @@
 		6B87C34622BFD66C00803F7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B87C34822BFD66C00803F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B87C34D22BFD66C00803F7C /* cuHackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cuHackingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B87C35122BFD66C00803F7C /* cuHackingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cuHackingTests.swift; sourceTree = "<group>"; };
+		6B87C35122BFD66C00803F7C /* CUHackingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUHackingTests.swift; sourceTree = "<group>"; };
 		6B87C35322BFD66C00803F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B87C35822BFD66C00803F7C /* cuHackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cuHackingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B87C35C22BFD66C00803F7C /* cuHackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cuHackingUITests.swift; sourceTree = "<group>"; };
+		6B87C35C22BFD66C00803F7C /* CUHackingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUHackingUITests.swift; sourceTree = "<group>"; };
 		6B87C35E22BFD66C00803F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B91632922EFB659009ADB0A /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		6BA16483231DCEE600EB186D /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 		6B87C35022BFD66C00803F7C /* cuHackingTests */ = {
 			isa = PBXGroup;
 			children = (
-				6B87C35122BFD66C00803F7C /* cuHackingTests.swift */,
+				6B87C35122BFD66C00803F7C /* CUHackingTests.swift */,
 				6B87C35322BFD66C00803F7C /* Info.plist */,
 			);
 			path = cuHackingTests;
@@ -459,7 +459,7 @@
 		6B87C35B22BFD66C00803F7C /* cuHackingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				6B87C35C22BFD66C00803F7C /* cuHackingUITests.swift */,
+				6B87C35C22BFD66C00803F7C /* CUHackingUITests.swift */,
 				6B87C35E22BFD66C00803F7C /* Info.plist */,
 			);
 			path = cuHackingUITests;
@@ -684,7 +684,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#\"${PODS_ROOT}/Fabric/run\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#\"${PODS_ROOT}/Fabric/run\"\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		6BF9292022C7251800007616 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -844,7 +844,7 @@
 				6B26322D22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
 				6BE10D3822F233FB00280D21 /* UIColor+Ext.swift in Sources */,
 				6B6A646622F09F2F006CAD6D /* CardView.swift in Sources */,
-				6B87C35222BFD66C00803F7C /* cuHackingTests.swift in Sources */,
+				6B87C35222BFD66C00803F7C /* CUHackingTests.swift in Sources */,
 				6B6AC21222CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6BC82A8F22E11ABB006E2CFC /* MapDataSource.swift in Sources */,
 				6B91632B22EFB659009ADB0A /* Int+Ext.swift in Sources */,
@@ -874,7 +874,7 @@
 				6B26322E22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
 				6BE10D3922F233FB00280D21 /* UIColor+Ext.swift in Sources */,
 				6B6A646722F09F2F006CAD6D /* CardView.swift in Sources */,
-				6B87C35D22BFD66C00803F7C /* cuHackingUITests.swift in Sources */,
+				6B87C35D22BFD66C00803F7C /* CUHackingUITests.swift in Sources */,
 				6B6AC21322CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6BC82A9022E11ABB006E2CFC /* MapDataSource.swift in Sources */,
 				6B91632C22EFB659009ADB0A /* Int+Ext.swift in Sources */,

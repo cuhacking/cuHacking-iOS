@@ -14,7 +14,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     //MARK: Instance Variables
     private var cardViewController : CardViewController!
     private var visualEffectView : UIVisualEffectView!
-    private let CARD_HEIGHT : CGFloat = 350
+    private let cardHeight : CGFloat = 350
     private var cardVisible = false
     private var cardNextStae : CardState {
         return cardVisible ? .expanded : .collapsed
@@ -23,8 +23,8 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     private var cardAnimationProgressWhenInterrupted : CGFloat = 0
     private var levels = [MGLLineStyleLayer]()
     private var mapView : MGLMapView!
-    private let TABLE_VIEW_CELL_WIDTH = 50
-    private let TABLE_VIEW_CELL_HEIGHT = 50
+    private let tableViewCellWidth = 50
+    private let tableViewCellHeight = 50
     private let viewModel : MapViewModel
     private var lineLayer : MGLLineStyleLayer!
     private var fillLayer,backdropLayer : MGLFillStyleLayer!
@@ -112,7 +112,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: -20), size: CGSize(width: TABLE_VIEW_CELL_WIDTH, height: TABLE_VIEW_CELL_HEIGHT*Level.allCases.count))
+        tableView.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: -20), size: CGSize(width: tableViewCellWidth, height: tableViewCellHeight*Level.allCases.count))
     }
     
     private func setupCard() {
@@ -120,7 +120,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
 //        self.view.addSubview(visualEffectView)
         cardViewController = CardViewController()
         self.addChild(cardViewController)
-        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: CARD_HEIGHT)
+        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
         cardViewController.view.clipsToBounds = true
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(MapViewController.handleCardPan(recognizer:)))
         cardViewController.view.addGestureRecognizer(panGesture)
@@ -134,7 +134,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     }
     func showCard(){
         let frameAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 1) {
-            self.cardViewController.view.frame.origin.y = self.view.bounds.height-self.CARD_HEIGHT
+            self.cardViewController.view.frame.origin.y = self.view.bounds.height-self.cardHeight
         }
         frameAnimator.startAnimation()
         frameAnimator.addCompletion { (_) in
@@ -167,7 +167,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
                 case .expanded:
-                    self.cardViewController.view.frame.origin.y = self.view.frame.height - self.CARD_HEIGHT
+                    self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight
                 case .collapsed:
                     self.cardViewController.view.frame.origin.y = self.view.frame.height
                 }
@@ -237,7 +237,7 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(TABLE_VIEW_CELL_HEIGHT)
+        return CGFloat(tableViewCellHeight)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.currentLevel = (Level.allCases.count-indexPath.row).toLevel()

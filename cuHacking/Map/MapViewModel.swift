@@ -26,7 +26,9 @@ class MapViewModel {
     public init?(mapDataSource: MapDataSource){
         self.currentLevel = .one
         self.mapDataSource = mapDataSource
-        let building = try! mapDataSource.loadBuilding(named: "RiverBuilding")
+        guard let building = try? mapDataSource.loadBuilding(named: "RiverBuilding") else{
+            return nil
+        }
         self.shapeSource = MGLShapeSource(identifier: "RiverBuilding", shape: building, options: nil)
        
         let fillKeys = ["room","washroom", "elevator", "hallway", "stairs","open"]
