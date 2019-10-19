@@ -1,4 +1,4 @@
 .DS_Store
 cuHacking/GoogleService-Info.plist
-.mapbox
-Pods/Mapbox-iOS-SDK
+.map-box
+./Pods/
