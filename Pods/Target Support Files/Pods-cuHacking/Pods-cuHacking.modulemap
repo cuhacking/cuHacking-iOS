@@ -1,6 +1,0 @@
-framework module Pods_cuHacking {
-  umbrella header "Pods-cuHacking-umbrella.h"
-
-  export *
-  module * { export * }
-}
