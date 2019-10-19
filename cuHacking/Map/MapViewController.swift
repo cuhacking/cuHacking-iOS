@@ -75,14 +75,12 @@ class MapViewController : CUViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func setupLevels(style : MGLStyle){
-        print(" Mapview: \(mapView.style?.source(withIdentifier: viewModel.shapeSource.identifier))")
         if let _ = style.source(withIdentifier: viewModel.shapeSource.identifier)  {
             return
         }
         let source = viewModel.shapeSource
         print("Identifier:\(source.identifier) VS. \(viewModel.shapeSource.identifier)")
         style.addSource(source)
-        print("foUND :\(style.source(withIdentifier: viewModel.shapeSource.identifier))")
 
         backdropLayer = MGLFillStyleLayer(identifier: "river-building-backdrop-layer", source: source)
         backdropLayer.fillColor = NSExpression(forConstantValue: UIColor.white)
