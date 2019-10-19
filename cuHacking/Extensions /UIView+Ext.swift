@@ -8,10 +8,10 @@
 
 import UIKit
 extension UIView {
-    func fillSuperview(){
+    func fillSuperview() {
         anchor(top: self.superview?.topAnchor, leading: self.superview?.leadingAnchor, bottom: self.superview?.bottomAnchor, trailing: self.superview?.trailingAnchor)
     }
-    func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero){
+    func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
         self.translatesAutoresizingMaskIntoConstraints = false
         if let top = top {
             self.topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true

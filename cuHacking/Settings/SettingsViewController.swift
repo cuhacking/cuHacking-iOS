@@ -7,12 +7,12 @@
 //
 
 import UIKit
-class SettingsViewController : CUViewController {
+class SettingsViewController: CUViewController {
     override func viewDidLoad() {
         setupNavigationController()
         super.viewDidLoad()
     }
-    func setupNavigationController(){
+    func setupNavigationController() {
         self.title = "Settings"
     }
 }

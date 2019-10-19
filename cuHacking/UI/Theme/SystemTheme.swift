@@ -8,7 +8,7 @@
 
 import UIKit
 @available(iOS 13.0, *)
-struct SystemTheme : Theme {
+struct SystemTheme: Theme {
     var backgroundColour: UIColor = .systemBackground
     var navigationTitleColour: UIColor = .label
     var barButtonTint: UIColor = UIColor(named: "CUBlack")!

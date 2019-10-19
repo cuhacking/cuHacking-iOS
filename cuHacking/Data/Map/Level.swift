@@ -7,10 +7,9 @@
 //
 
 import Foundation
-enum Level : String, CaseIterable{
+enum Level: String, CaseIterable {
     case one = "1"
     case two = "2"
     case three = "3"
 //    case four = "4"
-    
 }

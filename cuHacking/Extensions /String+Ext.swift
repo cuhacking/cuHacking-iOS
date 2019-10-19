@@ -8,15 +8,14 @@
 
 import Foundation
 extension String {
-    static func formatMGLMatchExpression(attribute : String, keys: [String], stringFormat: String, includeDefault: Bool) -> String{
+    static func formatMGLMatchExpression(attribute: String, keys: [String], stringFormat: String, includeDefault: Bool) -> String {
         var format = "MGL_MATCH(\(attribute),"
-        for key in keys{
+        for key in keys {
             format += "'\(key)',\(stringFormat),"
         }
-        if (includeDefault){
+        if includeDefault {
             format += "\(stringFormat)"
-        }
-        else{
+        } else {
             format = String(format.dropLast())
         }
         format += ")"

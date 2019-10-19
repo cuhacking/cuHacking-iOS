@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class CUTextField : UITextField{
+class CUTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.borderStyle = .roundedRect

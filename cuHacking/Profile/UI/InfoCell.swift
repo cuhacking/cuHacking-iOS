@@ -9,7 +9,6 @@
 import UIKit
 
 class InfoCell: UITableViewCell {
-
     @IBOutlet weak var informationLabel: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     override func awakeFromNib() {
@@ -22,5 +21,4 @@ class InfoCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

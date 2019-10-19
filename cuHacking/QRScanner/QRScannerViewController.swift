@@ -9,64 +9,61 @@
 import UIKit
 import AVFoundation
 
-class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjectsDelegate {
-    var captureSession : AVCaptureSession!
-    var previewLayer : AVCaptureVideoPreviewLayer!
-    
+class QRScannerViewController: CUViewController, AVCaptureMetadataOutputObjectsDelegate {
+    var captureSession: AVCaptureSession!
+    var previewLayer: AVCaptureVideoPreviewLayer!
+
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.tabBarController?.tabBar.isHidden = true
         self.navigationController?.makeTransparent()
-        if(captureSession?.isRunning == false){
+        if captureSession?.isRunning == false {
             captureSession.startRunning()
         }
         super.viewWillAppear(animated)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         verifyCameraPermission()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.tabBarController?.tabBar.isHidden = false
         self.navigationController?.undoTransparent()
-        if(captureSession?.isRunning == true){
+        if captureSession?.isRunning == true {
             captureSession.stopRunning()
         }
         super.viewWillDisappear(animated)
     }
 
-    private func setupCamera(){
+    private func setupCamera() {
         captureSession = AVCaptureSession()
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
             showCameraSetupFailedAlert(title: "QR Scanning not Supported", message: "Permission to use the camera was denied. Please go to your system settings and give cuHacking permission inorder to scan QR codes. ")
             return
         }
-        let videoInput : AVCaptureDeviceInput
-        do{
+        let videoInput: AVCaptureDeviceInput
+        do {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
-        }
-        catch {
+        } catch {
             print(error.localizedDescription)
             return
         }
-        if captureSession.canAddInput(videoInput){
+        if captureSession.canAddInput(videoInput) {
             captureSession.addInput(videoInput)
-        }
-        else{
+        } else {
             showCameraSetupFailedAlert(title: "QR Scanning not Supported", message: "Permission to use the camera was denied. Please go to your system settings and give cuHacking permission inorder to scan QR codes.")
             return
         }
         let metadataOutput = AVCaptureMetadataOutput()
-        if(captureSession.canAddOutput(metadataOutput)){
+        if captureSession.canAddOutput(metadataOutput) {
             captureSession.addOutput(metadataOutput)
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr]
-        }
-        else{
+        } else {
             showCameraSetupFailedAlert(title: "QR Scanning not Supported", message: "Permission to use the camera was denied. Please go to your system settings and give cuHacking permission inorder to scan QR codes. ")
             return
         }
@@ -75,10 +72,10 @@ class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjects
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
-        
+
     }
-    
-    private func verifyCameraPermission(){
+
+    private func verifyCameraPermission() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             self.setupCamera()
@@ -88,26 +85,22 @@ class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjects
                     DispatchQueue.main.async {
                         self.setupCamera()
                     }
-                }
-                else{
+                } else {
                     DispatchQueue.main.async {
                       self.showCameraSetupFailedAlert(title: "Can't Access Camera", message: "Permission to use the camera was denied. Please go to your system settings and give cuHacking permission inorder to scan QR codes.")
                     }
                 }
             }
-            break
         case .denied:
             showCameraSetupFailedAlert(title: "Can't Access Camera", message: "Permission to use the camera was denied. Please go to your system settings and give cuHacking permission inorder to scan QR codes.")
-            break
         case .restricted:
             showCameraSetupFailedAlert(title: "Restriced Camera Access", message: "Camera usage is restricted on this device.")
-            break
         default:
             break
         }
     }
-    
-    private func showCameraSetupFailedAlert(title: String, message: String){
+
+    private func showCameraSetupFailedAlert(title: String, message: String) {
         let errorAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             self.navigationController?.popViewController(animated: false)
@@ -116,12 +109,12 @@ class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjects
         present(errorAlert, animated: false)
         captureSession = nil
     }
-    
-    private func found(code:String){
+
+    private func found(code: String) {
         print("Found code:\(code)")
     }
-    
-    //MARK: AVCaptureMetadataOutputObjectsDelegate Methods
+
+    // MARK: AVCaptureMetadataOutputObjectsDelegate Methods
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession.stopRunning()
         if let metadataObject = metadataObjects.first {
@@ -133,4 +126,3 @@ class QRScannerViewController : CUViewController, AVCaptureMetadataOutputObjects
         dismiss(animated: true)
     }
 }
-

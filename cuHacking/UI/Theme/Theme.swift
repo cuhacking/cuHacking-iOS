@@ -8,21 +8,21 @@
 
 import UIKit
 protocol Theme {
-    var navigationBarStyle : UIBarStyle { get }
-    var navigationTitleColour : UIColor { get }
-    var barButtonTint : UIColor { get }
-    var tabBarTint : UIColor { get }
-    var labelTextColour : UIColor { get }
-    var backgroundColour : UIColor { get }
-    var cardBackground : UIColor { get }
+    var navigationBarStyle: UIBarStyle { get }
+    var navigationTitleColour: UIColor { get }
+    var barButtonTint: UIColor { get }
+    var tabBarTint: UIColor { get }
+    var labelTextColour: UIColor { get }
+    var backgroundColour: UIColor { get }
+    var cardBackground: UIColor { get }
 }
 
 extension Theme {
-    var tabBarTint : UIColor {
+    var tabBarTint: UIColor {
         return UIColor(named: "CUPurple")!
     }
-    
-    func apply(toAppplication application : UIApplication){
+
+    func apply(toAppplication application: UIApplication) {
         UINavigationBar.appearance().barStyle = navigationBarStyle
         UINavigationBar.appearance().titleTextAttributes = [ .foregroundColor: navigationTitleColour]
         UIBarButtonItem.appearance().tintColor = barButtonTint

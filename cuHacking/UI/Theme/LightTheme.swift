@@ -7,12 +7,11 @@
 //
 
 import UIKit
-struct LightTheme : Theme {
+struct LightTheme: Theme {
     var cardBackground: UIColor = .white
     var backgroundColour: UIColor = .white
     var navigationTitleColour: UIColor = .black
     var barButtonTint: UIColor = .black
     var navigationBarStyle: UIBarStyle = .default
     var labelTextColour: UIColor = .black
-    
 }

@@ -12,7 +12,7 @@ class TeamCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var teamMemberLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,5 +23,4 @@ class TeamCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

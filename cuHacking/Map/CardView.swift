@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardView : UIView {
+class CardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = 5

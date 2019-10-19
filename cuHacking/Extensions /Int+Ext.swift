@@ -8,8 +8,8 @@
 
 import Foundation
 extension Int {
-    func toLevel() -> Level{
-        switch self{
+    func toLevel() -> Level {
+        switch self {
         case 1:
             return .one
         case 2:

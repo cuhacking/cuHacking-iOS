@@ -7,6 +7,4 @@
 //
 
 import UIKit
-class ScheduleViewController : CUViewController {
-
-}
+class ScheduleViewController: CUViewController {}

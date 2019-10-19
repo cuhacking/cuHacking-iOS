@@ -16,8 +16,6 @@ class SignInViewController: CUViewController {
 
         // Do any additional setup after loading the view.
     }
-
-
     /*
     // MARK: - Navigation
 
@@ -27,5 +25,4 @@ class SignInViewController: CUViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
