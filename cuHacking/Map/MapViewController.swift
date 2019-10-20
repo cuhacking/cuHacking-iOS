@@ -256,7 +256,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         cell.textLabel?.text = "L\(Level.allCases.count-indexPath.row)"
         cell.textLabel?.textAlignment = .center
         let selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = UIColor(named: "CUPurple")
+        selectedBackgroundView.backgroundColor = Palette.purple.color
         cell.selectedBackgroundView = selectedBackgroundView
         return cell
     }

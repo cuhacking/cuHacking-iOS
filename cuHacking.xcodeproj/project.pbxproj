@@ -15,9 +15,6 @@
 		6B26323022C6514B0034CA72 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */; };
 		6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894222C5C51300B1550C /* CUTabBarController.swift */; };
 		6B29894522C5C5A300B1550C /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894422C5C5A300B1550C /* InformationViewController.swift */; };
-		6B29894722C5E08000B1550C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894622C5E08000B1550C /* Theme.swift */; };
-		6B29894922C5E08900B1550C /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894822C5E08900B1550C /* LightTheme.swift */; };
-		6B29894B22C5E09000B1550C /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894A22C5E09000B1550C /* DarkTheme.swift */; };
 		6B29894C22C5E28300B1550C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C34322BFD66C00803F7C /* Assets.xcassets */; };
 		6B29894D22C5E28300B1550C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C34322BFD66C00803F7C /* Assets.xcassets */; };
 		6B29894F22C5E84200B1550C /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894E22C5E84200B1550C /* ScheduleViewController.swift */; };
@@ -47,9 +44,6 @@
 		6B6A646D22F0DBCE006CAD6D /* CardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646C22F0DBCE006CAD6D /* CardState.swift */; };
 		6B6A646E22F0DBCE006CAD6D /* CardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646C22F0DBCE006CAD6D /* CardState.swift */; };
 		6B6A646F22F0DBCE006CAD6D /* CardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646C22F0DBCE006CAD6D /* CardState.swift */; };
-		6B6AC21122CD527A00EAACDD /* SystemTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AC21022CD527A00EAACDD /* SystemTheme.swift */; };
-		6B6AC21222CD527A00EAACDD /* SystemTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AC21022CD527A00EAACDD /* SystemTheme.swift */; };
-		6B6AC21322CD527A00EAACDD /* SystemTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AC21022CD527A00EAACDD /* SystemTheme.swift */; };
 		6B6D4F3822D3D03600A9D4F9 /* DashboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D4F3722D3D03600A9D4F9 /* DashboardAPI.swift */; };
 		6B6D4F3922D3D03600A9D4F9 /* DashboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D4F3722D3D03600A9D4F9 /* DashboardAPI.swift */; };
 		6B6D4F3A22D3D03600A9D4F9 /* DashboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6D4F3722D3D03600A9D4F9 /* DashboardAPI.swift */; };
@@ -83,9 +77,6 @@
 		6BE10D3322F22A6700280D21 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3222F22A6700280D21 /* String+Ext.swift */; };
 		6BE10D3422F22A6700280D21 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3222F22A6700280D21 /* String+Ext.swift */; };
 		6BE10D3522F22A6700280D21 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3222F22A6700280D21 /* String+Ext.swift */; };
-		6BE10D3722F233FB00280D21 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3622F233FA00280D21 /* UIColor+Ext.swift */; };
-		6BE10D3822F233FB00280D21 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3622F233FA00280D21 /* UIColor+Ext.swift */; };
-		6BE10D3922F233FB00280D21 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3622F233FA00280D21 /* UIColor+Ext.swift */; };
 		6BE10D3B22F25C4100280D21 /* RiverBuilding.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */; };
 		6BE10D3C22F25C4100280D21 /* RiverBuilding.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */; };
 		6BE10D3D22F25C4100280D21 /* RiverBuilding.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */; };
@@ -145,9 +136,6 @@
 		6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		6B29894222C5C51300B1550C /* CUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUTabBarController.swift; sourceTree = "<group>"; };
 		6B29894422C5C5A300B1550C /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		6B29894622C5E08000B1550C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		6B29894822C5E08900B1550C /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
-		6B29894A22C5E09000B1550C /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		6B29894E22C5E84200B1550C /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		6B29895022C5E86600B1550C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6B37336C22E3D1BA00F648A6 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -159,7 +147,6 @@
 		6B6A646422F09F2F006CAD6D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6B6A646822F0DB12006CAD6D /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		6B6A646C22F0DBCE006CAD6D /* CardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardState.swift; sourceTree = "<group>"; };
-		6B6AC21022CD527A00EAACDD /* SystemTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTheme.swift; sourceTree = "<group>"; };
 		6B6D4F3722D3D03600A9D4F9 /* DashboardAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAPI.swift; sourceTree = "<group>"; };
 		6B6D4F3B22D3D06000A9D4F9 /* UserDefaultsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAPI.swift; sourceTree = "<group>"; };
 		6B6D4F3F22D3D0E000A9D4F9 /* InformationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRepository.swift; sourceTree = "<group>"; };
@@ -181,7 +168,6 @@
 		6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataSource.swift; sourceTree = "<group>"; };
 		6BE10D3222F22A6700280D21 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		6BE10D3622F233FA00280D21 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RiverBuilding.geojson; sourceTree = "<group>"; };
 		6BEB3306231DDD6000F79CEE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6BEB3307231DDD6000F79CEE /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
@@ -369,7 +355,6 @@
 		6B29893F22C5AA7300B1550C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6BF9290F22C6D1E000007616 /* Theme */,
 				6B29894222C5C51300B1550C /* CUTabBarController.swift */,
 				6B525B91231DED00005046FB /* CUButton.swift */,
 				6B525B95231DED08005046FB /* CUTextField.swift */,
@@ -384,7 +369,6 @@
 			children = (
 				6BF9291422C6F82E00007616 /* UINavigationController+Ext.swift */,
 				6BFBDDBC22C7B3600085B854 /* UIView+Ext.swift */,
-				6BE10D3622F233FA00280D21 /* UIColor+Ext.swift */,
 				6B91632922EFB659009ADB0A /* Int+Ext.swift */,
 				6BE10D3222F22A6700280D21 /* String+Ext.swift */,
 			);
@@ -479,17 +463,6 @@
 				6B87C35E22BFD66C00803F7C /* Info.plist */,
 			);
 			path = cuHackingUITests;
-			sourceTree = "<group>";
-		};
-		6BF9290F22C6D1E000007616 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				6B29894622C5E08000B1550C /* Theme.swift */,
-				6B29894822C5E08900B1550C /* LightTheme.swift */,
-				6B6AC21022CD527A00EAACDD /* SystemTheme.swift */,
-				6B29894A22C5E09000B1550C /* DarkTheme.swift */,
-			);
-			path = Theme;
 			sourceTree = "<group>";
 		};
 		720AB5A793EECF45A35834AB /* Frameworks */ = {
@@ -826,7 +799,6 @@
 				6B29895122C5E86600B1550C /* MapViewController.swift in Sources */,
 				6B6D4F3822D3D03600A9D4F9 /* DashboardAPI.swift in Sources */,
 				6B29894F22C5E84200B1550C /* ScheduleViewController.swift in Sources */,
-				6B29894722C5E08000B1550C /* Theme.swift in Sources */,
 				6B6A646922F0DB12006CAD6D /* CardViewController.swift in Sources */,
 				6BF9291922C6FB1900007616 /* SettingsViewController.swift in Sources */,
 				6B26322C22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
@@ -834,7 +806,6 @@
 				6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6BFFA12E230E71AC00DD92C7 /* TeamCell.swift in Sources */,
 				6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */,
-				6B6AC21122CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */,
 				6BE10D3322F22A6700280D21 /* String+Ext.swift in Sources */,
 				6B6A646D22F0DBCE006CAD6D /* CardState.swift in Sources */,
@@ -844,10 +815,7 @@
 				6B6D4F3C22D3D06000A9D4F9 /* UserDefaultsAPI.swift in Sources */,
 				6B525B96231DED08005046FB /* CUTextField.swift in Sources */,
 				6B6D4F4022D3D0E000A9D4F9 /* InformationRepository.swift in Sources */,
-				6B29894922C5E08900B1550C /* LightTheme.swift in Sources */,
 				6B29894522C5C5A300B1550C /* InformationViewController.swift in Sources */,
-				6B29894B22C5E09000B1550C /* DarkTheme.swift in Sources */,
-				6BE10D3722F233FB00280D21 /* UIColor+Ext.swift in Sources */,
 				6BA16484231DCEE600EB186D /* ProfileDataSource.swift in Sources */,
 				6B91632A22EFB659009ADB0A /* Int+Ext.swift in Sources */,
 			);
@@ -863,10 +831,8 @@
 				6BA16485231DCEE600EB186D /* ProfileDataSource.swift in Sources */,
 				6BF9291622C6F82E00007616 /* UINavigationController+Ext.swift in Sources */,
 				6B26322D22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
-				6BE10D3822F233FB00280D21 /* UIColor+Ext.swift in Sources */,
 				6B6A646622F09F2F006CAD6D /* CardView.swift in Sources */,
 				6B87C35222BFD66C00803F7C /* CUHackingTests.swift in Sources */,
-				6B6AC21222CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6BC82A8F22E11ABB006E2CFC /* MapDataSource.swift in Sources */,
 				6B91632B22EFB659009ADB0A /* Int+Ext.swift in Sources */,
 				6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
@@ -893,10 +859,8 @@
 				6BA16486231DCEE600EB186D /* ProfileDataSource.swift in Sources */,
 				6BF9291722C6F82E00007616 /* UINavigationController+Ext.swift in Sources */,
 				6B26322E22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
-				6BE10D3922F233FB00280D21 /* UIColor+Ext.swift in Sources */,
 				6B6A646722F09F2F006CAD6D /* CardView.swift in Sources */,
 				6B87C35D22BFD66C00803F7C /* CUHackingUITests.swift in Sources */,
-				6B6AC21322CD527A00EAACDD /* SystemTheme.swift in Sources */,
 				6BC82A9022E11ABB006E2CFC /* MapDataSource.swift in Sources */,
 				6B91632C22EFB659009ADB0A /* Int+Ext.swift in Sources */,
 				6BC82A8022E0ACB8006E2CFC /* MapViewModel.swift in Sources */,

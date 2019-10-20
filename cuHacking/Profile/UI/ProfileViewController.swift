@@ -112,7 +112,7 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
             addTeam.anchor(top: backgroundView.topAnchor, leading: label.trailingAnchor, bottom: backgroundView.bottomAnchor, trailing: backgroundView.trailingAnchor, padding: .init(top:0, left: -20, bottom:0, right: 0))
         }
         label.font = .systemFont(ofSize: 28, weight: .medium)
-        backgroundView.backgroundColor = UIColor(named: "CUWhite")
+        backgroundView.backgroundColor = Palette.white.color
         return backgroundView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
