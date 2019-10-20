@@ -17,18 +17,40 @@
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-internal enum Palette {
-  internal static let black = ColorAsset(name: "Black")
-  internal static let blue1 = ColorAsset(name: "Blue1")
-  internal static let blue2 = ColorAsset(name: "Blue2")
-  internal static let blue3 = ColorAsset(name: "Blue3")
-  internal static let blue4 = ColorAsset(name: "Blue4")
-  internal static let blue5 = ColorAsset(name: "Blue5")
-  internal static let blue6 = ColorAsset(name: "Blue6")
-  internal static let darkGray = ColorAsset(name: "DarkGray")
-  internal static let gray = ColorAsset(name: "Gray")
-  internal static let purple = ColorAsset(name: "Purple")
-  internal static let white = ColorAsset(name: "White")
+internal enum Asset {
+  internal enum Colors {
+    internal static let black = ColorAsset(name: "Black")
+    internal static let blue1 = ColorAsset(name: "Blue1")
+    internal static let blue2 = ColorAsset(name: "Blue2")
+    internal static let blue3 = ColorAsset(name: "Blue3")
+    internal static let blue4 = ColorAsset(name: "Blue4")
+    internal static let blue5 = ColorAsset(name: "Blue5")
+    internal static let blue6 = ColorAsset(name: "Blue6")
+    internal static let darkGray = ColorAsset(name: "DarkGray")
+    internal static let gray = ColorAsset(name: "Gray")
+    internal static let purple = ColorAsset(name: "Purple")
+    internal static let white = ColorAsset(name: "White")
+  }
+  internal enum Images {
+    internal static let cuHackingLogoLight = ImageAsset(name: "CUHackingLogo_Light")
+    internal static let grad = ImageAsset(name: "Grad")
+    internal static let homeIcon = ImageAsset(name: "HomeIcon")
+    internal static let mail = ImageAsset(name: "Mail")
+    internal static let mapIcon = ImageAsset(name: "MapIcon")
+    internal static let profileIcon = ImageAsset(name: "ProfileIcon")
+    internal static let qr = ImageAsset(name: "QR")
+    internal static let qrIcon = ImageAsset(name: "QRIcon")
+    internal static let scheduleIcon = ImageAsset(name: "ScheduleIcon")
+    internal static let settingsIcon = ImageAsset(name: "SettingsIcon")
+    internal static let add = ImageAsset(name: "add")
+    internal static let blueQR = ImageAsset(name: "blueQR")
+    internal static let elevator = ImageAsset(name: "elevator")
+    internal static let greenQR = ImageAsset(name: "greenQR")
+    internal static let pinkQR = ImageAsset(name: "pinkQR")
+    internal static let redQR = ImageAsset(name: "redQR")
+    internal static let stairs = ImageAsset(name: "stairs")
+    internal static let washroom = ImageAsset(name: "washroom")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

@@ -50,7 +50,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Palette.white.color
+        view.backgroundColor =  Asset.Colors.white.color
         setupMap()
         setupFloorPicker()
         setupCard()
@@ -91,8 +91,8 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         lineLayer.lineColor = NSExpression(forConstantValue: UIColor.black)
 
         fillLayer = MGLFillStyleLayer(identifier: "river-building-fill-layer", source: source)
-        let defaultFill = Palette.blue6.color
-        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat, Palette.blue1.color, Palette.blue2.color, Palette.blue3.color, Palette.blue4.color, Palette.blue5.color, UIColor.white.withAlphaComponent(0), defaultFill)
+        let defaultFill =  Asset.Colors.blue6.color
+        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat,  Asset.Colors.blue1.color,  Asset.Colors.blue2.color,  Asset.Colors.blue3.color,  Asset.Colors.blue4.color,  Asset.Colors.blue5.color, UIColor.white.withAlphaComponent(0), defaultFill)
 
         symbolLayer = MGLSymbolStyleLayer(identifier: "river-building-symbol-layer", source: source)
         symbolLayer.iconImageName = NSExpression(format: viewModel.symbolIconFormat, "washroom", "elevator", "stairs", "")
@@ -221,9 +221,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // MARK: MGLMapViewDelegate Methods
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
         print("loaded")
-        mapView.style?.setImage(UIImage(named: "washroom")!, forName: "washroom")
-        mapView.style?.setImage(UIImage(named: "elevator")!, forName: "elevator")
-        mapView.style?.setImage(UIImage(named: "stairs")!, forName: "stairs")
+        mapView.style?.setImage(Asset.Images.washroom.image, forName: "washroom")
+        mapView.style?.setImage(Asset.Images.elevator.image, forName: "elevator")
+        mapView.style?.setImage(Asset.Images.stairs.image, forName: "stairs")
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
@@ -256,7 +256,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         cell.textLabel?.text = "L\(Level.allCases.count-indexPath.row)"
         cell.textLabel?.textAlignment = .center
         let selectedBackgroundView = UIView()
-        selectedBackgroundView.backgroundColor = Palette.purple.color
+        selectedBackgroundView.backgroundColor =  Asset.Colors.purple.color
         cell.selectedBackgroundView = selectedBackgroundView
         return cell
     }

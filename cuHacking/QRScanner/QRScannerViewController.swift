@@ -23,7 +23,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        view.backgroundColor = Palette.white.color
+        view.backgroundColor =  Asset.Colors.white.color
         verifyCameraPermission()
     }
 

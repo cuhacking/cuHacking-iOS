@@ -22,12 +22,12 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
                 cell.informationLabel.text = "Blue Group"
             //Program
             } else if indexPath.row == 1 {
-                cell.iconImage.image = UIImage(named: "Grad")
+                cell.iconImage.image = Asset.Images.grad.image
                 cell.informationLabel.text = "University of Ottawa"
             }
             //Email
             else {
-                cell.iconImage.image = UIImage(named: "Mail")
+                cell.iconImage.image = Asset.Images.mail.image
                 cell.informationLabel.text = "janedoe@gmail.com"
             }
             return cell
@@ -37,19 +37,19 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
                 fatalError("Cell TYPE")
             }
             if indexPath.row == 0 {
-                cell.profileImage.image = UIImage(named: "redQR")
+                cell.profileImage.image = Asset.Images.redQR.image
                 cell.teamMemberLabel.text = "Jessica"
                 cell.positionLabel.text = "Developer"
             } else if indexPath.row == 1 {
-                cell.profileImage.image = UIImage(named: "blueQR")
+                cell.profileImage.image = Asset.Images.blueQR.image
                 cell.teamMemberLabel.text = "Joshua"
                 cell.positionLabel.text = "Designer"
             } else if indexPath.row == 2 {
-                cell.profileImage.image = UIImage(named: "greenQR")
+                cell.profileImage.image = Asset.Images.greenQR.image
                 cell.teamMemberLabel.text = "Jackson"
                 cell.positionLabel.text = "Designer"
             } else if indexPath.row == 3 {
-                cell.profileImage.image = UIImage(named: "pinkQR")
+                cell.profileImage.image = Asset.Images.pinkQR.image
                 cell.teamMemberLabel.text = "Jeremy"
                 cell.positionLabel.text = "Developer"
             }
@@ -74,7 +74,7 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
     func setupNavigationController() {
         self.navigationController?.navigationBar.topItem?.title = "Profile"
         self.navigationController?.navigationBar.tintColor = .black
-        let settingsBarbutton = UIBarButtonItem(image: UIImage(named: "SettingsIcon")!, style: .plain, target: self, action: #selector(showSettings))
+        let settingsBarbutton = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
         self.navigationItem.rightBarButtonItem = settingsBarbutton
     }
 
@@ -112,7 +112,7 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
             addTeam.anchor(top: backgroundView.topAnchor, leading: label.trailingAnchor, bottom: backgroundView.bottomAnchor, trailing: backgroundView.trailingAnchor, padding: .init(top:0, left: -20, bottom:0, right: 0))
         }
         label.font = .systemFont(ofSize: 28, weight: .medium)
-        backgroundView.backgroundColor = Palette.white.color
+        backgroundView.backgroundColor =  Asset.Colors.white.color
         return backgroundView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

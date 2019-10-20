@@ -35,6 +35,7 @@
 		6B659F25235BC9A600EBAF7E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F23235BC9A500EBAF7E /* Colors.xcassets */; };
 		6B659F26235BC9A600EBAF7E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F23235BC9A500EBAF7E /* Colors.xcassets */; };
 		6B659F2B235BEEA400EBAF7E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B659F2A235BEEA400EBAF7E /* Colors.swift */; };
+		6B659F2F235C1AB300EBAF7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F2E235C1AB300EBAF7E /* Images.xcassets */; };
 		6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
 		6B6A646622F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
 		6B6A646722F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
@@ -144,6 +145,7 @@
 		6B525B95231DED08005046FB /* CUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUTextField.swift; sourceTree = "<group>"; };
 		6B659F23235BC9A500EBAF7E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6B659F2A235BEEA400EBAF7E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		6B659F2E235C1AB300EBAF7E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6B6A646422F09F2F006CAD6D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6B6A646822F0DB12006CAD6D /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		6B6A646C22F0DBCE006CAD6D /* CardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardState.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				6B87C34322BFD66C00803F7C /* Assets.xcassets */,
+				6B659F2E235C1AB300EBAF7E /* Images.xcassets */,
 				6B659F23235BC9A500EBAF7E /* Colors.xcassets */,
 				6B659F2A235BEEA400EBAF7E /* Colors.swift */,
 			);
@@ -609,6 +612,7 @@
 				6BFFA12F230E71AC00DD92C7 /* TeamCell.xib in Resources */,
 				6BA9AC4D22C3395E002DED45 /* GoogleService-Info.plist in Resources */,
 				6BEB330B231DDD6000F79CEE /* SignInViewController.xib in Resources */,
+				6B659F2F235C1AB300EBAF7E /* Images.xcassets in Resources */,
 				6B87C34422BFD66C00803F7C /* Assets.xcassets in Resources */,
 				6BE10D3B22F25C4100280D21 /* RiverBuilding.geojson in Resources */,
 			);
@@ -677,7 +681,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#Used for swiftgen\nRSROOT=$SRCROOT/cuHacking/Resources\n\n#\"${PODS_ROOT}/Fabric/run\"\n#Run SwiftLint\n${PODS_ROOT}/SwiftLint/swiftlint\n#Run SwiftGen\n$PODS_ROOT/SwiftGen/bin/swiftgen xcassets -t swift4 \"$RSROOT/Colors.xcassets\" -o \"$RSROOT/Colors.swift\" --param enumName=Palette\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#Used for swiftgen\nRSROOT=$SRCROOT/cuHacking/Resources\n\n#\"${PODS_ROOT}/Fabric/run\"\n#Run SwiftLint\n${PODS_ROOT}/SwiftLint/swiftlint\n#Run SwiftGen\n#Generate Colors\n$PODS_ROOT/SwiftGen/bin/swiftgen xcassets -t swift4 \"$RSROOT/Colors.xcassets\" \"$RSROOT/Images.xcassets\" -o \"$RSROOT/Colors.swift\"\n#Generate Images\n\n";
 		};
 		6BF9292022C7251800007616 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

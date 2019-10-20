@@ -13,7 +13,7 @@ import Crashlytics
 class InformationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Palette.white.color
+        view.backgroundColor =  Asset.Colors.white.color
         setupNavigationController()
         createCrashButton()
     }
@@ -30,11 +30,11 @@ class InformationViewController: UIViewController {
     private func setupNavigationController() {
         self.navigationController?.navigationBar.topItem?.title = "cuHacking"
         //Adding profile icon button to navigation bar
-        let profileBarItem = UIBarButtonItem(image: UIImage(named: "ProfileIcon")!, style: .plain, target: self, action: #selector(showProfile))
+        let profileBarItem = UIBarButtonItem(image: Asset.Images.profileIcon.image, style: .plain, target: self, action: #selector(showProfile))
         self.navigationItem.rightBarButtonItem = profileBarItem
         //Adding QR Scan icon to button navigation bar IF user is admin
         //TODO: Implement check for admin privelleges
-        let qrBarItem = UIBarButtonItem(image: UIImage(named: "QRIcon")!, style: .plain, target: self, action: #selector(showQRScanner))
+        let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
         self.navigationItem.leftBarButtonItem = qrBarItem
     }
 

@@ -10,6 +10,6 @@ import UIKit
 class ScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Palette.white.color
+        view.backgroundColor =  Asset.Colors.white.color
     }
 }
