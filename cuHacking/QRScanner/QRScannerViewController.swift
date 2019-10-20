@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class QRScannerViewController: CUViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
 
@@ -23,6 +23,7 @@ class QRScannerViewController: CUViewController, AVCaptureMetadataOutputObjectsD
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        view.backgroundColor = Palette.white.color
         verifyCameraPermission()
     }
 

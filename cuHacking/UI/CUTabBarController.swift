@@ -14,15 +14,21 @@ class CUTabBarController: UITabBarController {
         //First tab - Information VC
         let informationViewController = InformationViewController()
         let navigationController = UINavigationController(rootViewController: informationViewController)
+        navigationController.navigationBar.tintColor = Palette.gray.color
         navigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "HomeIcon")!, tag: 0)
+
         //Second tab - Schedule VC
         let scheduleViewController = ScheduleViewController()
         scheduleViewController.tabBarItem = UITabBarItem(title: "Schedule", image: UIImage(named: "ScheduleIcon")!, tag: 1)
+
         //Third tab - Map vc
         let viewModel = MapViewModel(mapDataSource: MapDataSource())
         let mapViewController = MapViewController(viewModel: viewModel!)
         mapViewController.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "MapIcon")!, tag: 2)
+
         //Setting view controllers
         viewControllers = [navigationController, scheduleViewController, mapViewController]
+        tabBar.tintColor = Palette.purple.color
+        tabBar.unselectedItemTintColor = Palette.gray.color
     }
 }

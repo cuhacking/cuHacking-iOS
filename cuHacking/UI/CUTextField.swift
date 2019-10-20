@@ -11,7 +11,7 @@ class CUTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.borderStyle = .roundedRect
-        self.layer.borderColor = UIColor(named: "CUAnyBlack")?.cgColor
+        self.layer.borderColor = Palette.black.color.cgColor
         self.layer.borderWidth = 0.5
         self.clipsToBounds = true
     }

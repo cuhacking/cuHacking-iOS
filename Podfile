@@ -12,6 +12,7 @@ target 'cuHacking' do
   pod 'Mapbox-iOS-SDK', '~> 5.1'
   pod 'Swinject'
   pod 'SwiftLint'
+  pod 'SwiftGen', '~> 6.0'
 
 
   target 'cuHackingTests' do
@@ -23,7 +24,7 @@ target 'cuHacking' do
     pod 'Mapbox-iOS-SDK', '~> 5.1'
     pod 'Swinject'
     pod 'SwiftLint'
-
+    pod 'SwiftGen', '~> 6.0'
   end
 
   target 'cuHackingUITests' do

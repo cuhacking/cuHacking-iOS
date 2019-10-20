@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         //Setting the theme
 
-        if #available(iOS 13.0, *) {
-            SystemTheme().apply(toAppplication: application)
-        } else {
-            // Fallback on earlier versions
-            LightTheme().apply(toAppplication: application)
-        }
+//        if #available(iOS 13.0, *) {
+//            SystemTheme().apply(toAppplication: application)
+//        } else {
+//            // Fallback on earlier versions
+//            LightTheme().apply(toAppplication: application)
+//        }
 
         //Creating inital screen
         window = UIWindow(frame: UIScreen.main.bounds)

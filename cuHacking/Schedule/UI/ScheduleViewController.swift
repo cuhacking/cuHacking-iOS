@@ -7,4 +7,9 @@
 //
 
 import UIKit
-class ScheduleViewController: CUViewController {}
+class ScheduleViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = Palette.white.color
+    }
+}

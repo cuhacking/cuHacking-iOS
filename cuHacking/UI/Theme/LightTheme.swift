@@ -13,5 +13,5 @@ struct LightTheme: Theme {
     var navigationTitleColour: UIColor = .black
     var barButtonTint: UIColor = .black
     var navigationBarStyle: UIBarStyle = .default
-    var labelTextColour: UIColor = .black
+    var labelTextColour: UIColor = .red
 }

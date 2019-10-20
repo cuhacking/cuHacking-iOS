@@ -9,7 +9,7 @@
 import UIKit
 import Mapbox
 
-class MapViewController: CUViewController, UITableViewDataSource, UITableViewDelegate, MGLMapViewDelegate {
+class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGLMapViewDelegate {
     // MARK: Instance Variables
     private var cardViewController: CardViewController!
     private var visualEffectView: UIVisualEffectView!
@@ -50,6 +50,7 @@ class MapViewController: CUViewController, UITableViewDataSource, UITableViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Palette.white.color
         setupMap()
         setupFloorPicker()
         setupCard()
@@ -90,8 +91,8 @@ class MapViewController: CUViewController, UITableViewDataSource, UITableViewDel
         lineLayer.lineColor = NSExpression(forConstantValue: UIColor.black)
 
         fillLayer = MGLFillStyleLayer(identifier: "river-building-fill-layer", source: source)
-        let defaultFill = UIColor.purpleSix
-        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat, UIColor.purpleOne, UIColor.purpleTwo, UIColor.purpleThree, UIColor.purpleFour, UIColor.purpleFive, UIColor.white.withAlphaComponent(0), defaultFill)
+        let defaultFill = Palette.blue6.color
+        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat, Palette.blue1.color, Palette.blue2.color, Palette.blue3.color, Palette.blue4.color, Palette.blue5.color, UIColor.white.withAlphaComponent(0), defaultFill)
 
         symbolLayer = MGLSymbolStyleLayer(identifier: "river-building-symbol-layer", source: source)
         symbolLayer.iconImageName = NSExpression(format: viewModel.symbolIconFormat, "washroom", "elevator", "stairs", "")

@@ -10,11 +10,12 @@ import UIKit
 import Firebase
 import Crashlytics
 
-class InformationViewController: CUViewController {
+class InformationViewController: UIViewController {
     override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = Palette.white.color
         setupNavigationController()
         createCrashButton()
-        super.viewDidLoad()
     }
 
     private func createCrashButton() {

@@ -7,11 +7,13 @@
 //
 
 import UIKit
-class SettingsViewController: CUViewController {
+class SettingsViewController: UIViewController {
     override func viewDidLoad() {
-        setupNavigationController()
         super.viewDidLoad()
+        setupNavigationController()
+        view.backgroundColor = Palette.white.color
     }
+    
     func setupNavigationController() {
         self.title = "Settings"
     }
