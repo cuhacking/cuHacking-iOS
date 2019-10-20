@@ -36,6 +36,8 @@
 		6B659F26235BC9A600EBAF7E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F23235BC9A500EBAF7E /* Colors.xcassets */; };
 		6B659F2B235BEEA400EBAF7E /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B659F2A235BEEA400EBAF7E /* Assets.swift */; };
 		6B659F2F235C1AB300EBAF7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F2E235C1AB300EBAF7E /* Images.xcassets */; };
+		6B659F31235C228900EBAF7E /* CUHacking.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F30235C228900EBAF7E /* CUHacking.strings */; };
+		6B659F35235C27AE00EBAF7E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B659F34235C27AD00EBAF7E /* Strings.swift */; };
 		6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
 		6B6A646622F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
 		6B6A646722F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
@@ -146,6 +148,8 @@
 		6B659F23235BC9A500EBAF7E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6B659F2A235BEEA400EBAF7E /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		6B659F2E235C1AB300EBAF7E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6B659F30235C228900EBAF7E /* CUHacking.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CUHacking.strings; sourceTree = "<group>"; };
+		6B659F34235C27AD00EBAF7E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		6B6A646422F09F2F006CAD6D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6B6A646822F0DB12006CAD6D /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		6B6A646C22F0DBCE006CAD6D /* CardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardState.swift; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				6B659F2E235C1AB300EBAF7E /* Images.xcassets */,
 				6B659F23235BC9A500EBAF7E /* Colors.xcassets */,
 				6B659F2A235BEEA400EBAF7E /* Assets.swift */,
+				6B659F34235C27AD00EBAF7E /* Strings.swift */,
+				6B659F30235C228900EBAF7E /* CUHacking.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				6BEB330B231DDD6000F79CEE /* SignInViewController.xib in Resources */,
 				6B659F2F235C1AB300EBAF7E /* Images.xcassets in Resources */,
 				6B87C34422BFD66C00803F7C /* Assets.xcassets in Resources */,
+				6B659F31235C228900EBAF7E /* CUHacking.strings in Resources */,
 				6BE10D3B22F25C4100280D21 /* RiverBuilding.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -681,7 +688,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#Used for swiftgen\nRSROOT=$SRCROOT/cuHacking/Resources\n\n#\"${PODS_ROOT}/Fabric/run\"\n#Run SwiftLint\n${PODS_ROOT}/SwiftLint/swiftlint\n#Run SwiftGen\n#Generate Colors\n$PODS_ROOT/SwiftGen/bin/swiftgen xcassets -t swift4 \"$RSROOT/Colors.xcassets\" \"$RSROOT/Images.xcassets\" -o \"$RSROOT/Assets.swift\"\n#Generate Images\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#Used for swiftgen\nRSROOT=$SRCROOT/cuHacking/Resources\n\n#\"${PODS_ROOT}/Fabric/run\"\n#Run SwiftLint\n${PODS_ROOT}/SwiftLint/swiftlint\n#Run SwiftGen\n#Generate Assets \n$PODS_ROOT/SwiftGen/bin/swiftgen xcassets -t swift4 \"$RSROOT/Colors.xcassets\" \"$RSROOT/Images.xcassets\" -o \"$RSROOT/Assets.swift\"\n#Generate Strings\n$PODS_ROOT/SwiftGen/bin/swiftgen strings -t structured-swift4 \"$RSROOT/CUHacking.strings\" --output \"$RSROOT/Strings.swift\" --param enumName=Strings\n\n";
 		};
 		6BF9292022C7251800007616 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -809,6 +816,7 @@
 				6BF9291522C6F82E00007616 /* UINavigationController+Ext.swift in Sources */,
 				6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
 				6BFFA12E230E71AC00DD92C7 /* TeamCell.swift in Sources */,
+				6B659F35235C27AE00EBAF7E /* Strings.swift in Sources */,
 				6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */,
 				6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */,
 				6BE10D3322F22A6700280D21 /* String+Ext.swift in Sources */,
