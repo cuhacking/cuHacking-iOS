@@ -1,0 +1,82 @@
+// swiftlint:disable all
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+
+#if os(OSX)
+  import AppKit.NSFont
+  internal typealias Font = NSFont
+#elseif os(iOS) || os(tvOS) || os(watchOS)
+  import UIKit.UIFont
+  internal typealias Font = UIFont
+#endif
+
+// swiftlint:disable superfluous_disable_command
+// swiftlint:disable file_length
+
+// MARK: - Fonts
+
+// swiftlint:disable identifier_name line_length type_body_length
+internal enum Fonts {
+  internal enum Mplus1p {
+    internal static let black = FontConvertible(name: "Mplus1p-Black", family: "Mplus 1p", path: "MPLUS1p-Black.ttf")
+    internal static let extraBold = FontConvertible(name: "Mplus1p-ExtraBold", family: "Mplus 1p", path: "MPLUS1p-ExtraBold.ttf")
+    internal static let light = FontConvertible(name: "Mplus1p-Light", family: "Mplus 1p", path: "MPLUS1p-Light.ttf")
+    internal static let medium = FontConvertible(name: "Mplus1p-Medium", family: "Mplus 1p", path: "MPLUS1p-Medium.ttf")
+    internal static let regular = FontConvertible(name: "Mplus1p-Regular", family: "Mplus 1p", path: "MPLUS1p-Regular.ttf")
+    internal static let thin = FontConvertible(name: "Mplus1p-Thin", family: "Mplus 1p", path: "MPLUS1p-Thin.ttf")
+    internal static let all: [FontConvertible] = [black, extraBold, light, medium, regular, thin]
+  }
+  internal enum Mplus1pBold {
+    internal static let bold = FontConvertible(name: "Mplus1p-Bold", family: "Mplus 1p Bold", path: "MPLUS1p-Bold.ttf")
+    internal static let all: [FontConvertible] = [bold]
+  }
+  internal enum ReemKufi {
+    internal static let regular = FontConvertible(name: "ReemKufi-Regular", family: "Reem Kufi", path: "ReemKufi-Regular.ttf")
+    internal static let all: [FontConvertible] = [regular]
+  }
+  internal static let allCustomFonts: [FontConvertible] = [Mplus1p.all, Mplus1pBold.all, ReemKufi.all].flatMap { $0 }
+  internal static func registerAllCustomFonts() {
+    allCustomFonts.forEach { $0.register() }
+  }
+}
+// swiftlint:enable identifier_name line_length type_body_length
+
+// MARK: - Implementation Details
+
+internal struct FontConvertible {
+  internal let name: String
+  internal let family: String
+  internal let path: String
+
+  internal func font(size: CGFloat) -> Font! {
+    return Font(font: self, size: size)
+  }
+
+  internal func register() {
+    // swiftlint:disable:next conditional_returns_on_newline
+    guard let url = url else { return }
+    CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+  }
+
+  fileprivate var url: URL? {
+    let bundle = Bundle(for: BundleToken.self)
+    return bundle.url(forResource: path, withExtension: nil)
+  }
+}
+
+internal extension Font {
+  convenience init!(font: FontConvertible, size: CGFloat) {
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    if !UIFont.fontNames(forFamilyName: font.family).contains(font.name) {
+      font.register()
+    }
+    #elseif os(OSX)
+    if let url = font.url, CTFontManagerGetScopeForURL(url as CFURL) == .none {
+      font.register()
+    }
+    #endif
+
+    self.init(name: font.name, size: size)
+  }
+}
+
+private final class BundleToken {}
