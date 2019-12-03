@@ -7,3 +7,7 @@
 //
 
 import Foundation
+protocol ProfileRepository {
+    func getUserProfile() -> MagnetonAPIObject.UserProfile
+}
+

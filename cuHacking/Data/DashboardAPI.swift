@@ -7,4 +7,6 @@
 //
 
 import Foundation
-class DashboardAPI {}
+class DashboardAPI {
+    
+}

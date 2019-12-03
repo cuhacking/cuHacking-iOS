@@ -23,6 +23,13 @@ internal enum Strings {
     }
   }
 
+  internal enum Information {
+    internal enum HeaderCell {
+      /// Meet in RB1224
+      internal static let title = Strings.tr("CUHacking", "information.headerCell.title")
+    }
+  }
+
   internal enum Map {
     /// L%d
     internal static func level(_ p1: Int) -> String {

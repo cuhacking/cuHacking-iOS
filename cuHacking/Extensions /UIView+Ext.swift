@@ -8,6 +8,16 @@
 
 import UIKit
 extension UIView {
+    func dropShadow(scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.4
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 3
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+
     func fillSuperview() {
         anchor(top: self.superview?.topAnchor, leading: self.superview?.leadingAnchor, bottom: self.superview?.bottomAnchor, trailing: self.superview?.trailingAnchor)
     }
@@ -30,6 +40,11 @@ extension UIView {
         }
         if size.height != 0 {
             self.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+    }
+    func addSubviews(views: UIView...) {
+        views.forEach { (view) in
+            addSubview(view)
         }
     }
 }

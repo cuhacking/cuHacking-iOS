@@ -11,7 +11,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
-        view.backgroundColor =  Asset.Colors.white.color
+        view.backgroundColor =  Asset.Colors.background.color
     }
 
     func setupNavigationController() {

@@ -12,6 +12,6 @@ class CardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = 5
-        backgroundColor =  Asset.Colors.white.color
+        backgroundColor =  Asset.Colors.background.color
     }
 }

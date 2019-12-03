@@ -50,7 +50,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  Asset.Colors.white.color
+        view.backgroundColor =  Asset.Colors.background.color
         setupMap()
         setupFloorPicker()
         setupCard()

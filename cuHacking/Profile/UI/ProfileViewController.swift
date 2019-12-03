@@ -12,6 +12,7 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
         print(indexPath.row)
         //YOU section
         if indexPath.section == 0 {
+
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell else {
                 fatalError("Could no create Info Cell")
             }
@@ -61,7 +62,7 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         setupNavigationController()
-
+       // profileInformationTableView.register(ImageLa, forCellReuseIdentifier: <#T##String#>)
         profileInformationTableView.separatorStyle = .none
         profileInformationTableView.register(UINib(nibName: "TeamCell", bundle: nil), forCellReuseIdentifier: "TeamCell")
         profileInformationTableView.register(UINib(nibName: "InfoCell", bundle: nil), forCellReuseIdentifier: "InfoCell")
@@ -112,7 +113,7 @@ class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewD
             addTeam.anchor(top: backgroundView.topAnchor, leading: label.trailingAnchor, bottom: backgroundView.bottomAnchor, trailing: backgroundView.trailingAnchor, padding: .init(top:0, left: -20, bottom:0, right: 0))
         }
         label.font = .systemFont(ofSize: 28, weight: .medium)
-        backgroundView.backgroundColor =  Asset.Colors.white.color
+        backgroundView.backgroundColor =  Asset.Colors.background.color
         return backgroundView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

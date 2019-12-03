@@ -19,7 +19,7 @@
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
-    internal static let black = ColorAsset(name: "Black")
+    internal static let background = ColorAsset(name: "Background")
     internal static let blue1 = ColorAsset(name: "Blue1")
     internal static let blue2 = ColorAsset(name: "Blue2")
     internal static let blue3 = ColorAsset(name: "Blue3")
@@ -28,8 +28,12 @@ internal enum Asset {
     internal static let blue6 = ColorAsset(name: "Blue6")
     internal static let darkGray = ColorAsset(name: "DarkGray")
     internal static let gray = ColorAsset(name: "Gray")
+    internal static let primary = ColorAsset(name: "Primary")
+    internal static let primaryText = ColorAsset(name: "PrimaryText")
     internal static let purple = ColorAsset(name: "Purple")
-    internal static let white = ColorAsset(name: "White")
+    internal static let secondarySurface = ColorAsset(name: "SecondarySurface")
+    internal static let surface = ColorAsset(name: "Surface")
+    internal static let title = ColorAsset(name: "Title")
   }
   internal enum Images {
     internal static let cuHackingLogoLight = ImageAsset(name: "CUHackingLogo_Light")
@@ -48,6 +52,7 @@ internal enum Asset {
     internal static let greenQR = ImageAsset(name: "greenQR")
     internal static let pinkQR = ImageAsset(name: "pinkQR")
     internal static let redQR = ImageAsset(name: "redQR")
+    internal static let sampleQR = ImageAsset(name: "sampleQR")
     internal static let stairs = ImageAsset(name: "stairs")
     internal static let washroom = ImageAsset(name: "washroom")
   }

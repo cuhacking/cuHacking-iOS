@@ -5,6 +5,7 @@
   Created by Santos on 2019-10-20.
   Copyright © 2019 cuHacking. All rights reserved.
 */
+"information.headerCell.title" = "Meet in RB1224";
 "home.tabBar.title" = "Home";
 "home.navigationBar.title" = "cuHacking";
 "schedule.tabBar.title" = "Schedule";

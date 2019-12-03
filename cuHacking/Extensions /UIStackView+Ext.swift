@@ -6,4 +6,11 @@
 //  Copyright © 2019 cuHacking. All rights reserved.
 //
 
-import Foundation
+import UIKit
+extension UIStackView {
+    func addArrangedSubviews(views: UIView...) {
+        views.forEach { (view) in
+            addArrangedSubview(view)
+        }
+    }
+}
