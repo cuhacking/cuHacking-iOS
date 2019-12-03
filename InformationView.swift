@@ -51,7 +51,7 @@ class InformationView: UIView {
     private let button: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = UIFont(font: Fonts.Mplus1p.medium, size: 12)
-        button.setTitleColor(Asset.Colors.purple.color, for: .normal)
+        button.setTitleColor(Asset.Colors.secondayText.color, for: .normal)
         return button
     }()
 

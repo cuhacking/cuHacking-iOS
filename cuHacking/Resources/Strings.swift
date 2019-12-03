@@ -25,7 +25,7 @@ internal enum Strings {
 
   internal enum Information {
     internal enum HeaderCell {
-      /// Meet in RB1224
+      /// Cereomonies are in RB1234
       internal static let title = Strings.tr("CUHacking", "information.headerCell.title")
     }
   }
