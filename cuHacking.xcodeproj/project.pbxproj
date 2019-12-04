@@ -26,6 +26,7 @@
 		6B37336E22E3D1BA00F648A6 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37336C22E3D1BA00F648A6 /* Level.swift */; };
 		6B37336F22E3D1BA00F648A6 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37336C22E3D1BA00F648A6 /* Level.swift */; };
 		6B3E44E223973C21005719A9 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E44E123973C21005719A9 /* PrivacyPolicyViewController.swift */; };
+		6B3E44E523973F88005719A9 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3E44E423973F88005719A9 /* NetworkExtension.framework */; };
 		6B4BD46B22E7501100BF03E7 /* RiverBuildingOld.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */; };
 		6B4BD46C22E7501100BF03E7 /* RiverBuildingOld.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */; };
 		6B4BD46D22E7501100BF03E7 /* RiverBuildingOld.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */; };
@@ -183,6 +184,8 @@
 		6B29895022C5E86600B1550C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6B37336C22E3D1BA00F648A6 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		6B3E44E123973C21005719A9 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		6B3E44E323973F88005719A9 /* cuHacking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cuHacking.entitlements; sourceTree = "<group>"; };
+		6B3E44E423973F88005719A9 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RiverBuildingOld.geojson; sourceTree = "<group>"; };
 		6B51E8C3239316CF00B4454C /* InformationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDataSource.swift; sourceTree = "<group>"; };
 		6B525B91231DED00005046FB /* CUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUButton.swift; sourceTree = "<group>"; };
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A45B4892DDA2A8664E3CA4C /* Pods_cuHacking.framework in Frameworks */,
+				6B3E44E523973F88005719A9 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +547,7 @@
 		6B87C33822BFD66A00803F7C /* cuHacking */ = {
 			isa = PBXGroup;
 			children = (
+				6B3E44E323973F88005719A9 /* cuHacking.entitlements */,
 				6B659F27235BE32700EBAF7E /* Resources */,
 				6B29893022C5A7C900B1550C /* Information */,
 				6B29893A22C5A92D00B1550C /* QRScanner */,
@@ -592,6 +597,7 @@
 		720AB5A793EECF45A35834AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6B3E44E423973F88005719A9 /* NetworkExtension.framework */,
 				828E3756A57D3757D4C74CA0 /* Pods_cuHacking.framework */,
 				0E33A5714B5FA53FF9D079D3 /* Pods_cuHackingTests.framework */,
 				5F322B22A69B8DCF47972314 /* Pods_cuHackingUITests.framework */,
@@ -1177,9 +1183,10 @@
 			baseConfigurationReference = 4A720DF28097A6ADAA0FC136 /* Pods-cuHacking.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = cuHacking/cuHacking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SMEHD3WMB9;
+				DEVELOPMENT_TEAM = 272M66759Y;
 				INFOPLIST_FILE = cuHacking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1198,8 +1205,9 @@
 			baseConfigurationReference = 778790F16A9475AC8F68BE33 /* Pods-cuHacking.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = cuHacking/cuHacking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SMEHD3WMB9;
+				DEVELOPMENT_TEAM = 272M66759Y;
 				INFOPLIST_FILE = cuHacking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
