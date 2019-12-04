@@ -51,7 +51,7 @@ class InformationView: UIView {
     private let button: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = UIFont(font: Fonts.Mplus1p.medium, size: 12)
-        button.setTitleColor(Asset.Colors.secondayText.color, for: .normal)
+        button.setTitleColor(Asset.Colors.purple.color, for: .normal)
         return button
     }()
 
@@ -96,10 +96,25 @@ class InformationView: UIView {
         }
     }
 
-    func update(title: String? = nil, information: String? = nil, buttonTitle: String? = nil) {
+    func styleButton(textColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
+        if let textColor = textColor {
+            button.setTitleColor(textColor, for: .normal)
+            button.setTitleColor(textColor, for: .selected)
+        }
+        if let backgroundColor = backgroundColor {
+            button.backgroundColor = backgroundColor
+        }
+    }
+
+    func update(title: String? = nil, information: String? = nil, buttonTitle: String? = nil, buttonIcon: UIImage? = nil) {
         titleLabel.text = title
         informationTextView.text = information
         if let buttonTitle = buttonTitle {
+            if let buttonIcon = buttonIcon {
+                button.tintColor = Asset.Colors.background.color
+                button.setImage(buttonIcon, for: .normal)
+                button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+            }
             button.setTitle(buttonTitle, for: .normal)
             buttonTopAnchor.constant = InformationView.visisbleButtonTopAnchorConstant
         } else {

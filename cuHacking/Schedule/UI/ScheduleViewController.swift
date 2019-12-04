@@ -13,7 +13,7 @@ enum ScheduleViewBuilder {
         Asset.Colors.purpleEvent.color,
         Asset.Colors.blueEvent.color,
         Asset.Colors.redEvent.color,
-        Asset.Colors.greenEvent.color,
+        Asset.Colors.greenEvent.color
     ]
     enum Cells: String {
         case eventCell = "EventCell"
@@ -25,7 +25,10 @@ enum ScheduleViewBuilder {
         let event = events[indexPath.row]
         cell.eventDetailsView.backgroundColor = ScheduleViewBuilder.colors[indexPath.row%ScheduleViewBuilder.colors.count]
         cell.eventTimeLabel.text = event.formattedStartTime
-        cell.eventDetailsView.update(title: event.title, information: event.formattedDuration, buttonTitle: event.locationName)
+        cell.eventDetailsView.update(title: event.title,
+                                     information: event.formattedDuration,
+                                     buttonTitle: event.locationName,
+                                     buttonIcon: Asset.Images.mapPinPoint.image)
         return cell
     }
 }

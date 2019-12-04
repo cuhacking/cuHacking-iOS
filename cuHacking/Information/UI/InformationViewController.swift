@@ -37,8 +37,8 @@ enum InformationViewBuilder {
             cell.informationView.backgroundColor = Asset.Colors.surface.color
             cell.informationView.dropShadow()
             cell.informationView.titleLabel.textColor = Asset.Colors.primary.color
-            cell.informationView.isCentered = true
-            cell.informationView.update(title: "Welcome to Local Hack Days!", information: "Before you begin your day, please make sure you are registered.")
+            //cell.informationView.isCentered = true
+            cell.informationView.update(title: "Welcome to Local Hack Day!", information: "Before you begin your day, please make sure you are registered.")
             return cell
         }
     }
@@ -55,7 +55,7 @@ enum InformationViewBuilder {
         }
     }
     enum Announcements {
-        static func updateCell(updates: [MagnetonAPIObject.Update] ,collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell  {
+        static func updateCell(updates: [MagnetonAPIObject.Update] ,collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.updateCell.rawValue, for: indexPath) as? UpdateCell else {
                 fatalError("Update cell wsa not found.")
             }

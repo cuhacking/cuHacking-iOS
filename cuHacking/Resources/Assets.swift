@@ -19,6 +19,7 @@
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
+    internal static let backdrop = ColorAsset(name: "Backdrop")
     internal static let background = ColorAsset(name: "Background")
     internal static let blue1 = ColorAsset(name: "Blue1")
     internal static let blue2 = ColorAsset(name: "Blue2")
@@ -30,6 +31,7 @@ internal enum Asset {
     internal static let darkGray = ColorAsset(name: "DarkGray")
     internal static let gray = ColorAsset(name: "Gray")
     internal static let greenEvent = ColorAsset(name: "GreenEvent")
+    internal static let line = ColorAsset(name: "Line")
     internal static let primary = ColorAsset(name: "Primary")
     internal static let primaryText = ColorAsset(name: "PrimaryText")
     internal static let purple = ColorAsset(name: "Purple")
@@ -37,6 +39,7 @@ internal enum Asset {
     internal static let redEvent = ColorAsset(name: "RedEvent")
     internal static let secondarySurface = ColorAsset(name: "SecondarySurface")
     internal static let secondayText = ColorAsset(name: "SecondayText")
+    internal static let subtitle = ColorAsset(name: "Subtitle")
     internal static let surface = ColorAsset(name: "Surface")
     internal static let title = ColorAsset(name: "Title")
   }
@@ -46,6 +49,7 @@ internal enum Asset {
     internal static let homeIcon = ImageAsset(name: "HomeIcon")
     internal static let mail = ImageAsset(name: "Mail")
     internal static let mapIcon = ImageAsset(name: "MapIcon")
+    internal static let mapPinPoint = ImageAsset(name: "MapPinPoint")
     internal static let profileIcon = ImageAsset(name: "ProfileIcon")
     internal static let qr = ImageAsset(name: "QR")
     internal static let qrIcon = ImageAsset(name: "QRIcon")
