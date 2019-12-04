@@ -59,6 +59,7 @@ internal enum Asset {
     internal static let blueQR = ImageAsset(name: "blueQR")
     internal static let elevator = ImageAsset(name: "elevator")
     internal static let greenQR = ImageAsset(name: "greenQR")
+    internal static let info = ImageAsset(name: "info")
     internal static let pinkQR = ImageAsset(name: "pinkQR")
     internal static let redQR = ImageAsset(name: "redQR")
     internal static let sampleQR = ImageAsset(name: "sampleQR")
