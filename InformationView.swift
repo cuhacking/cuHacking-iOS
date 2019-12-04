@@ -48,7 +48,7 @@ class InformationView: UIView {
         return textView
     }()
 
-    private let button: UIButton = {
+    let button: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = UIFont(font: Fonts.Mplus1p.medium, size: 12)
         button.setTitleColor(Asset.Colors.purple.color, for: .normal)
@@ -124,6 +124,9 @@ class InformationView: UIView {
     }
 
     func addTarget(target: Any?, action: Selector, for event: UIControl.Event) {
-        button.addTarget(target, action: action, for: event)
+        button.addTarget(target, action: #selector(ok), for: event)
+    }
+    @objc func ok() {
+        
     }
 }

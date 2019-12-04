@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Crashlytics
+import NetworkExtension
 
 typealias HeaderCell = TitleSubtitleCollectionViewCell
 typealias OnboardingCell = InformationCollectionViewCell
@@ -50,7 +51,7 @@ enum InformationViewBuilder {
             let wifiInfo = "Name: Local Hack Day\nPassword: cuhacking"
             cell.informationView.titleLabel.textColor = .black
             cell.informationView.informationTextView.textColor = .black
-            cell.informationView.update(title: "Wifi Info", information: wifiInfo, buttonTitle: "Connect")
+            cell.informationView.update(title: "Wifi Info", information: wifiInfo, buttonTitle: nil)
             return cell
         }
     }
@@ -122,7 +123,7 @@ class InformationViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.fillSuperview()
     }
-    
+
     private func loadUpdates() {
         InformationDataSource().getUpdates { [weak self] (updates, error) in
             if error != nil {
@@ -154,6 +155,17 @@ class InformationViewController: UIViewController {
         let qrScannerViewController = QRScannerViewController()
         navigationController?.pushViewController(qrScannerViewController, animated: false)
     }
+    
+//    @objc func connectToWifi() {
+//        let hotSpotConfig = NEHotspotConfiguration(ssid: "HOME", passphrase: "cuhacking", isWEP: false)
+//        NEHotspotConfigurationManager.shared.apply(hotSpotConfig) { (error) in
+//            if let error = error {
+//                print("failed:\(error)")
+//            } else {
+//                print("success")
+//            }
+//        }
+//    }
 }
 
 extension InformationViewController: UICollectionViewDataSource {
