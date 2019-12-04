@@ -25,6 +25,7 @@
 		6B37336D22E3D1BA00F648A6 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37336C22E3D1BA00F648A6 /* Level.swift */; };
 		6B37336E22E3D1BA00F648A6 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37336C22E3D1BA00F648A6 /* Level.swift */; };
 		6B37336F22E3D1BA00F648A6 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37336C22E3D1BA00F648A6 /* Level.swift */; };
+		6B3E44E223973C21005719A9 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B3E44E123973C21005719A9 /* PrivacyPolicyViewController.swift */; };
 		6B4BD46B22E7501100BF03E7 /* RiverBuildingOld.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */; };
 		6B4BD46C22E7501100BF03E7 /* RiverBuildingOld.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */; };
 		6B4BD46D22E7501100BF03E7 /* RiverBuildingOld.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */; };
@@ -181,6 +182,7 @@
 		6B29894E22C5E84200B1550C /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		6B29895022C5E86600B1550C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6B37336C22E3D1BA00F648A6 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		6B3E44E123973C21005719A9 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RiverBuildingOld.geojson; sourceTree = "<group>"; };
 		6B51E8C3239316CF00B4454C /* InformationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDataSource.swift; sourceTree = "<group>"; };
 		6B525B91231DED00005046FB /* CUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUButton.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				6BF9291822C6FB1900007616 /* SettingsViewController.swift */,
+				6B3E44E123973C21005719A9 /* PrivacyPolicyViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				6BBEAC7A235EAE9E004AAB17 /* ImageLabelSubtitleView.swift in Sources */,
 				6BFFA12E230E71AC00DD92C7 /* TeamCell.swift in Sources */,
 				6B659F35235C27AE00EBAF7E /* Strings.swift in Sources */,
+				6B3E44E223973C21005719A9 /* PrivacyPolicyViewController.swift in Sources */,
 				6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */,
 				6B889678235CE96800D8DFED /* ImageLabelView.swift in Sources */,
 				6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */,

@@ -144,10 +144,10 @@ class InformationViewController: UIViewController {
         Crashlytics.sharedInstance().crash()
     }
 
-    @objc func showProfile() {
-        let profileViewController = ProfileVC()
+    @objc func showSettings() {
+        let settingsViewController = SettingsViewController()
 //        let profileViewController = SignInViewController(nibName: "SignInViewController", bundle: nil)
-        self.navigationController?.pushViewController(profileViewController, animated: false)
+        self.navigationController?.pushViewController(settingsViewController, animated: false)
     }
 
     @objc func showQRScanner() {
@@ -223,9 +223,10 @@ extension InformationViewController: UICollectionViewDataSource {
 extension InformationViewController {
     private func setupNavigationController() {
         self.navigationController?.navigationBar.topItem?.title = "cuHacking"
+        self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color
         //Adding profile icon button to navigation bar
-        //let profileBarItem = UIBarButtonItem(image: Asset.Images.profileIcon.image, style: .plain, target: self, action: #selector(showProfile))
-        //self.navigationItem.rightBarButtonItem = profileBarItem
+        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
+        self.navigationItem.rightBarButtonItem = settingsIconBar
         //Adding QR Scan icon to button navigation bar IF user is admin
         //let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
         //self.navigationItem.leftBarButtonItem = qrBarItem
