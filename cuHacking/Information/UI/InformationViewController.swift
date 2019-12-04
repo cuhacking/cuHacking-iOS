@@ -80,6 +80,7 @@ class InformationViewController: UIViewController {
     var collectionView: UICollectionView!
     private var updates: [MagnetonAPIObject.Update]?
     private var dataSource: InformationRepository
+    private let refreshController = UIRefreshControl()
 
     init(dataSource: InformationRepository = InformationDataSource()) {
         self.dataSource = dataSource
@@ -122,10 +123,19 @@ class InformationViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         collectionView.fillSuperview()
+        
+        collectionView.alwaysBounceVertical = true
+        refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.addSubview(refreshController)
     }
 
     private func loadUpdates() {
         InformationDataSource().getUpdates { [weak self] (updates, error) in
+            DispatchQueue.main.async {
+               if self?.refreshController.isRefreshing == true {
+                   self?.refreshController.endRefreshing()
+               }
+            }
             if error != nil {
                 print(error)
                 return
@@ -233,6 +243,10 @@ extension InformationViewController: UICollectionViewDataSource {
 }
 
 extension InformationViewController {
+    @objc func refreshData() {
+        refreshController.beginRefreshing()
+        loadUpdates()
+    }
     private func setupNavigationController() {
         self.navigationController?.navigationBar.topItem?.title = "cuHacking"
         self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color

@@ -44,7 +44,8 @@ class ScheduleViewController: UIViewController {
     var collectionView: UICollectionView!
     var events: [MagnetonAPIObject.Event]?
     private let dataSource: ScheduleRepository
-    
+    private let refreshController = UIRefreshControl()
+
     init(dataSource: ScheduleRepository = ScheduleDataSource()) {
         self.dataSource = dataSource
         super.init(nibName: nil, bundle: nil)
@@ -70,6 +71,10 @@ class ScheduleViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         collectionView.fillSuperview()
+        
+        collectionView.alwaysBounceVertical = true
+        refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.addSubview(refreshController)
     }
 
     private func registerCells() {
@@ -79,6 +84,11 @@ class ScheduleViewController: UIViewController {
 
     private func loadEvents() {
         dataSource.getEvents { [weak self] (events, error) in
+            DispatchQueue.main.async {
+               if self?.refreshController.isRefreshing == true {
+                   self?.refreshController.endRefreshing()
+               }
+            }
             if error != nil {
                 print(error)
                 return
@@ -92,6 +102,11 @@ class ScheduleViewController: UIViewController {
                 self?.collectionView.reloadData()
             }
         }
+    }
+    
+    @objc private func refreshData() {
+        refreshController.beginRefreshing()
+        loadEvents()
     }
 }
 
