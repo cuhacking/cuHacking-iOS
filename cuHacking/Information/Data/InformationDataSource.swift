@@ -13,7 +13,7 @@ enum MagnentonError: Error {
 }
 class InformationDataSource: InformationRepository {
     private static let baseURL = "https://cuhacking.com/api-dev"
-    private static let OK_RESPONSE = 200
+    private static let okResponse = 200
 
     func getUpdates(completionHandler: @escaping (MagnetonAPIObject.Updates?, Error?) -> Void) {
         let baseURL = InformationDataSource.baseURL + "/updates"
@@ -25,7 +25,7 @@ class InformationDataSource: InformationRepository {
                 return
             }
             let response = response as? HTTPURLResponse
-            if response?.statusCode != InformationDataSource.OK_RESPONSE {
+            if response?.statusCode != InformationDataSource.okResponse {
                 let error = MagnentonError.fetch(message: "Failed to fetch updates. HTTP Response: \(response?.statusCode ?? -1)")
                 completionHandler(nil, error)
                 return
