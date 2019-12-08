@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A45B4892DDA2A8664E3CA4C /* Pods_cuHacking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828E3756A57D3757D4C74CA0 /* Pods_cuHacking.framework */; };
+		6B13288A2395E08300421EFB /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1328892395E08300421EFB /* EventCollectionViewCell.swift */; };
+		6B13288C2395E70700421EFB /* ScheduleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B13288B2395E70700421EFB /* ScheduleRepository.swift */; };
+		6B13288E2395E76D00421EFB /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B13288D2395E76D00421EFB /* ScheduleDataSource.swift */; };
 		6B1B6AD822C7DC2E001E705D /* .mapbox in Resources */ = {isa = PBXBuildFile; fileRef = 6B1B6AD722C7DC2E001E705D /* .mapbox */; };
 		6B26322C22C6468B0034CA72 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B26322B22C6468B0034CA72 /* ProfileViewController.swift */; };
 		6B26322D22C6468B0034CA72 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B26322B22C6468B0034CA72 /* ProfileViewController.swift */; };
@@ -155,6 +158,21 @@
 		3116952C2E306727ACD47469 /* Pods-cuHackingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cuHackingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cuHackingTests/Pods-cuHackingTests.release.xcconfig"; sourceTree = "<group>"; };
 		4A720DF28097A6ADAA0FC136 /* Pods-cuHacking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cuHacking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cuHacking/Pods-cuHacking.debug.xcconfig"; sourceTree = "<group>"; };
 		5F322B22A69B8DCF47972314 /* Pods_cuHackingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuHackingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B1328892395E08300421EFB /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		6B13288B2395E70700421EFB /* ScheduleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRepository.swift; sourceTree = "<group>"; };
+		6B13288D2395E76D00421EFB /* ScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataSource.swift; sourceTree = "<group>"; };
+		6B13288F2395F9CA00421EFB /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		6B1328902395F9CA00421EFB /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		6B1328912395F9CA00421EFB /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		6B1328922395F9CA00421EFB /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		6B1328932395F9CA00421EFB /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		6B1328942395F9CA00421EFB /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		6B1328952395F9CA00421EFB /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		6B1328962395F9CA00421EFB /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		6B1328972395F9CB00421EFB /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		6B1328982395F9CB00421EFB /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		6B1328992395F9CB00421EFB /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		6B13289A2395F9CB00421EFB /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		6B1B6AD722C7DC2E001E705D /* .mapbox */ = {isa = PBXFileReference; lastKnownFileType = text; name = .mapbox; path = ../.mapbox; sourceTree = "<group>"; };
 		6B26322B22C6468B0034CA72 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				6B29894E22C5E84200B1550C /* ScheduleViewController.swift */,
+				6B1328892395E08300421EFB /* EventCollectionViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -325,6 +344,8 @@
 		6B29893722C5A86600B1550C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6B13288B2395E70700421EFB /* ScheduleRepository.swift */,
+				6B13288D2395E76D00421EFB /* ScheduleDataSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -453,6 +474,18 @@
 		6B52FBE9238A4FAE0096F81E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				6B1328992395F9CB00421EFB /* Roboto-Black.ttf */,
+				6B1328982395F9CB00421EFB /* Roboto-BlackItalic.ttf */,
+				6B13289A2395F9CB00421EFB /* Roboto-Bold.ttf */,
+				6B1328922395F9CA00421EFB /* Roboto-BoldItalic.ttf */,
+				6B1328902395F9CA00421EFB /* Roboto-Italic.ttf */,
+				6B1328952395F9CA00421EFB /* Roboto-Light.ttf */,
+				6B1328972395F9CB00421EFB /* Roboto-LightItalic.ttf */,
+				6B13288F2395F9CA00421EFB /* Roboto-Medium.ttf */,
+				6B1328912395F9CA00421EFB /* Roboto-MediumItalic.ttf */,
+				6B1328942395F9CA00421EFB /* Roboto-Regular.ttf */,
+				6B1328962395F9CA00421EFB /* Roboto-Thin.ttf */,
+				6B1328932395F9CA00421EFB /* Roboto-ThinItalic.ttf */,
 				6B52FBEA238A4FAE0096F81E /* ReemKufi-Regular.ttf */,
 				6B52FBEC238A5B570096F81E /* MPLUS1p-Black.ttf */,
 				6B52FBF1238A5B590096F81E /* MPLUS1p-Bold.ttf */,
@@ -906,6 +939,7 @@
 				6BFCFA07238B2F6B009ED5CD /* InformationView.swift in Sources */,
 				6BF9291922C6FB1900007616 /* SettingsViewController.swift in Sources */,
 				6B51E8C4239316CF00B4454C /* InformationDataSource.swift in Sources */,
+				6B13288C2395E70700421EFB /* ScheduleRepository.swift in Sources */,
 				6B26322C22C6468B0034CA72 /* ProfileViewController.swift in Sources */,
 				6BF9291522C6F82E00007616 /* UINavigationController+Ext.swift in Sources */,
 				6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */,
@@ -917,6 +951,7 @@
 				6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */,
 				6BE10D3322F22A6700280D21 /* String+Ext.swift in Sources */,
 				6B52FBE8238A4E1C0096F81E /* Fonts.swift in Sources */,
+				6B13288A2395E08300421EFB /* EventCollectionViewCell.swift in Sources */,
 				6B6A646D22F0DBCE006CAD6D /* CardState.swift in Sources */,
 				6B52FBE6238A32890096F81E /* TitleSubtitleCollectionViewCell.swift in Sources */,
 				6B26323022C6514B0034CA72 /* QRScannerViewController.swift in Sources */,
@@ -929,6 +964,7 @@
 				6B29894522C5C5A300B1550C /* InformationViewController.swift in Sources */,
 				6BA16484231DCEE600EB186D /* ProfileDataSource.swift in Sources */,
 				6B91632A22EFB659009ADB0A /* Int+Ext.swift in Sources */,
+				6B13288E2395E76D00421EFB /* ScheduleDataSource.swift in Sources */,
 				6B88967A235CEB7300D8DFED /* UIStackView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

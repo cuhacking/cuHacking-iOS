@@ -42,7 +42,7 @@ class InformationCollectionViewCell: UICollectionViewCell {
             informationView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             informationView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             informationView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-            informationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            informationView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
         ])
 
         if let lastSubview = contentView.subviews.last {
