@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Crashlytics
+import NetworkExtension
 
 typealias HeaderCell = TitleSubtitleCollectionViewCell
 typealias OnboardingCell = InformationCollectionViewCell
@@ -37,8 +38,8 @@ enum InformationViewBuilder {
             cell.informationView.backgroundColor = Asset.Colors.surface.color
             cell.informationView.dropShadow()
             cell.informationView.titleLabel.textColor = Asset.Colors.primary.color
-            cell.informationView.isCentered = true
-            cell.informationView.update(title: "Welcome to Local Hack Days!", information: "Before you begin your day, please make sure you are registered.")
+            //cell.informationView.isCentered = true
+            cell.informationView.update(title: "Welcome to Local Hack Day!", information: "Before you begin your day, please make sure you are registered.")
             return cell
         }
     }
@@ -50,12 +51,12 @@ enum InformationViewBuilder {
             let wifiInfo = "Name: Local Hack Day\nPassword: cuhacking"
             cell.informationView.titleLabel.textColor = .black
             cell.informationView.informationTextView.textColor = .black
-            cell.informationView.update(title: "Wifi Info", information: wifiInfo, buttonTitle: "Connect")
+            cell.informationView.update(title: "Wifi Info", information: wifiInfo, buttonTitle: nil)
             return cell
         }
     }
     enum Announcements {
-        static func updateCell(updates: [MagnetonAPIObject.Update] ,collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell  {
+        static func updateCell(updates: [MagnetonAPIObject.Update] ,collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.updateCell.rawValue, for: indexPath) as? UpdateCell else {
                 fatalError("Update cell wsa not found.")
             }
@@ -79,6 +80,7 @@ class InformationViewController: UIViewController {
     var collectionView: UICollectionView!
     private var updates: [MagnetonAPIObject.Update]?
     private var dataSource: InformationRepository
+    private let refreshController = UIRefreshControl()
 
     init(dataSource: InformationRepository = InformationDataSource()) {
         self.dataSource = dataSource
@@ -121,10 +123,19 @@ class InformationViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         collectionView.fillSuperview()
+        
+        collectionView.alwaysBounceVertical = true
+        refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.addSubview(refreshController)
     }
-    
+
     private func loadUpdates() {
         InformationDataSource().getUpdates { [weak self] (updates, error) in
+            DispatchQueue.main.async {
+               if self?.refreshController.isRefreshing == true {
+                   self?.refreshController.endRefreshing()
+               }
+            }
             if error != nil {
                 print(error)
                 return
@@ -144,16 +155,27 @@ class InformationViewController: UIViewController {
         Crashlytics.sharedInstance().crash()
     }
 
-    @objc func showProfile() {
-        let profileViewController = ProfileVC()
+    @objc func showSettings() {
+        let settingsViewController = SettingsViewController()
 //        let profileViewController = SignInViewController(nibName: "SignInViewController", bundle: nil)
-        self.navigationController?.pushViewController(profileViewController, animated: false)
+        self.navigationController?.pushViewController(settingsViewController, animated: false)
     }
 
     @objc func showQRScanner() {
         let qrScannerViewController = QRScannerViewController()
         navigationController?.pushViewController(qrScannerViewController, animated: false)
     }
+    
+//    @objc func connectToWifi() {
+//        let hotSpotConfig = NEHotspotConfiguration(ssid: "HOME", passphrase: "cuhacking", isWEP: false)
+//        NEHotspotConfigurationManager.shared.apply(hotSpotConfig) { (error) in
+//            if let error = error {
+//                print("failed:\(error)")
+//            } else {
+//                print("success")
+//            }
+//        }
+//    }
 }
 
 extension InformationViewController: UICollectionViewDataSource {
@@ -221,11 +243,16 @@ extension InformationViewController: UICollectionViewDataSource {
 }
 
 extension InformationViewController {
+    @objc func refreshData() {
+        refreshController.beginRefreshing()
+        loadUpdates()
+    }
     private func setupNavigationController() {
         self.navigationController?.navigationBar.topItem?.title = "cuHacking"
+        self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color
         //Adding profile icon button to navigation bar
-        //let profileBarItem = UIBarButtonItem(image: Asset.Images.profileIcon.image, style: .plain, target: self, action: #selector(showProfile))
-        //self.navigationItem.rightBarButtonItem = profileBarItem
+        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
+        self.navigationItem.rightBarButtonItem = settingsIconBar
         //Adding QR Scan icon to button navigation bar IF user is admin
         //let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
         //self.navigationItem.leftBarButtonItem = qrBarItem

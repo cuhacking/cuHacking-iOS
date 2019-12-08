@@ -9,7 +9,7 @@
 import Foundation
 class ScheduleDataSource: ScheduleRepository {
     private static let baseURL = "https://cuhacking.com/api-dev"
-    private static let OK_RESPONSE = 200
+    private static let okResponse = 200
 
     func getEvents(completionHandler: @escaping (MagnetonAPIObject.Events?, Error?) -> Void) {
         let baseURL = ScheduleDataSource.baseURL + "/schedule"
@@ -21,7 +21,7 @@ class ScheduleDataSource: ScheduleRepository {
                 return
             }
             let response = response as? HTTPURLResponse
-            if response?.statusCode != ScheduleDataSource.OK_RESPONSE {
+            if response?.statusCode != ScheduleDataSource.okResponse {
                 let error = MagnentonError.fetch(message: "Failed to fetch updates. HTTP Response: \(response?.statusCode ?? -1)")
                 completionHandler(nil, error)
                 return

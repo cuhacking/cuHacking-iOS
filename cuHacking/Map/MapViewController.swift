@@ -73,32 +73,30 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView.addGestureRecognizer(singleTap)
         view.addSubview(mapView)
     }
-
     private func setupLevels(style: MGLStyle) {
         if style.source(withIdentifier: viewModel.shapeSource.identifier) != nil {
             return
         }
-
         let source = viewModel.shapeSource
         print("Identifier:\(source.identifier) VS. \(viewModel.shapeSource.identifier)")
         style.addSource(source)
 
         backdropLayer = MGLFillStyleLayer(identifier: "river-building-backdrop-layer", source: source)
-        backdropLayer.fillColor = NSExpression(forConstantValue: UIColor.white)
+        backdropLayer.fillColor = NSExpression(forConstantValue: Asset.Colors.backdrop.color)
 
         lineLayer = MGLLineStyleLayer(identifier: "river-building-line-layer", source: source)
         lineLayer.lineWidth = NSExpression(forConstantValue: 0.5)
-        lineLayer.lineColor = NSExpression(forConstantValue: UIColor.black)
+        lineLayer.lineColor = NSExpression(forConstantValue: Asset.Colors.line.color)
 
         fillLayer = MGLFillStyleLayer(identifier: "river-building-fill-layer", source: source)
         let defaultFill =  Asset.Colors.blue6.color
-        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat,  Asset.Colors.blue1.color,  Asset.Colors.blue2.color,  Asset.Colors.blue3.color,  Asset.Colors.blue4.color,  Asset.Colors.blue5.color, UIColor.white.withAlphaComponent(0), defaultFill)
+        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat,  Asset.Colors.blue1.color,  Asset.Colors.blue2.color,  Asset.Colors.blue3.color,  Asset.Colors.blue4.color,  Asset.Colors.blue5.color, Asset.Colors.blue6.color, defaultFill)
 
         symbolLayer = MGLSymbolStyleLayer(identifier: "river-building-symbol-layer", source: source)
-        symbolLayer.iconImageName = NSExpression(format: viewModel.symbolIconFormat, "washroom", "elevator", "stairs", "")
+      //  symbolLayer.iconImageName = NSExpression(format: viewModel.symbolIconFormat, "washroom", "elevator", "stairs", "")
         symbolLayer.iconScale = NSExpression(forConstantValue: 0.2)
         symbolLayer.text = NSExpression(forKeyPath: "name")
-        symbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 15)))
+//        symbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 15)))
         symbolLayer.textFontSize = NSExpression(forConstantValue: 8)
 
         style.addLayer(backdropLayer)
@@ -221,9 +219,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // MARK: MGLMapViewDelegate Methods
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
         print("loaded")
-        mapView.style?.setImage(Asset.Images.washroom.image, forName: "washroom")
-        mapView.style?.setImage(Asset.Images.elevator.image, forName: "elevator")
-        mapView.style?.setImage(Asset.Images.stairs.image, forName: "stairs")
+//        mapView.style?.setImage(Asset.Images.washroom.image, forName: "washroom")
+//        mapView.style?.setImage(Asset.Images.elevator.image, forName: "elevator")
+//        mapView.style?.setImage(Asset.Images.stairs.image, forName: "stairs")
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
@@ -276,6 +274,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 return
             }
           //  print("here")
+            if let source = mapView.style?.source(withIdentifier: viewModel.shapeSource.identifier) {
+                mapView.style?.removeSource(source)
+            }
             mapView.styleURL = url
         }
     }

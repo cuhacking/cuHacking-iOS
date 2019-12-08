@@ -12,8 +12,9 @@ class EventCollectionViewCell: UICollectionViewCell {
         let infoView = InformationView()
         infoView.titleLabel.textColor = Asset.Colors.secondayText.color
         infoView.titleLabel.font = UIFont(font: Fonts.Roboto.regular, size: 25)
-        infoView.informationTextView.textColor = Asset.Colors.secondayText.color
+        infoView.informationTextView.textColor = Asset.Colors.subtitle.color
         infoView.informationTextView.font = UIFont(font: Fonts.Roboto.regular, size: 18)
+        infoView.styleButton(textColor: Asset.Colors.secondayText.color)
         return infoView
     }()
     let eventTimeLabel: UILabel = {
