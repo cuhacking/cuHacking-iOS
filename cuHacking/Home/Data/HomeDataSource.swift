@@ -11,12 +11,12 @@ enum MagnentonError: Error {
     case fetch(message: String)
     case data(message: String)
 }
-class InformationDataSource: InformationRepository {
+class HomeDataSource: HomeRepository {
     private static let baseURL = "https://cuhacking.com/api-dev"
     private static let okResponse = 200
 
     func getUpdates(completionHandler: @escaping (MagnetonAPIObject.Updates?, Error?) -> Void) {
-        let baseURL = InformationDataSource.baseURL + "/updates"
+        let baseURL = HomeDataSource.baseURL + "/updates"
         guard let url = URL(string: baseURL) else { return }
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -25,7 +25,7 @@ class InformationDataSource: InformationRepository {
                 return
             }
             let response = response as? HTTPURLResponse
-            if response?.statusCode != InformationDataSource.okResponse {
+            if response?.statusCode != HomeDataSource.okResponse {
                 let error = MagnentonError.fetch(message: "Failed to fetch updates. HTTP Response: \(response?.statusCode ?? -1)")
                 completionHandler(nil, error)
                 return

@@ -7,6 +7,6 @@
 //
 
 import Foundation
-protocol InformationRepository {
+protocol HomeRepository {
     func getUpdates(completionHandler: @escaping (MagnetonAPIObject.Updates?, Error?) -> Void)   	
 }

@@ -8,18 +8,9 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController {
-    private var collectionViewFlowLayout: UICollectionViewFlowLayout {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.headerReferenceSize = CGSize(width: view.bounds.width, height: 50)
-        flowLayout.estimatedItemSize = CGSize(width: view.bounds.width, height: 10)
-        return flowLayout
-    }
-
-    var collectionView: UICollectionView!
+class ScheduleViewController: CUCollectionViewController {
     var events: [MagnetonAPIObject.Event]?
     private let dataSource: ScheduleRepository
-    private let refreshController = UIRefreshControl()
 
     init(dataSource: ScheduleRepository = ScheduleDataSource()) {
         self.dataSource = dataSource
@@ -32,27 +23,16 @@ class ScheduleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  Asset.Colors.background.color
-        setupCollectionView()
         registerCells()
         loadEvents()
     }
 
-    private func setupCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-        collectionView.backgroundColor = Asset.Colors.background.color
-        registerCells()
+    override func setupCollectionView() {
+        super.setupCollectionView()
         collectionView.dataSource = self
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionView)
-        collectionView.fillSuperview()
-        
-        collectionView.alwaysBounceVertical = true
-        refreshController.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        collectionView.addSubview(refreshController)
     }
 
-    private func registerCells() {
+    override func registerCells() {
         collectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: ScheduleViewBuilder.Cells.eventCell.rawValue)
          collectionView.register(TitleImageView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleImageView")
     }
@@ -79,7 +59,7 @@ class ScheduleViewController: UIViewController {
         }
     }
     
-    @objc private func refreshData() {
+    override func refreshData() {
         refreshController.beginRefreshing()
         loadEvents()
     }

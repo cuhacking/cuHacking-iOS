@@ -11,23 +11,29 @@
 import UIKit
 class CUTabBarController: UITabBarController {
     override func viewDidLoad() {
-        //First tab - Information VC
-        let informationViewController = InformationViewController()
-        let navigationController = UINavigationController(rootViewController: informationViewController)
+        // First tab - Home
+        let homeViewController = HomeViewController()
+        let navigationController = UINavigationController(rootViewController: homeViewController)
         navigationController.navigationBar.tintColor =  Asset.Colors.gray.color
-        navigationController.tabBarItem = UITabBarItem(title: "Info", image: Asset.Images.info.image, tag: 0)
+        navigationController.tabBarItem = UITabBarItem(title: "Home", image: Asset.Images.homeIcon.image, tag: 0)
 
-        //Second tab - Schedule VC
+        // Second tab - Information VC
+        let informationViewController = InformationViewController()
+        informationViewController.tabBarItem = UITabBarItem(title: "Info", image: Asset.Images.info.image, tag: 1)
+                
+        //Third tab - Schedule VC
         let scheduleViewController = ScheduleViewController()
-        scheduleViewController.tabBarItem = UITabBarItem(title: "Schedule", image: Asset.Images.scheduleIcon.image, tag: 1)
+        scheduleViewController.tabBarItem = UITabBarItem(title: "Schedule", image: Asset.Images.scheduleIcon.image, tag: 2)
 
-        //Third tab - Map vc
-//        let viewModel = MapViewModel(mapDataSource: MapDataSource())
-//        let mapViewController = MapViewController(viewModel: viewModel!)
-//        mapViewController.tabBarItem = UITabBarItem(title: "Map", image: Asset.Images.mapIcon.image, tag: 2)
+//        Fourth tab - Map vc
+        let viewModel = MapViewModel(mapDataSource: MapDataSource())
+        let mapViewController = MapViewController(viewModel: viewModel!)
+        mapViewController.tabBarItem = UITabBarItem(title: "Map", image: Asset.Images.mapIcon.image, tag: 3)
 
         //Setting view controllers
-        viewControllers = [navigationController, scheduleViewController]
+        viewControllers = [navigationController,
+                           informationViewController,
+                           scheduleViewController]
         tabBar.tintColor =  Asset.Colors.purple.color
         tabBar.unselectedItemTintColor =  Asset.Colors.gray.color
     }
