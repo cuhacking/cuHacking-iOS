@@ -13,7 +13,7 @@ extension MagnetonAPIObject {
         let updates: [String: Update]
         public var relevantUpdates: [Update] {
             let currentDate = Int64(Date().timeIntervalSince1970) * 1000
-            let keys = Array(updates.keys).sorted(by: <).filter { (key) -> Bool in
+            let keys = Array(updates.keys).sorted(by: >).filter { (key) -> Bool in
                 if let update = updates[key] {
                     return currentDate >= update.deliveryTime
                 } else {
