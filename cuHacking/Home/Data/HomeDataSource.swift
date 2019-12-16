@@ -12,10 +12,11 @@ enum MagnentonError: Error {
     case data(message: String)
 }
 class HomeDataSource: HomeRepository {
-    private static let baseURL = "https://cuhacking.com/api-dev"
+    private static let baseURL = Environment.rootURL.absoluteString
     private static let okResponse = 200
 
     func getUpdates(completionHandler: @escaping (MagnetonAPIObject.Updates?, Error?) -> Void) {
+        print(HomeDataSource.baseURL)
         let baseURL = HomeDataSource.baseURL + "/updates"
         guard let url = URL(string: baseURL) else { return }
 

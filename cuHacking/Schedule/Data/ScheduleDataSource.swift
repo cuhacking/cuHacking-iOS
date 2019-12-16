@@ -8,7 +8,7 @@
 
 import Foundation
 class ScheduleDataSource: ScheduleRepository {
-    private static let baseURL = "https://cuhacking.com/api-dev"
+    private static let baseURL = Environment.rootURL.absoluteString
     private static let okResponse = 200
 
     func getEvents(completionHandler: @escaping (MagnetonAPIObject.Events?, Error?) -> Void) {
