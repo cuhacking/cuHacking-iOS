@@ -4,10 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>cuHacking.xcscheme_^#shared#^_</key>
+		<key>cuHacking (Development).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>16</integer>
+		</dict>
+		<key>cuHacking (Production).xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 	</dict>
 </dict>
