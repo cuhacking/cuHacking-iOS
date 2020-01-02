@@ -19,7 +19,9 @@ enum HomeBuilder {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.headerCell.rawValue, for: indexPath) as? HeaderCell else {
                 fatalError("Headercell was not found.")
             }
-            cell.titleLabel.text = Strings.Information.HeaderCell.title
+            print("started")
+            let hackathonDate = Date(timeIntervalSince1970: 1578725761).timeIntervalSince1970 - Date().timeIntervalSince1970
+            cell.startCountdown(from: hackathonDate, withMessage: "Hacking starts in", completedMessage: "Hacking has begun!")
             return cell
         }
         static func onbaordingCell(collectionView: UICollectionView, indexPath: IndexPath) -> OnboardingCell {
@@ -29,8 +31,8 @@ enum HomeBuilder {
             cell.informationView.backgroundColor = Asset.Colors.surface.color
             cell.informationView.dropShadow()
             cell.informationView.titleLabel.textColor = Asset.Colors.primary.color
-            //cell.informationView.isCentered = true
-            cell.informationView.update(title: "Welcome to Local Hack Day!", information: "Before you begin your day, please make sure you are registered.")
+            cell.informationView.isCentered = true
+            cell.informationView.update(title: "Welcome to cuHacking 2020!", information: "Before you begin your day, please make sure you are registered.")
             return cell
         }
     }

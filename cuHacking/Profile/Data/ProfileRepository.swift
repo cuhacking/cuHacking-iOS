@@ -8,6 +8,6 @@
 
 import Foundation
 protocol ProfileRepository {
-    func getUserProfile() -> MagnetonAPIObject.UserProfile
+    func getUserProfile(token: String, completionHandler: @escaping (MagnetonAPIObject.UserProfile?, Error?) -> Void)
 }
 

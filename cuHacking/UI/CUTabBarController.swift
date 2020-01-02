@@ -20,7 +20,7 @@ class CUTabBarController: UITabBarController {
         // Second tab - Information VC
         let informationViewController = InformationViewController()
         informationViewController.tabBarItem = UITabBarItem(title: "Info", image: Asset.Images.info.image, tag: 1)
-                
+
         //Third tab - Schedule VC
         let scheduleViewController = ScheduleViewController()
         scheduleViewController.tabBarItem = UITabBarItem(title: "Schedule", image: Asset.Images.scheduleIcon.image, tag: 2)
@@ -33,7 +33,8 @@ class CUTabBarController: UITabBarController {
         //Setting view controllers
         viewControllers = [navigationController,
                            informationViewController,
-                           scheduleViewController]
+                           scheduleViewController,
+                            mapViewController]
         tabBar.tintColor =  Asset.Colors.purple.color
         tabBar.unselectedItemTintColor =  Asset.Colors.gray.color
     }

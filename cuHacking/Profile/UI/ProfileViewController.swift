@@ -2,136 +2,130 @@
 //  ProfileViewController.swift
 //  cuHacking
 //
-//  Created by Santos on 2019-06-28.
+//  Created by Santos on 2019-10-20.
 //  Copyright © 2019 cuHacking. All rights reserved.
 //
 
 import UIKit
-class ProfileViewController: CUViewController, UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
-        //YOU section
-        if indexPath.section == 0 {
+typealias PersonalInfoCell = ImageLabelView
+typealias TeamInfoCell = ImageLabelSubtitleView
 
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell else {
-                fatalError("Could no create Info Cell")
+class ProfileViewController: UIViewController {
+    private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let tableView = UITableView()
+    private let userInfo: [String] = []
+    private let teamInfo: [String] = []
+    private let profileName: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(font: Fonts.ReemKufi.regular, size: 18)
+        label.text = "santosgagbegnon@gmail.com"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+
+    private let qrImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = "santosgagbegnon@gmail.com".qrCode
+        return imageView
+    }()
+    
+    private let dataSource: ProfileRepository
+
+    init(dataSource: ProfileRepository = ProfileDataSource()) {
+        self.dataSource = dataSource
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+        setupNavigationController()
+        if let token = UserSession.current.token?.token {
+            dataSource.getUserProfile(token: token) { (profile, error) in
+        
             }
-            //Food Group
-            if indexPath.row == 0 {
-                cell.iconImage.layer.cornerRadius = cell.iconImage.frame.width/2
-                cell.iconImage.backgroundColor = .blue
-                cell.informationLabel.text = "Blue Group"
-            //Program
-            } else if indexPath.row == 1 {
-                cell.iconImage.image = Asset.Images.grad.image
-                cell.informationLabel.text = "University of Ottawa"
-            }
-            //Email
-            else {
-                cell.iconImage.image = Asset.Images.mail.image
-                cell.informationLabel.text = "janedoe@gmail.com"
-            }
-            return cell
-        } else {
-        //TEAM Section
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as? TeamCell else {
-                fatalError("Cell TYPE")
-            }
-            if indexPath.row == 0 {
-                cell.profileImage.image = Asset.Images.redQR.image
-                cell.teamMemberLabel.text = "Jessica"
-                cell.positionLabel.text = "Developer"
-            } else if indexPath.row == 1 {
-                cell.profileImage.image = Asset.Images.blueQR.image
-                cell.teamMemberLabel.text = "Joshua"
-                cell.positionLabel.text = "Designer"
-            } else if indexPath.row == 2 {
-                cell.profileImage.image = Asset.Images.greenQR.image
-                cell.teamMemberLabel.text = "Jackson"
-                cell.positionLabel.text = "Designer"
-            } else if indexPath.row == 3 {
-                cell.profileImage.image = Asset.Images.pinkQR.image
-                cell.teamMemberLabel.text = "Jeremy"
-                cell.positionLabel.text = "Developer"
-            }
-            return cell
         }
     }
 
-    @IBOutlet weak var profileInformationTableView: UITableView!
+    private func setup() {
+        view.backgroundColor = Asset.Colors.background.color
+        collectionView.backgroundColor = Asset.Colors.background.color
+        view.addSubviews(views: profileName, qrImageView, collectionView)
+        profileName.translatesAutoresizingMaskIntoConstraints = false
+        qrImageView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-    override func viewDidLoad() {
-        setupNavigationController()
-       // profileInformationTableView.register(ImageLa, forCellReuseIdentifier: <#T##String#>)
-        profileInformationTableView.separatorStyle = .none
-        profileInformationTableView.register(UINib(nibName: "TeamCell", bundle: nil), forCellReuseIdentifier: "TeamCell")
-        profileInformationTableView.register(UINib(nibName: "InfoCell", bundle: nil), forCellReuseIdentifier: "InfoCell")
-        profileInformationTableView.delegate = self
-        profileInformationTableView.separatorStyle = .singleLine
-        profileInformationTableView.dataSource = self
-        super.viewDidLoad()
+        NSLayoutConstraint.activate([
+            profileName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileName.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
+
+            qrImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            qrImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
+            qrImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
+            qrImageView.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: 16),
+
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: qrImageView.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+        ])
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionViewFlowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 20)
+        collectionViewFlowLayout.sectionInset = .init(top: 20, left: 20, bottom: 20, right: 20)
+
+        collectionView.collectionViewLayout = collectionViewFlowLayout
+
+        collectionView.register(PersonalInfoCell.self, forCellWithReuseIdentifier: "ImageLabelView")
+        collectionView.register(TeamInfoCell.self, forCellWithReuseIdentifier: "TeamInfoCell")
+        collectionView.register(TitleImageView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TitleImageView")
     }
 
-    func setupNavigationController() {
-        self.navigationController?.navigationBar.topItem?.title = "Profile"
-        self.navigationController?.navigationBar.tintColor = .black
-        let settingsBarbutton = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
-        self.navigationItem.rightBarButtonItem = settingsBarbutton
+    private func setupNavigationController() {
+        self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color
+
+        //Adding QR Scan icon to button navigation bar IF user is admin
+        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
+        let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
+        self.navigationItem.rightBarButtonItems = [qrBarItem, settingsIconBar]
+    }
+
+    @objc func showQRScanner() {
+        let qrScannerViewController = QRScannerViewController()
+        navigationController?.pushViewController(qrScannerViewController, animated: false)
     }
 
     @objc func showSettings() {
         let settingsViewController = SettingsViewController()
         self.navigationController?.pushViewController(settingsViewController, animated: false)
     }
+}
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 44
-        } else {
-            return 60
-        }
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
+}
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let backgroundView = UIView()
-        let label = UILabel()
-        backgroundView.addSubview(label)
-         label.anchor(top: backgroundView.topAnchor, leading: backgroundView.leadingAnchor, bottom: backgroundView.bottomAnchor, trailing: backgroundView.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -50))
-        if section == 0 {
-            label.text = "You"
-        } else {
-            label.text = "Team"
-            let addTeam = UIButton()
-            backgroundView.addSubview(addTeam)
-            if #available(iOS 13.0, *) {
-                addTeam.setImage(UIImage(systemName: "person.crop.circle.badge.plus"), for: .normal)
-                addTeam.tintColor = UIColor.black
-            } else {
-                // Fallback image
-                addTeam.tintColor = UIColor.white
-            }
-            addTeam.anchor(top: backgroundView.topAnchor, leading: label.trailingAnchor, bottom: backgroundView.bottomAnchor, trailing: backgroundView.trailingAnchor, padding: .init(top:0, left: -20, bottom:0, right: 0))
-        }
-        label.font = .systemFont(ofSize: 28, weight: .medium)
-        backgroundView.backgroundColor =  Asset.Colors.background.color
-        return backgroundView
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+extension ProfileViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 3
-        case 1:
-            return 4
-        default:
-            break
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageLabelView", for: indexPath) as? PersonalInfoCell else {
+            return UICollectionViewCell()
         }
-        return 1
+        cell.update(image: Asset.Images.blueQR.image, text: "Information")
+        return cell
     }
 }

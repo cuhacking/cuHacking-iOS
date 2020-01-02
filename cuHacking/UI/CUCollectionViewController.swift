@@ -20,7 +20,7 @@ class CUCollectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor =  Asset.Colors.background.color
+        view.backgroundColor = Asset.Colors.background.color
         setupCollectionView()
     }
 

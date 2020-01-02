@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias HeaderCell = TitleSubtitleCollectionViewCell
+typealias HeaderCell = TimerLabel
 typealias OnboardingCell = InformationCollectionViewCell
 typealias UpdateCell = InformationCollectionViewCell
 
@@ -30,12 +30,12 @@ class HomeViewController: CUCollectionViewController {
         setupNavigationController()
         loadUpdates()
     }
-    
+
     override func setupCollectionView() {
         super.setupCollectionView()
         collectionView.dataSource = self
     }
-    
+
     override func registerCells() {
         super.registerCells()
         collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: HomeBuilder.Cells.onboardingCell.rawValue)
@@ -47,8 +47,10 @@ class HomeViewController: CUCollectionViewController {
         self.navigationController?.navigationBar.topItem?.title = "cuHacking"
         self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color
         //Adding profile icon button to navigation bar
-        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
-        self.navigationItem.rightBarButtonItem = settingsIconBar
+        let profileIconButton = UIBarButtonItem(image: Asset.Images.profileIcon.image, style: .plain, target: self, action: #selector(showProfile))
+        self.navigationItem.rightBarButtonItem = profileIconButton
+//        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
+//        self.navigationItem.rightBarButtonItem = settingsIconBar
         //Adding QR Scan icon to button navigation bar IF user is admin
         //let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
         //self.navigationItem.leftBarButtonItem = qrBarItem
@@ -78,8 +80,17 @@ class HomeViewController: CUCollectionViewController {
 
     @objc func showSettings() {
         let settingsViewController = SettingsViewController()
-//        let profileViewController = SignInViewController(nibName: "SignInViewController", bundle: nil)
         self.navigationController?.pushViewController(settingsViewController, animated: false)
+    }
+
+    @objc func showProfile() {
+        var desinationVC: UIViewController!
+        if UserSession.current.isLoggedIn {
+            desinationVC = ProfileViewController()
+        } else {
+            desinationVC = SignInViewController()
+        }
+        self.navigationController?.pushViewController(desinationVC, animated: false)
     }
 
     @objc func showQRScanner() {

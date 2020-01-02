@@ -31,6 +31,7 @@ class InformationView: UIView {
 
     let titleLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.textAlignment = .left
         label.font = UIFont(font: Fonts.ReemKufi.regular, size: 17)
         label.textColor = Asset.Colors.primaryText.color

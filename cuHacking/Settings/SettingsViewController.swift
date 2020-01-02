@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
         view.backgroundColor =  Asset.Colors.background.color
         setup()
     }
-    
+
     func setup() {
         privacyPolicyButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(privacyPolicyButton)
@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
     func setupNavigationController() {
         self.title = "Settings"
     }
-    
+
     @objc func showPrivacyPolicy() {
         let privacyPolicyViewController = PrivacyPolicyViewController()
         navigationController?.pushViewController(privacyPolicyViewController, animated: false)

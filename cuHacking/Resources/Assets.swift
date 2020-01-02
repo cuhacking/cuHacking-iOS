@@ -44,7 +44,6 @@ internal enum Asset {
     internal static let title = ColorAsset(name: "Title")
   }
   internal enum Images {
-    internal static let cuHackingLogoLight = ImageAsset(name: "CUHackingLogo_Light")
     internal static let grad = ImageAsset(name: "Grad")
     internal static let homeIcon = ImageAsset(name: "HomeIcon")
     internal static let mail = ImageAsset(name: "Mail")
@@ -57,6 +56,7 @@ internal enum Asset {
     internal static let settingsIcon = ImageAsset(name: "SettingsIcon")
     internal static let add = ImageAsset(name: "add")
     internal static let blueQR = ImageAsset(name: "blueQR")
+    internal static let cuHackingLogo = ImageAsset(name: "cuHackingLogo")
     internal static let elevator = ImageAsset(name: "elevator")
     internal static let greenQR = ImageAsset(name: "greenQR")
     internal static let info = ImageAsset(name: "info")
