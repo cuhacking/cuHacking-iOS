@@ -7,6 +7,9 @@ target 'cuHacking' do
 
   # Pods for cuHacking
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.13.2'
   pod 'Mapbox-iOS-SDK', '~> 5.1'
@@ -19,6 +22,9 @@ target 'cuHacking' do
     inherit! :search_paths
     # Pods for testing
     pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/Analytics'
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.2'
     pod 'Mapbox-iOS-SDK', '~> 5.1'
@@ -31,6 +37,9 @@ target 'cuHacking' do
     inherit! :search_paths
     # Pods for testing
     pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/Analytics'
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.2'
     pod 'Mapbox-iOS-SDK', '~> 5.1'

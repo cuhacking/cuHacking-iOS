@@ -11,6 +11,8 @@ import Mapbox
 
 class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGLMapViewDelegate {
     // MARK: Instance Variables
+    private let dataSource: MapRepository
+    private var levelsAdded = false
     private var cardViewController: CardViewController!
     private var visualEffectView: UIVisualEffectView!
     private let cardHeight: CGFloat = 350
@@ -39,8 +41,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }()
 
     // MARK: Functions
-    init(viewModel: MapViewModel) {
+    init(viewModel: MapViewModel, dataSource: MapRepository = MapDataSource()) {
         self.viewModel = viewModel
+        self.dataSource = dataSource
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -51,6 +54,14 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor =  Asset.Colors.background.color
+        dataSource.getMap { (map, error) in
+            if error != nil {
+                print("Werror:\(error?.localizedDescription)")
+            }
+            if let map = map {
+            
+            }
+        }
         setupMap()
         setupFloorPicker()
         setupCard()
@@ -63,7 +74,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView = MGLMapView(frame: view.bounds, styleURL: url)
         mapView.delegate = self
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(CLLocationCoordinate2D(latitude: 45.3823547, longitude: -75.6974599), zoomLevel: 18, animated: false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 45.3823547, longitude: -75.6974599), zoomLevel: 19, animated: false)
 
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(roomTapped(sender:)))
         for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
@@ -73,12 +84,10 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView.addGestureRecognizer(singleTap)
         view.addSubview(mapView)
     }
-    private func setupLevels(style: MGLStyle) {
-        if style.source(withIdentifier: viewModel.shapeSource.identifier) != nil {
-            return
-        }
+    private func setupLevels() {
+        guard let style = self.mapView.style else { return }
+
         let source = viewModel.shapeSource
-        print("Identifier:\(source.identifier) VS. \(viewModel.shapeSource.identifier)")
         style.addSource(source)
 
         backdropLayer = MGLFillStyleLayer(identifier: "river-building-backdrop-layer", source: source)
@@ -225,9 +234,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-        print("Problem")
-
-        setupLevels(style: style)
+        setupLevels()
     }
 
     // MARK: TableViewDelegate & TableViewDataSource Methods
@@ -263,17 +270,21 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 13.0, *) {
-          //  print("Okay: \(mapView.styleURL)")
-
             if previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) == false {
                 return
             }
             let url = traitCollection.userInterfaceStyle == .light ? MGLStyle.lightStyleURL :  MGLStyle.darkStyleURL
-          //  print("Okay3: \(url)")
             if url == mapView.styleURL {
                 return
             }
-          //  print("here")
+            guard let currentLayers = mapView.style?.layers else { return }
+            currentLayers.map { (layer) in
+                guard let mapStyle = mapView.style else { return }
+                if let styleLayer = mapStyle.layer(withIdentifier: layer.identifier) {
+                     mapStyle.removeLayer(styleLayer)
+                 }
+            }
+            
             if let source = mapView.style?.source(withIdentifier: viewModel.shapeSource.identifier) {
                 mapView.style?.removeSource(source)
             }

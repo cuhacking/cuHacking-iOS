@@ -44,6 +44,8 @@ internal enum Asset {
     internal static let title = ColorAsset(name: "Title")
   }
   internal enum Images {
+    internal static let failure = ImageAsset(name: "Failure")
+    internal static let foodIcon = ImageAsset(name: "FoodIcon")
     internal static let grad = ImageAsset(name: "Grad")
     internal static let homeIcon = ImageAsset(name: "HomeIcon")
     internal static let mail = ImageAsset(name: "Mail")
@@ -54,6 +56,7 @@ internal enum Asset {
     internal static let qrIcon = ImageAsset(name: "QRIcon")
     internal static let scheduleIcon = ImageAsset(name: "ScheduleIcon")
     internal static let settingsIcon = ImageAsset(name: "SettingsIcon")
+    internal static let success = ImageAsset(name: "Success")
     internal static let add = ImageAsset(name: "add")
     internal static let blueQR = ImageAsset(name: "blueQR")
     internal static let cuHackingLogo = ImageAsset(name: "cuHackingLogo")

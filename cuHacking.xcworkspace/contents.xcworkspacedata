@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/santos/Developer/Swift/cuHacking/cuHacking/QRScanner/QRScannerDataSource.swift">
+   </FileRef>
+   <FileRef
       location = "group:cuHacking.xcodeproj">
    </FileRef>
    <FileRef

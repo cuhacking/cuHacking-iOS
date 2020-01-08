@@ -16,10 +16,9 @@ class ProfileDataSource: ProfileRepository {
     }
     func getUserProfile(token: String, completionHandler: @escaping (MagnetonAPIObject.UserProfile?, Error?) -> Void) {
         let baseURL = ProfileDataSource.baseURL + "/users/profile"
-        let y = "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNlNWNlZDZlNDBkY2QxZWZmNDA3MDQ4ODY3YjFlZDFlNzA2Njg2YTAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vY3VoYWNraW5nLTI0MzcxMiIsImF1ZCI6ImN1aGFja2luZy0yNDM3MTIiLCJhdXRoX3RpbWUiOjE1Nzc5OTU2OTUsInVzZXJfaWQiOiJaZWkxSmpoSTVIZnNNQUI0WlY5aUZJdnJKN0UzIiwic3ViIjoiWmVpMUpqaEk1SGZzTUFCNFpWOWlGSXZySjdFMyIsImlhdCI6MTU3Nzk5NTY5NSwiZXhwIjoxNTc3OTk5Mjk1LCJlbWFpbCI6InNhbnRvc2dhZ2JlZ25vbkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsic2FudG9zZ2FnYmVnbm9uQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.pxumNV4OE3Mx1xlDGTPx4NOcHQWhUc3phWjqpNTmDqEOoS7g3ayEBFinEZ8rCFQJBeRPwVKHIqvKoAZdr3cS2ctshmta9Ngayv72OfJNVM-jgzSbqDo4lc10vgDjQ2U_7epd_bFEbHEA4TZvQxjTlRsHyMeE0l2vWKVLjsRl2gyNV5qMSdfXt9P0b2tsZi9GR4x18kdjuqdrii0SMl_b8dKg7HeFsRGLtK0E4d9lxcM6iIhOhvbD8HnXFKJeGkFutnFe4_hjtdRQ1ugC3kG0h7VVms6H_Mkc-ASa-IlF3IFd9PknFfqygQfvbWiJ7c6LhwprC2knssYRF7kEJ1KGvQ"
         var requestURL = URLRequest(url: URL(string: baseURL)!)
         requestURL.httpMethod = "GET"
-        requestURL.allHTTPHeaderFields = [Header.AUTHORIZATION: Header.BEARER + y]
+        requestURL.allHTTPHeaderFields = [Header.AUTHORIZATION: Header.BEARER + token]
 
         URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
             if error != nil {

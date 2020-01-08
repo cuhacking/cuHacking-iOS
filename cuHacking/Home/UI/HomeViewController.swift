@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 typealias HeaderCell = TimerLabel
 typealias OnboardingCell = InformationCollectionViewCell
@@ -85,8 +86,8 @@ class HomeViewController: CUCollectionViewController {
 
     @objc func showProfile() {
         var desinationVC: UIViewController!
-        if UserSession.current.isLoggedIn {
-            desinationVC = ProfileViewController()
+        if let user = Auth.auth().currentUser {
+            desinationVC = ProfileViewController(currentUser: user)
         } else {
             desinationVC = SignInViewController()
         }
@@ -94,8 +95,8 @@ class HomeViewController: CUCollectionViewController {
     }
 
     @objc func showQRScanner() {
-        let qrScannerViewController = QRScannerViewController()
-        navigationController?.pushViewController(qrScannerViewController, animated: false)
+//        let qrScannerViewController = QRScannerViewController()
+//        navigationController?.pushViewController(qrScannerViewController, animated: false)
     }
 }
 

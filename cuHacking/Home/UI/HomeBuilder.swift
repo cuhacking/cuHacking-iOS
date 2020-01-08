@@ -38,14 +38,14 @@ enum HomeBuilder {
     }
 
     enum Announcements {
-        static func updateCell(updates: [MagnetonAPIObject.Update] ,collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell {
+        static func updateCell(updates: [MagnetonAPIObject.Update], collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.updateCell.rawValue, for: indexPath) as? UpdateCell else {
                 fatalError("Update cell wsa not found.")
             }
             let update = updates[indexPath.row]
             cell.informationView.backgroundColor = Asset.Colors.surface.color
             cell.informationView.dropShadow()
-            cell.informationView.update(title: update.title, information: update.description, buttonTitle: nil)
+            cell.informationView.update(title: update.name, information: update.description, buttonTitle: nil)
             return cell
         }
     }

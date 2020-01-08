@@ -16,12 +16,22 @@ class CUCollectionViewController: UIViewController {
     }
 
     var collectionView: UICollectionView!
-    let refreshController = UIRefreshControl()
+    var refreshController = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.background.color
         setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        refreshController.endRefreshing()
     }
 
     func registerCells() {

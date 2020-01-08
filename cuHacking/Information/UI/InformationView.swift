@@ -107,9 +107,12 @@ class InformationView: UIView {
         }
     }
 
-    func update(title: String? = nil, information: String? = nil, buttonTitle: String? = nil, buttonIcon: UIImage? = nil) {
+    func update(title: String? = nil, information: String? = nil, attributedInformation: NSAttributedString? = nil, buttonTitle: String? = nil, buttonIcon: UIImage? = nil) {
         titleLabel.text = title
         informationTextView.text = information
+        if information == nil {
+            informationTextView.attributedText = attributedInformation
+        }
         if let buttonTitle = buttonTitle {
             if let buttonIcon = buttonIcon {
                 button.tintColor = Asset.Colors.background.color

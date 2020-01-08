@@ -8,9 +8,36 @@
 //
 import UIKit
 class ImageLabelView: UICollectionViewCell {
-    private let imageView = UIImageView()
-    private let label = UILabel()
-
+    lazy var width: NSLayoutConstraint = {
+        let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
+        width.isActive = true
+        return width
+    }()
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    private let label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    var imageTint: UIColor? {
+        didSet {
+            imageView.tintColor = imageTint
+        }
+    }
+    var attributedText: NSMutableAttributedString? {
+        
+        didSet {
+            label.attributedText = attributedText
+        }
+    }
+    var imageBackgroundColor: UIColor? {
+        didSet {
+            imageView.backgroundColor = imageBackgroundColor
+        }
+    }
     var text: String? {
         didSet {
             label.text = text
@@ -33,23 +60,38 @@ class ImageLabelView: UICollectionViewCell {
     }
 
     private func setup() {
-        addSubviews(views: imageView, label)
+        contentView.addSubviews(views: imageView, label)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 40),
+            imageView.widthAnchor.constraint(equalToConstant: 25),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
 
             label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            label.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            label.topAnchor.constraint(equalTo: imageView.topAnchor)
         ])
+        if let lastSubview = contentView.subviews.last {
+            contentView.bottomAnchor.constraint(equalTo: lastSubview.bottomAnchor).isActive = true
+        }
     }
 
-    func update(image: UIImage, text: String) {
+    func update(image: UIImage?, text: String?) {
         self.image = image
         self.text = text
+    }
+    
+    func roundImage() {
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.clipsToBounds = true
+    }
+
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        width.constant = bounds.size.width
+        return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
     }
 }

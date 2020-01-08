@@ -7,8 +7,12 @@
 //
 
 import Foundation
+class UserAccess {
+    static var isAdmin = false
+}
 class UserSession {
     static let current = UserSession()
+    private var uuid: String? = nil
     private static let userSessionKey = "USER_SESSION_KEY"
     private let defaults = UserDefaults.standard
     var token: MagnetonAPIObject.UserToken?
@@ -35,5 +39,9 @@ class UserSession {
     func initalizeSession(token: MagnetonAPIObject.UserToken?) {
         self.token = token
         defaults.set(token?.token, forKey: UserSession.userSessionKey)
+    }
+    
+    func updateUser(uuid: String) {
+        self.uuid = uuid 
     }
 }

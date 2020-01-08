@@ -12,6 +12,7 @@
 		6B13288C2395E70700421EFB /* ScheduleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B13288B2395E70700421EFB /* ScheduleRepository.swift */; };
 		6B13288E2395E76D00421EFB /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B13288D2395E76D00421EFB /* ScheduleDataSource.swift */; };
 		6B14651723A70E040067A2CE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B14651623A70E040067A2CE /* Environment.swift */; };
+		6B18E0DC23C4713A001F1FCB /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18E0DB23C4713A001F1FCB /* Information.swift */; };
 		6B1B6AD822C7DC2E001E705D /* .mapbox in Resources */ = {isa = PBXBuildFile; fileRef = 6B1B6AD722C7DC2E001E705D /* .mapbox */; };
 		6B26323022C6514B0034CA72 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */; };
 		6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29894222C5C51300B1550C /* CUTabBarController.swift */; };
@@ -54,6 +55,13 @@
 		6B659F31235C228900EBAF7E /* CUHacking.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B659F30235C228900EBAF7E /* CUHacking.strings */; };
 		6B659F35235C27AE00EBAF7E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B659F34235C27AD00EBAF7E /* Strings.swift */; };
 		6B67E9EF235D531500288F8D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B67E9EE235D531500288F8D /* ProfileViewController.swift */; };
+		6B6A619C23C4FF70008EEFDD /* InformationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A619B23C4FF70008EEFDD /* InformationDataSource.swift */; };
+		6B6A619E23C4FF80008EEFDD /* InformationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A619D23C4FF80008EEFDD /* InformationRepository.swift */; };
+		6B6A61A023C532F6008EEFDD /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A619F23C532F6008EEFDD /* Cache.swift */; };
+		6B6A61A223C55A69008EEFDD /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A61A123C55A69008EEFDD /* UIViewController+Ext.swift */; };
+		6B6A61A423C56753008EEFDD /* QRScannerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A61A323C56753008EEFDD /* QRScannerRepository.swift */; };
+		6B6A61A823C5685B008EEFDD /* QRScannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A61A723C5685B008EEFDD /* QRScannerDataSource.swift */; };
+		6B6A61AA23C5C131008EEFDD /* MapRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A61A923C5C131008EEFDD /* MapRepository.swift */; };
 		6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
 		6B6A646622F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
 		6B6A646722F09F2F006CAD6D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A646422F09F2F006CAD6D /* CardView.swift */; };
@@ -102,6 +110,7 @@
 		6BA9AC4D22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BA9AC4E22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BA9AC4F22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
+		6BB8AA6723C627E40092BEF4 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB8AA6623C627E40092BEF4 /* Building.swift */; };
 		6BBEAC7A235EAE9E004AAB17 /* ImageLabelSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEAC79235EAE9E004AAB17 /* ImageLabelSubtitleView.swift */; };
 		6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
 		6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
@@ -115,12 +124,15 @@
 		6BD6310223BDD12000D6D060 /* SignInDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6310123BDD12000D6D060 /* SignInDataSource.swift */; };
 		6BD6310423BE5E6700D6D060 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6310323BE5E6700D6D060 /* UserToken.swift */; };
 		6BD6310623BE64EE00D6D060 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6310523BE64EE00D6D060 /* UserSession.swift */; };
+		6BD6310B23BE924000D6D060 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6310A23BE924000D6D060 /* ProfileBuilder.swift */; };
+		6BD83CEB23C3B1D900DB4B05 /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD83CEA23C3B1D900DB4B05 /* DateFormatter+Ext.swift */; };
 		6BE10D3322F22A6700280D21 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3222F22A6700280D21 /* String+Ext.swift */; };
 		6BE10D3422F22A6700280D21 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3222F22A6700280D21 /* String+Ext.swift */; };
 		6BE10D3522F22A6700280D21 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE10D3222F22A6700280D21 /* String+Ext.swift */; };
 		6BE10D3B22F25C4100280D21 /* RiverBuilding.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */; };
 		6BE10D3C22F25C4100280D21 /* RiverBuilding.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */; };
 		6BE10D3D22F25C4100280D21 /* RiverBuilding.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */; };
+		6BF025B823C1987E00E98DCD /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF025B723C1987E00E98DCD /* OverlayView.swift */; };
 		6BF9290822C6D18A00007616 /* CUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF9290722C6D18A00007616 /* CUView.swift */; };
 		6BF9290922C6D18A00007616 /* CUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF9290722C6D18A00007616 /* CUView.swift */; };
 		6BF9290A22C6D18A00007616 /* CUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF9290722C6D18A00007616 /* CUView.swift */; };
@@ -184,6 +196,7 @@
 		6B14651423A7092C0067A2CE /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		6B14651523A709360067A2CE /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		6B14651623A70E040067A2CE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		6B18E0DB23C4713A001F1FCB /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		6B1B6AD722C7DC2E001E705D /* .mapbox */ = {isa = PBXFileReference; lastKnownFileType = text; name = .mapbox; path = ../.mapbox; sourceTree = "<group>"; };
 		6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		6B29894222C5C51300B1550C /* CUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUTabBarController.swift; sourceTree = "<group>"; };
@@ -215,6 +228,13 @@
 		6B659F30235C228900EBAF7E /* CUHacking.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CUHacking.strings; sourceTree = "<group>"; };
 		6B659F34235C27AD00EBAF7E /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		6B67E9EE235D531500288F8D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6B6A619B23C4FF70008EEFDD /* InformationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationDataSource.swift; sourceTree = "<group>"; };
+		6B6A619D23C4FF80008EEFDD /* InformationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRepository.swift; sourceTree = "<group>"; };
+		6B6A619F23C532F6008EEFDD /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		6B6A61A123C55A69008EEFDD /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		6B6A61A323C56753008EEFDD /* QRScannerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerRepository.swift; sourceTree = "<group>"; };
+		6B6A61A723C5685B008EEFDD /* QRScannerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRScannerDataSource.swift; path = /Users/santos/Developer/Swift/cuHacking/cuHacking/QRScanner/QRScannerDataSource.swift; sourceTree = "<absolute>"; };
+		6B6A61A923C5C131008EEFDD /* MapRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRepository.swift; sourceTree = "<group>"; };
 		6B6A646422F09F2F006CAD6D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6B6A646822F0DB12006CAD6D /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		6B6A646C22F0DBCE006CAD6D /* CardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardState.swift; sourceTree = "<group>"; };
@@ -251,6 +271,7 @@
 		6B9C992A2375B3BB001B892C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
 		6BA16483231DCEE600EB186D /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
 		6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6BB8AA6623C627E40092BEF4 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		6BBEAC79235EAE9E004AAB17 /* ImageLabelSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelSubtitleView.swift; sourceTree = "<group>"; };
 		6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataSource.swift; sourceTree = "<group>"; };
@@ -260,8 +281,11 @@
 		6BD6310123BDD12000D6D060 /* SignInDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataSource.swift; sourceTree = "<group>"; };
 		6BD6310323BE5E6700D6D060 /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		6BD6310523BE64EE00D6D060 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		6BD6310A23BE924000D6D060 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		6BD83CEA23C3B1D900DB4B05 /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
 		6BE10D3222F22A6700280D21 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RiverBuilding.geojson; sourceTree = "<group>"; };
+		6BF025B723C1987E00E98DCD /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		6BF9290722C6D18A00007616 /* CUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUView.swift; sourceTree = "<group>"; };
 		6BF9290B22C6D1B300007616 /* CUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUViewController.swift; sourceTree = "<group>"; };
 		6BF9291422C6F82E00007616 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
@@ -309,9 +333,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B18E0DD23C4714B001F1FCB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6B18E0DB23C4713A001F1FCB /* Information.swift */,
+				6B6A619D23C4FF80008EEFDD /* InformationRepository.swift */,
+				6B6A619B23C4FF70008EEFDD /* InformationDataSource.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		6B29893022C5A7C900B1550C /* Information */ = {
 			isa = PBXGroup;
 			children = (
+				6B18E0DD23C4714B001F1FCB /* Data */,
 				6B29893322C5A81B00B1550C /* UI */,
 			);
 			path = Information;
@@ -368,6 +403,8 @@
 			isa = PBXGroup;
 			children = (
 				6B4BD46A22E7501100BF03E7 /* RiverBuildingOld.geojson */,
+				6B6A61A923C5C131008EEFDD /* MapRepository.swift */,
+				6BB8AA6623C627E40092BEF4 /* Building.swift */,
 				6BE10D3A22F25C4000280D21 /* RiverBuilding.geojson */,
 				6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */,
 				6B29895022C5E86600B1550C /* MapViewController.swift */,
@@ -393,6 +430,8 @@
 			isa = PBXGroup;
 			children = (
 				6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */,
+				6B6A61A323C56753008EEFDD /* QRScannerRepository.swift */,
+				6B6A61A723C5685B008EEFDD /* QRScannerDataSource.swift */,
 			);
 			path = QRScanner;
 			sourceTree = "<group>";
@@ -408,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				6B67E9EE235D531500288F8D /* ProfileViewController.swift */,
+				6BD6310A23BE924000D6D060 /* ProfileBuilder.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -428,6 +468,7 @@
 				6B6D4F3722D3D03600A9D4F9 /* DashboardAPI.swift */,
 				6B6D4F3B22D3D06000A9D4F9 /* UserDefaultsAPI.swift */,
 				6B9C99282375B284001B892C /* UserProfile.swift */,
+				6B6A619F23C532F6008EEFDD /* Cache.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -447,6 +488,7 @@
 				6B52FBE5238A32890096F81E /* TitleSubtitleCollectionViewCell.swift */,
 				6B8E075E23A53E6000C7702A /* CUCollectionViewController.swift */,
 				6BD630FD23BDBDA600D6D060 /* UITextFieldPadding.swift */,
+				6BF025B723C1987E00E98DCD /* OverlayView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -460,6 +502,8 @@
 				6B91632922EFB659009ADB0A /* Int+Ext.swift */,
 				6BE10D3222F22A6700280D21 /* String+Ext.swift */,
 				6B889679235CEB7300D8DFED /* UIStackView+Ext.swift */,
+				6BD83CEA23C3B1D900DB4B05 /* DateFormatter+Ext.swift */,
+				6B6A61A123C55A69008EEFDD /* UIViewController+Ext.swift */,
 			);
 			path = "Extensions ";
 			sourceTree = "<group>";
@@ -1017,11 +1061,13 @@
 				6BFBDDBD22C7B3600085B854 /* UIView+Ext.swift in Sources */,
 				6B659F2B235BEEA400EBAF7E /* Assets.swift in Sources */,
 				6B37336D22E3D1BA00F648A6 /* Level.swift in Sources */,
+				6B6A61A023C532F6008EEFDD /* Cache.swift in Sources */,
 				6B52FBE4238A1C870096F81E /* InformationCollectionViewCell.swift in Sources */,
 				6B788BE9239D932700A8CF50 /* InformationBuilder.swift in Sources */,
 				6BF9290C22C6D1B300007616 /* CUViewController.swift in Sources */,
 				6B87C33A22BFD66B00803F7C /* AppDelegate.swift in Sources */,
 				6B92F237236F834D00F0825B /* TitleImageView.swift in Sources */,
+				6B6A61AA23C5C131008EEFDD /* MapRepository.swift in Sources */,
 				6B788BE7239D930300A8CF50 /* Home.swift in Sources */,
 				6B525B92231DED00005046FB /* CUButton.swift in Sources */,
 				6B87C34222BFD66B00803F7C /* cuHacking.xcdatamodeld in Sources */,
@@ -1031,6 +1077,7 @@
 				6B9C992B2375B3BB001B892C /* ProfileRepository.swift in Sources */,
 				6B29894F22C5E84200B1550C /* ScheduleViewController.swift in Sources */,
 				6B14651723A70E040067A2CE /* Environment.swift in Sources */,
+				6BD83CEB23C3B1D900DB4B05 /* DateFormatter+Ext.swift in Sources */,
 				6B6A646922F0DB12006CAD6D /* CardViewController.swift in Sources */,
 				6B9C99292375B284001B892C /* UserProfile.swift in Sources */,
 				6BF9291922C6FB1900007616 /* SettingsViewController.swift in Sources */,
@@ -1044,12 +1091,14 @@
 				6BD6310023BDCF9900D6D060 /* SignInRepository.swift in Sources */,
 				6B659F35235C27AE00EBAF7E /* Strings.swift in Sources */,
 				6B3E44E223973C21005719A9 /* PrivacyPolicyViewController.swift in Sources */,
+				6BD6310B23BE924000D6D060 /* ProfileBuilder.swift in Sources */,
 				6B6A646522F09F2F006CAD6D /* CardView.swift in Sources */,
 				6B889678235CE96800D8DFED /* ImageLabelView.swift in Sources */,
 				6B29894322C5C51300B1550C /* CUTabBarController.swift in Sources */,
 				6BD6310423BE5E6700D6D060 /* UserToken.swift in Sources */,
 				6BE10D3322F22A6700280D21 /* String+Ext.swift in Sources */,
 				6B52FBE8238A4E1C0096F81E /* Fonts.swift in Sources */,
+				6B6A619C23C4FF70008EEFDD /* InformationDataSource.swift in Sources */,
 				6B13288A2395E08300421EFB /* EventCollectionViewCell.swift in Sources */,
 				6B6A646D22F0DBCE006CAD6D /* CardState.swift in Sources */,
 				6B788BED239D935800A8CF50 /* Schedule.swift in Sources */,
@@ -1057,9 +1106,13 @@
 				6B7A57AC23AE5B1A00FAF1CA /* TimerLabel.swift in Sources */,
 				6B26323022C6514B0034CA72 /* QRScannerViewController.swift in Sources */,
 				6BF9290822C6D18A00007616 /* CUView.swift in Sources */,
+				6B6A61A223C55A69008EEFDD /* UIViewController+Ext.swift in Sources */,
 				6B6D4F3C22D3D06000A9D4F9 /* UserDefaultsAPI.swift in Sources */,
 				6B525B96231DED08005046FB /* CUTextField.swift in Sources */,
+				6B18E0DC23C4713A001F1FCB /* Information.swift in Sources */,
+				6B6A61A823C5685B008EEFDD /* QRScannerDataSource.swift in Sources */,
 				6B6D4F4022D3D0E000A9D4F9 /* HomeRepository.swift in Sources */,
+				6B6A61A423C56753008EEFDD /* QRScannerRepository.swift in Sources */,
 				6B788BEF239D936000A8CF50 /* ScheduleBuilder.swift in Sources */,
 				6B67E9EF235D531500288F8D /* ProfileViewController.swift in Sources */,
 				6BD6310223BDD12000D6D060 /* SignInDataSource.swift in Sources */,
@@ -1070,7 +1123,10 @@
 				6BA16484231DCEE600EB186D /* ProfileDataSource.swift in Sources */,
 				6B8E075F23A53E6000C7702A /* CUCollectionViewController.swift in Sources */,
 				6B91632A22EFB659009ADB0A /* Int+Ext.swift in Sources */,
+				6BB8AA6723C627E40092BEF4 /* Building.swift in Sources */,
+				6B6A619E23C4FF80008EEFDD /* InformationRepository.swift in Sources */,
 				6B13288E2395E76D00421EFB /* ScheduleDataSource.swift in Sources */,
+				6BF025B823C1987E00E98DCD /* OverlayView.swift in Sources */,
 				6B88967A235CEB7300D8DFED /* UIStackView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1223,6 +1279,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = cuHacking/cuHacking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 272M66759Y;
 				INFOPLIST_FILE = cuHacking/Info.plist;
@@ -1231,7 +1288,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cuhacking.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1345,6 +1402,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = cuHacking/cuHacking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 272M66759Y;
 				INFOPLIST_FILE = cuHacking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1352,7 +1410,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cuhacking.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1526,8 +1584,9 @@
 			baseConfigurationReference = 2442C42E6F9B1B9C8F6688AF /* Pods-cuHacking.debug (production).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = cuHacking/cuHacking.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "cuHacking/cuHackingDebug (Production).entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 272M66759Y;
 				INFOPLIST_FILE = cuHacking/Info.plist;
@@ -1536,7 +1595,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cuhacking.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1551,6 +1610,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = cuHacking/cuHacking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 272M66759Y;
 				INFOPLIST_FILE = cuHacking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1558,7 +1618,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cuhacking.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

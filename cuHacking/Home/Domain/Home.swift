@@ -9,13 +9,15 @@
 import Foundation
 extension MagnetonAPIObject {
     struct Updates: Codable {
-        let version: Int
+        let version: String
         let updates: [String: Update]
         public var relevantUpdates: [Update] {
-            let currentDate = Int64(Date().timeIntervalSince1970) * 1000
+            guard let currentDate = DateFormatter.RFC3339DateFormatter.date(from: DateFormatter.RFC3339DateFormatter.string(from: Date())) else {
+                return []
+            }
             let keys = Array(updates.keys).sorted(by: >).filter { (key) -> Bool in
-                if let update = updates[key] {
-                    return currentDate >= update.deliveryTime
+                if let update = updates[key], let deliveryTime = update.formattedDeliveryTime {
+                    return deliveryTime <= currentDate
                 } else {
                     return false
                 }
@@ -28,10 +30,12 @@ extension MagnetonAPIObject {
     }
 
     struct Update: Codable {
-        let title: String
+        let name: String
+        let location: String?
         let description: String
-        let locationId: String
-        let deliveryTime: Int
-        let eventId: String
+        let deliveryTime: String
+        var formattedDeliveryTime: Date? {
+            return DateFormatter.RFC3339DateFormatter.date(from: deliveryTime)
+        }
     }
 }

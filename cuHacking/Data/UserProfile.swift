@@ -71,7 +71,9 @@
  
  */
 import Foundation
+import UIKit
 struct MagnetonAPIObject {
+
     struct UserProfile: Codable {
         let operation: String
         let status: String
@@ -79,11 +81,27 @@ struct MagnetonAPIObject {
     }
     struct Data: Codable {
         let role: String
+        let color: String
         let application: Application
         let review: Review
         let email: String
-        let rsvp: [String:String]
+        let rsvp: [String: String]
         let appStatus: String
+
+        var badgeColor: UIColor {
+            switch color {
+            case "red":
+                return UIColor.red
+            case "green":
+                return UIColor.green
+            case "blue":
+                return UIColor.blue
+            case "yellow":
+                return UIColor.yellow
+            default:
+                return UIColor.black
+            }
+        }
     }
     struct Application: Codable {
         let basicInfo: BasicInfo
@@ -118,6 +136,7 @@ struct MagnetonAPIObject {
         let tShirtSize: String?
         let wantsShuttle: Bool
         let school: String?
+        let dietaryRestrictions: DietaryRestrictions
     }
     
     struct DietaryRestrictions: Codable {
@@ -127,8 +146,39 @@ struct MagnetonAPIObject {
         let nutFree: Bool
         let vegetarian: Bool
         let halal: Bool
+        
+        var formattedRestrictions: NSMutableAttributedString {
+            let attributedString = NSMutableAttributedString()
+            var commonRestrictions = "None"
+            if lactoseFree {
+                commonRestrictions = "Lactose Free\n"
+            }
+            if nutFree {
+                commonRestrictions += "Nut Free\n"
+            }
+            if vegetarian {
+                commonRestrictions += "Vegetarian\n"
+            }
+            if halal {
+                commonRestrictions += "Halal\n"
+            }
+            if glutenFree {
+                commonRestrictions += "Gluten Free"
+            }
+ 
+            let commonAttributedRestrictions = NSAttributedString(string: commonRestrictions,
+                                                                  attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 17, weight: .bold)]
+                                                                 )
+            attributedString.append(commonAttributedRestrictions)
+            
+            if let otherRestrictions = other {
+                let attributedOther = "\nOther: \(otherRestrictions)"
+                attributedString.append(NSAttributedString(string: attributedOther))
+            }
+            return attributedString
+        }
     }
-    
+
     struct Terms: Codable {
         let privacyPolicy: Bool
         let under18: Bool

@@ -51,7 +51,7 @@ class EventCollectionViewCell: UICollectionViewCell {
             eventTimeLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             eventTimeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             eventTimeLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15),
-            
+
             eventDetailsView.leadingAnchor.constraint(equalTo: eventTimeLabel.trailingAnchor),
             eventDetailsView.topAnchor.constraint(equalTo: eventTimeLabel.topAnchor),
             eventDetailsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
