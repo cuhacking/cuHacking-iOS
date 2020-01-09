@@ -36,9 +36,9 @@ final class Building {
     var symbolIconFormat: String
     var labelFormat: String
 
-    let center: CLLocationCoordinate2D
+    let center: CLLocation
     let floors: [Floor]
-    init(named name: String, featureCollection building: MGLShapeCollectionFeature, center: CLLocationCoordinate2D, floors: [Floor]) {
+    init(named name: String, featureCollection building: MGLShapeCollectionFeature, center: CLLocation, floors: [Floor]) {
         self.center = center
         self.floors = floors
         self.name = name
@@ -55,10 +55,10 @@ final class Building {
             currentFloor = firstFloor
         }
     }
-    private func floor(named name: String) -> Floor? {
+    func hasFloor(named name: String) -> Bool {
         for floor in floors where floor.name == name {
-            return floor
+            return true
         }
-        return nil
+        return false
     }
 }

@@ -41,20 +41,51 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             let firstBuilding = buildings.first else {
             return nil
         }
-        let mainPoint = mapView.centerCoordinate
-        print(mainPoint.latitude)
-        var lowestDistance = mainPoint.distanceSquared(to: firstBuilding.center)
+//        let mainPoint = mapView.centerCoordinate
+        let point = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        var shortestDistance = point.distance(from: firstBuilding.center)
         var closestBuilding = firstBuilding
         buildings.forEach { (building) in
-            let currentDistance = mainPoint.distanceSquared(to: building.center)
-//            print("Nam:\(building.name), \(lowestDistance)+\(currentDistance)")
-            if currentDistance < lowestDistance {
-                lowestDistance = currentDistance
+            print("Main:\(point.coordinate.latitude), Long\(point.coordinate.longitude)")
+            print("Lat:\(building.center.coordinate.latitude), Long\(building.center.coordinate.longitude)")
+
+            let distance = point.distance(from: building.center)
+            if distance < shortestDistance {
+                shortestDistance = distance
                 closestBuilding = building
             }
         }
-//        print("close:\(closestBuilding.name)")
+//        let distance = CLLocationCoordinate2D(latitude: -75.696548, longitude: 45.383211)
+//        let work = CLLocationCoordinate2D(latitude: -75.69626, longitude: 45.382349)
+//        let lit = [distance, work]
+//        var x = distance
+//        var one = mainPoint.distance(to: distance)
+//        lit.forEach { (point) in
+//            let distance = mainPoint.distance(to: point)
+//            if distance < one {
+//                one = distance
+//                x = point
+//            }
+//        }
+//        print("THR BEST\(x.latitude)")
+//        print("work\(distance.distance(to: work))")
+//        print("main point'\(mainPoint.latitude)")
         return closestBuilding
+//        print(mainPoint.latitude)
+//        var lowestDistance = mainPoint.distanceSquared(to: firstBuilding.center)
+//        var closestBuilding = firstBuilding
+//
+////        buildings.forEach { (building) in
+//            let currentDistance = mainPoint.distanceSquared(to: buildings[1].center)
+////            print("Nam:\(building.name), \(lowestDistance)+\(currentDistance)")
+//            if currentDistance < lowestDistance {
+//                lowestDistance = currentDistance
+//                closestBuilding = buildings[1]
+//            }
+////        }
+//        print("lats:\(firstBuilding.center.latitude)")
+//        print("difference:\(firstBuilding.center.latitude - buildings[1].center.latitude)))")
+//        return closestBuilding
     }
     
 
@@ -163,11 +194,24 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         fillLayers[building.name]?.predicate = building.floorPredicate
         symbolLayers[building.name]?.predicate = building.symbolPredicate
     }
+    private var floorPickerHeightAnchor: NSLayoutConstraint!
     private func setupFloorPicker() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        tableView.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: -20), size: CGSize(width: tableViewCellWidth, height: tableViewCellHeight*Level.allCases.count))
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tableView.widthAnchor.constraint(equalToConstant: 40)
+        ])
+        var height = tableViewCellHeight
+        if let closestBuilding = closestBuilding {
+            height = tableViewCellHeight*closestBuilding.floors.count
+        }
+        floorPickerHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+        floorPickerHeightAnchor.isActive = true
+//        tableView.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: -20), size: CGSize(width: tableViewCellWidth, height: tableViewCellHeight*Level.allCases.count))
     }
 
     private func setupCard() {
@@ -301,6 +345,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         guard let closestBuilding = closestBuilding else {
             return 0
         }
+        floorPickerHeightAnchor.constant = CGFloat(tableViewCellHeight*closestBuilding.floors.count)
         return closestBuilding.floors.count
     }
 
@@ -311,6 +356,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         guard let closestBuilding = closestBuilding else {
             return
         }
+        closestBuilding.currentFloor = closestBuilding.floors[indexPath.row]
         updatePredicates(forBuilding: closestBuilding)
     }
 
@@ -325,7 +371,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             return UITableViewCell()
         }
         let cell = UITableViewCell()
-        cell.textLabel?.text = "L\(closestBuilding.floors[indexPath.row].name)"
+        cell.textLabel?.text = "\(closestBuilding.floors[indexPath.row].name)"
         cell.textLabel?.textAlignment = .center
         let selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor =  Asset.Colors.purple.color

@@ -105,7 +105,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Messaging
-  - Mapbox-iOS-SDK (~> 5.1)
+  - Mapbox-iOS-SDK
   - SwiftGen (~> 6.0)
   - SwiftLint
   - SwiftyJSON (~> 4.0)
@@ -164,6 +164,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: a738a7a4895ca7097a1fedcb9dfff59a1b722240
+PODFILE CHECKSUM: d68d47b13b63ed9dc6bd442a5659367294b7b376
 
 COCOAPODS: 1.8.3

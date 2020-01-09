@@ -14,4 +14,7 @@ extension CLLocationCoordinate2D {
         let right = (latitude - to.latitude) * (latitude - to.latitude)
         return left + right
     }
+    func distance(to: CLLocationCoordinate2D) -> Double {
+        return sqrt(distanceSquared(to: to))
+    }
 }

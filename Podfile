@@ -12,7 +12,7 @@ target 'cuHacking' do
   pod 'Firebase/Analytics'
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.13.2'
-  pod 'Mapbox-iOS-SDK', '~> 5.1'
+  pod 'Mapbox-iOS-SDK'
   pod 'Swinject'
   pod 'SwiftLint'
   pod 'SwiftGen', '~> 6.0'
@@ -29,7 +29,7 @@ target 'cuHacking' do
     pod 'Firebase/Analytics'
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.2'
-    pod 'Mapbox-iOS-SDK', '~> 5.1'
+    pod 'Mapbox-iOS-SDK'
     pod 'Swinject'
     pod 'SwiftLint'
     pod 'SwiftGen', '~> 6.0'
@@ -44,7 +44,7 @@ target 'cuHacking' do
     pod 'Firebase/Analytics'
     pod 'Fabric', '~> 1.10.2'
     pod 'Crashlytics', '~> 3.13.2'
-    pod 'Mapbox-iOS-SDK', '~> 5.1'
+    pod 'Mapbox-iOS-SDK'
     pod 'Swinject'
 
   end

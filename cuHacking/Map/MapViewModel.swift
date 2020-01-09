@@ -40,8 +40,8 @@ class MapViewModel {
                 do {
                     let buildingData = try buildingJSON["geometry"].rawData()
                     if let shapeCollectionFeature = try MGLShape(data: buildingData, encoding: String.Encoding.utf8.rawValue) as? MGLShapeCollectionFeature {
-                        let center = CLLocationCoordinate2D(latitude: Double(buildingJSON["center"][0].intValue),
-                                                              longitude: Double(buildingJSON["center"][1].intValue))
+                        let center = CLLocation(latitude: Double(buildingJSON["center"][1].doubleValue),
+                                                              longitude: Double(buildingJSON["center"][0].doubleValue))
                         var floors: [Building.Floor] = []
                         for(_, floorJSON):(String, JSON) in buildingJSON["floors"] {
                             floors.append(Building.Floor(id: floorJSON["id"].stringValue, name: floorJSON["name"].stringValue))
