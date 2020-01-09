@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 protocol MapRepository {
-    func getMap(completionHandler: @escaping ([String: Any]?, Error?) -> Void)
+    func getMap(completionHandler: @escaping (JSON?, Error?) -> Void)
 }

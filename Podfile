@@ -16,6 +16,8 @@ target 'cuHacking' do
   pod 'Swinject'
   pod 'SwiftLint'
   pod 'SwiftGen', '~> 6.0'
+  pod 'SwiftyJSON', '~> 4.0'
+
 
 
   target 'cuHackingTests' do

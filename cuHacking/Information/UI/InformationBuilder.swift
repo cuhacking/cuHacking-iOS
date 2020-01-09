@@ -20,7 +20,7 @@ enum InformationBuilder {
             print("row:\(indexPath.row)")
             switch indexPath.row {
             case 0: //Wifi
-                let text = "Network:\(information.wifi.network)\nPasswordDDD:\(information.wifi.password)"
+                let text = "Network:\(information.wifi.network)\nPassword:\(information.wifi.password)"
                 cell.informationView.update(title: "Wifi Info", information: text)
                 break
             case 1: //Emergency

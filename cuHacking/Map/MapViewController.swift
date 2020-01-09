@@ -11,7 +11,7 @@ import Mapbox
 
 class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGLMapViewDelegate {
     // MARK: Instance Variables
-    private let dataSource: MapRepository
+    private var viewModel: MapViewModel?
     private var levelsAdded = false
     private var cardViewController: CardViewController!
     private var visualEffectView: UIVisualEffectView!
@@ -26,10 +26,38 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     private var mapView: MGLMapView!
     private let tableViewCellWidth = 50
     private let tableViewCellHeight = 50
-    private let viewModel: MapViewModel
     private var lineLayer: MGLLineStyleLayer!
     private var fillLayer, backdropLayer: MGLFillStyleLayer!
     private var symbolLayer: MGLSymbolStyleLayer!
+   
+    private var lineLayers: [String: MGLLineStyleLayer] = [:]
+    private var fillLayers: [String: MGLFillStyleLayer] = [:]
+    private var backdropLayers: [String: MGLFillStyleLayer] = [:]
+    private var backdropLineLayers: [String: MGLLineStyleLayer] = [:]
+    private var symbolLayers: [String: MGLSymbolStyleLayer] = [:]
+    
+    var closestBuilding: Building? {
+        guard let buildings = viewModel?.buildings,
+            let firstBuilding = buildings.first else {
+            return nil
+        }
+        let mainPoint = mapView.centerCoordinate
+        print(mainPoint.latitude)
+        var lowestDistance = mainPoint.distanceSquared(to: firstBuilding.center)
+        var closestBuilding = firstBuilding
+        buildings.forEach { (building) in
+            let currentDistance = mainPoint.distanceSquared(to: building.center)
+//            print("Nam:\(building.name), \(lowestDistance)+\(currentDistance)")
+            if currentDistance < lowestDistance {
+                lowestDistance = currentDistance
+                closestBuilding = building
+            }
+        }
+//        print("close:\(closestBuilding.name)")
+        return closestBuilding
+    }
+    
+
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = false
@@ -40,31 +68,24 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         return tableView
     }()
 
-    // MARK: Functions
-    init(viewModel: MapViewModel, dataSource: MapRepository = MapDataSource()) {
-        self.viewModel = viewModel
-        self.dataSource = dataSource
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor =  Asset.Colors.background.color
-        dataSource.getMap { (map, error) in
-            if error != nil {
-                print("Werror:\(error?.localizedDescription)")
+        
+        MapViewModel.create { [weak self] (mapViewModel, error) in
+            guard let self = self else {
+                return
             }
-            if let map = map {
-            
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+            self.viewModel = mapViewModel
+            DispatchQueue.main.async {
+                self.setupMap()
+                self.setupFloorPicker()
+                self.setupCard()
             }
         }
-        setupMap()
-        setupFloorPicker()
-        setupCard()
     }
 
     // MARK: Setup Methods
@@ -75,45 +96,72 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView.delegate = self
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.setCenter(CLLocationCoordinate2D(latitude: 45.3823547, longitude: -75.6974599), zoomLevel: 19, animated: false)
-
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(roomTapped(sender:)))
-        for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
-            singleTap.require(toFail: recognizer)
-        }
-
-        mapView.addGestureRecognizer(singleTap)
+        
+//        let singleTap = UITapGestureRecognizer(target: self, action: #selector(roomTapped(sender:)))
+//        for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
+//            singleTap.require(toFail: recognizer)
+//        }
+//
+//        mapView.addGestureRecognizer(singleTap)
         view.addSubview(mapView)
     }
-    private func setupLevels() {
+    private func setupLevels(forBuilding building: Building) {
         guard let style = self.mapView.style else { return }
 
-        let source = viewModel.shapeSource
+        let source = building.shapeSource
         style.addSource(source)
 
-        backdropLayer = MGLFillStyleLayer(identifier: "river-building-backdrop-layer", source: source)
+        let backdropLayer = MGLFillStyleLayer(identifier: "\(building.name)-backdrop-layer", source: source)
         backdropLayer.fillColor = NSExpression(forConstantValue: Asset.Colors.backdrop.color)
 
-        lineLayer = MGLLineStyleLayer(identifier: "river-building-line-layer", source: source)
-        lineLayer.lineWidth = NSExpression(forConstantValue: 0.5)
+        let backdropLineLayer = MGLLineStyleLayer(identifier: "\(building.name)-backdrop-line-layer", source: source)
+        backdropLineLayer.lineWidth = NSExpression(forConstantValue: 5)
+        backdropLineLayer.lineColor = NSExpression(forConstantValue: Asset.Colors.line.color)
+
+        let lineLayer = MGLLineStyleLayer(identifier: "\(building.name)-line-layer", source: source)
+        lineLayer.lineWidth = NSExpression(format: "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)",[18: 0, 19: 3])
         lineLayer.lineColor = NSExpression(forConstantValue: Asset.Colors.line.color)
-
-        fillLayer = MGLFillStyleLayer(identifier: "river-building-fill-layer", source: source)
-        let defaultFill =  Asset.Colors.blue6.color
-        fillLayer.fillColor = NSExpression(format: viewModel.fillFormat,  Asset.Colors.blue1.color,  Asset.Colors.blue2.color,  Asset.Colors.blue3.color,  Asset.Colors.blue4.color,  Asset.Colors.blue5.color, Asset.Colors.blue6.color, defaultFill)
-
-        symbolLayer = MGLSymbolStyleLayer(identifier: "river-building-symbol-layer", source: source)
-      //  symbolLayer.iconImageName = NSExpression(format: viewModel.symbolIconFormat, "washroom", "elevator", "stairs", "")
+        let fillLayer = MGLFillStyleLayer(identifier: "\(building.name)-fill-layer", source: source)
+        let defaultFill = UIColor.green
+        fillLayer.fillColor = NSExpression(format: building.fillFormat,
+                                           Asset.Colors.blue1.color,
+                                           Asset.Colors.washroom.color,
+                                           Asset.Colors.elevator.color,
+                                           Asset.Colors.hallway.color,
+                                           Asset.Colors.stairs.color,
+                                           defaultFill)
+        //NSExpression(format: "TERNARY(booleanProperty=YES, %@, MGL_MATCH(type, 'type1', %@, 'type2', %@, 'type3', %@, %@))", UIColor.red, UIColor.orange, UIColor.purple, UIColor.yellow, defaultColor)
+//        let symbolKeys = ["stairs", "elevator"]
+//        let noString = String.formatMGLMatchExpression(attribute: "roomType", keys: symbolKeys, stringFormat: "%@", includeDefault: true)
+//        symbolLayer.iconImageName = NSExpression(format: "TERNARY(roomType == washroom, %@, \(noString))", "stairs", "stairs", "washroom", "")
+        let symbolLayer = MGLSymbolStyleLayer(identifier: "\(building.name)-symbol-layer", source: source)
+        symbolLayer.iconImageName = NSExpression(format: building.symbolIconFormat, "washroom", "elevator", "stairs", "")
+        symbolLayer.minimumZoomLevel = 19
         symbolLayer.iconScale = NSExpression(forConstantValue: 0.2)
         symbolLayer.text = NSExpression(forKeyPath: "name")
-//        symbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 15)))
-        symbolLayer.textFontSize = NSExpression(forConstantValue: 8)
+        symbolLayer.textTranslation = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0, dy: 22)))
+        symbolLayer.textFontSize = NSExpression(forConstantValue: 16)
 
         style.addLayer(backdropLayer)
+        style.addLayer(backdropLineLayer)
         style.addLayer(fillLayer)
         style.addLayer(symbolLayer)
         style.addLayer(lineLayer)
 
-        updateMapPredicates()
+        backdropLayers[building.name] = backdropLayer
+        backdropLineLayers[building.name] = backdropLineLayer
+        fillLayers[building.name] = fillLayer
+        symbolLayers[building.name] = symbolLayer
+        lineLayers[building.name] = lineLayer
+        updatePredicates(forBuilding: building)
+    }
+
+    private func updatePredicates(forBuilding building: Building) {
+        backdropLayers[building.name]?.predicate = building.backdropPredicate
+        backdropLineLayers[building.name]?.predicate = building.backdropLinePredicate
+        lineLayers[building.name]?.predicate = building.linePredicate
+        fillLayers[building.name]?.predicate = building.floorPredicate
+        symbolLayers[building.name]?.predicate = building.symbolPredicate
     }
     private func setupFloorPicker() {
         tableView.delegate = self
@@ -210,10 +258,10 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
 
     private func updateMapPredicates() {
-        backdropLayer.predicate = viewModel.backdropPredicate
-        lineLayer.predicate = viewModel.floorPredicate
-        fillLayer.predicate = viewModel.floorPredicate
-        symbolLayer.predicate = viewModel.floorPredicate
+//        backdropLayer.predicate = viewModel.backdropPredicate
+//        lineLayer.predicate = viewModel.floorPredicate
+//        fillLayer.predicate = viewModel.floorPredicate
+//        symbolLayer.predicate = viewModel.floorPredicate
     }
 
     @objc func roomTapped(sender: UITapGestureRecognizer) {
@@ -228,37 +276,56 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     // MARK: MGLMapViewDelegate Methods
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
         print("loaded")
-//        mapView.style?.setImage(Asset.Images.washroom.image, forName: "washroom")
-//        mapView.style?.setImage(Asset.Images.elevator.image, forName: "elevator")
-//        mapView.style?.setImage(Asset.Images.stairs.image, forName: "stairs")
+        mapView.style?.setImage(Asset.Images.washroom.image, forName: "washroom")
+        mapView.style?.setImage(Asset.Images.elevator.image, forName: "elevator")
+        mapView.style?.setImage(Asset.Images.stairs.image, forName: "stairs")
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-        setupLevels()
+        //setupLevels()
+        guard let viewModel = self.viewModel else {
+            return
+        }
+        viewModel.buildings.forEach { (building) in
+            setupLevels(forBuilding: building)
+        }
     }
-
+    
+    func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        print("new center:\(self.mapView.centerCoordinate)")
+        tableView.reloadData()
+    }
+    
     // MARK: TableViewDelegate & TableViewDataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Level.allCases.count
+        guard let closestBuilding = closestBuilding else {
+            return 0
+        }
+        return closestBuilding.floors.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(tableViewCellHeight)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.currentLevel = (Level.allCases.count-indexPath.row).toLevel()
-        updateMapPredicates()
+        guard let closestBuilding = closestBuilding else {
+            return
+        }
+        updatePredicates(forBuilding: closestBuilding)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == Level.allCases.count-1 {
+        if let closestBuilding = closestBuilding, indexPath.row == closestBuilding.floors.count-1 {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let closestBuilding = closestBuilding else {
+            return UITableViewCell()
+        }
         let cell = UITableViewCell()
-        cell.textLabel?.text = "L\(Level.allCases.count-indexPath.row)"
+        cell.textLabel?.text = "L\(closestBuilding.floors[indexPath.row].name)"
         cell.textLabel?.textAlignment = .center
         let selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor =  Asset.Colors.purple.color
@@ -277,16 +344,17 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             if url == mapView.styleURL {
                 return
             }
-            guard let currentLayers = mapView.style?.layers else { return }
+            guard let currentLayers = mapView.style?.layers, let viewModel = viewModel else { return }
             currentLayers.map { (layer) in
                 guard let mapStyle = mapView.style else { return }
                 if let styleLayer = mapStyle.layer(withIdentifier: layer.identifier) {
                      mapStyle.removeLayer(styleLayer)
                  }
             }
-            
-            if let source = mapView.style?.source(withIdentifier: viewModel.shapeSource.identifier) {
-                mapView.style?.removeSource(source)
+            viewModel.buildings.forEach { (building) in
+                if let source = mapView.style?.source(withIdentifier: building.shapeSource.identifier) {
+                    mapView.style?.removeSource(source)
+                }
             }
             mapView.styleURL = url
         }

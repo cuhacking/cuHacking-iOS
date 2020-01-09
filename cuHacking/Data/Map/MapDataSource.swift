@@ -8,6 +8,7 @@
 
 import Foundation
 import Mapbox
+import SwiftyJSON
 
 class MapDataSource: MapRepository {
     enum Error: Swift.Error {
@@ -18,7 +19,7 @@ class MapDataSource: MapRepository {
     private static let baseURL = Environment.rootURL.absoluteString
     private static let okResponse = 200
 
-    func getMap(completionHandler: @escaping ([String : Any]?, Swift.Error?) -> Void) {
+    func getMap(completionHandler: @escaping (JSON?, Swift.Error?) -> Void) {
         let baseURL = MapDataSource.baseURL + "/map"
         guard let url = URL(string: baseURL) else { return }
 
@@ -39,10 +40,14 @@ class MapDataSource: MapRepository {
                 completionHandler(nil, error)
                 return
             }
-            let map: [String: Any]?
+            var map: JSON?
 
             do {
-                map = (try JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any]
+                map = try JSON(data: data)
+                if let cleanString = map?.rawString()?.replacingOccurrences(of: "room-type", with: "roomType"),
+                    let cleanData = cleanString.data(using: .utf8){
+                    map = try JSON(data: cleanData)
+                }
                 print(map)
                 completionHandler(map, nil)
 

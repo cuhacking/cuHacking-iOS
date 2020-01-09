@@ -95,6 +95,7 @@ PODS:
   - Protobuf (3.11.2)
   - SwiftGen (6.1.0)
   - SwiftLint (0.35.0)
+  - SwiftyJSON (4.3.0)
   - Swinject (2.7.1)
 
 DEPENDENCIES:
@@ -107,6 +108,7 @@ DEPENDENCIES:
   - Mapbox-iOS-SDK (~> 5.1)
   - SwiftGen (~> 6.0)
   - SwiftLint
+  - SwiftyJSON (~> 4.0)
   - Swinject
 
 SPEC REPOS:
@@ -133,6 +135,7 @@ SPEC REPOS:
     - Protobuf
     - SwiftGen
     - SwiftLint
+    - SwiftyJSON
     - Swinject
 
 SPEC CHECKSUMS:
@@ -158,8 +161,9 @@ SPEC CHECKSUMS:
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: a93e5fce63b20c7e73acb8664171a0eea0c4902a
+PODFILE CHECKSUM: a738a7a4895ca7097a1fedcb9dfff59a1b722240
 
 COCOAPODS: 1.8.3
