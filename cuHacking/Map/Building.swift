@@ -17,6 +17,15 @@ final class Building {
     let name: String
     let shapeSource: MGLShapeSource
     var currentFloor: Floor?
+    var currentIndex: Int? {
+        guard let currentFloor = currentFloor else {
+            return nil
+        }
+        for index in 0..<floors.count where floors[index].name == currentFloor.name {
+            return index
+        }
+        return nil
+    }
     var backdropLinePredicate: NSPredicate {
         return NSPredicate(format: "floor = '\(currentFloor?.id ?? "")' AND type = 'backdrop-line'")
     }

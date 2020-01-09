@@ -103,7 +103,7 @@ extension MagnetonAPIObject {
             case "Key Events":
                 return Asset.Colors.purple.color
             case "Sponsor Event":
-                return UIColor.yellow
+                return Asset.Colors.sponsor.color
             case "Social Activity":
                 return Asset.Colors.blueEvent.color
             case "Food":
@@ -114,14 +114,14 @@ extension MagnetonAPIObject {
                 return UIColor.black
             }
         }
-        
+
         var startDate: Date? {
             guard let date = DateFormatter.RFC3339DateFormatter.date(from: startTime) else {
                 return nil
             }
             return date
         }
-        
+
         var endDate: Date? {
             guard let date = DateFormatter.RFC3339DateFormatter.date(from: endTime) else {
                 return nil

@@ -36,56 +36,23 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     private var backdropLineLayers: [String: MGLLineStyleLayer] = [:]
     private var symbolLayers: [String: MGLSymbolStyleLayer] = [:]
     
-    var closestBuilding: Building? {
+    var closestBuilding: Building?
+
+    private func closestBuilding(toPoint point: CLLocation) -> Building? {
         guard let buildings = viewModel?.buildings,
             let firstBuilding = buildings.first else {
             return nil
         }
-//        let mainPoint = mapView.centerCoordinate
-        let point = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         var shortestDistance = point.distance(from: firstBuilding.center)
         var closestBuilding = firstBuilding
         buildings.forEach { (building) in
-            print("Main:\(point.coordinate.latitude), Long\(point.coordinate.longitude)")
-            print("Lat:\(building.center.coordinate.latitude), Long\(building.center.coordinate.longitude)")
-
             let distance = point.distance(from: building.center)
             if distance < shortestDistance {
                 shortestDistance = distance
                 closestBuilding = building
             }
         }
-//        let distance = CLLocationCoordinate2D(latitude: -75.696548, longitude: 45.383211)
-//        let work = CLLocationCoordinate2D(latitude: -75.69626, longitude: 45.382349)
-//        let lit = [distance, work]
-//        var x = distance
-//        var one = mainPoint.distance(to: distance)
-//        lit.forEach { (point) in
-//            let distance = mainPoint.distance(to: point)
-//            if distance < one {
-//                one = distance
-//                x = point
-//            }
-//        }
-//        print("THR BEST\(x.latitude)")
-//        print("work\(distance.distance(to: work))")
-//        print("main point'\(mainPoint.latitude)")
         return closestBuilding
-//        print(mainPoint.latitude)
-//        var lowestDistance = mainPoint.distanceSquared(to: firstBuilding.center)
-//        var closestBuilding = firstBuilding
-//
-////        buildings.forEach { (building) in
-//            let currentDistance = mainPoint.distanceSquared(to: buildings[1].center)
-////            print("Nam:\(building.name), \(lowestDistance)+\(currentDistance)")
-//            if currentDistance < lowestDistance {
-//                lowestDistance = currentDistance
-//                closestBuilding = buildings[1]
-//            }
-////        }
-//        print("lats:\(firstBuilding.center.latitude)")
-//        print("difference:\(firstBuilding.center.latitude - buildings[1].center.latitude)))")
-//        return closestBuilding
     }
     
 
@@ -126,7 +93,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView = MGLMapView(frame: view.bounds, styleURL: url)
         mapView.delegate = self
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(CLLocationCoordinate2D(latitude: 45.3823547, longitude: -75.6974599), zoomLevel: 19, animated: false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 45.382667477255127, longitude: -75.69630255230739), zoomLevel: 18, animated: false)
         
 //        let singleTap = UITapGestureRecognizer(target: self, action: #selector(roomTapped(sender:)))
 //        for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
@@ -153,9 +120,9 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         lineLayer.lineWidth = NSExpression(format: "mgl_interpolate:withCurveType:parameters:stops:($zoomLevel, 'linear', nil, %@)",[18: 0, 19: 3])
         lineLayer.lineColor = NSExpression(forConstantValue: Asset.Colors.line.color)
         let fillLayer = MGLFillStyleLayer(identifier: "\(building.name)-fill-layer", source: source)
-        let defaultFill = UIColor.green
+        let defaultFill = Asset.Colors.default.color
         fillLayer.fillColor = NSExpression(format: building.fillFormat,
-                                           Asset.Colors.blue1.color,
+                                           Asset.Colors.room.color,
                                            Asset.Colors.washroom.color,
                                            Asset.Colors.elevator.color,
                                            Asset.Colors.hallway.color,
@@ -203,7 +170,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            tableView.widthAnchor.constraint(equalToConstant: 40)
+            tableView.widthAnchor.constraint(equalToConstant: 45)
         ])
         var height = tableViewCellHeight
         if let closestBuilding = closestBuilding {
@@ -301,12 +268,12 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
 
-    private func updateMapPredicates() {
+//    private func updateMapPredicates() {
 //        backdropLayer.predicate = viewModel.backdropPredicate
 //        lineLayer.predicate = viewModel.floorPredicate
 //        fillLayer.predicate = viewModel.floorPredicate
 //        symbolLayer.predicate = viewModel.floorPredicate
-    }
+//    }
 
     @objc func roomTapped(sender: UITapGestureRecognizer) {
         let spot = sender.location(in: mapView)
@@ -336,8 +303,16 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        print("new center:\(self.mapView.centerCoordinate)")
-        tableView.reloadData()
+        let centerPoint = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        if let newClosestBuilding = closestBuilding(toPoint: centerPoint),
+        newClosestBuilding.name != closestBuilding?.name {
+            self.closestBuilding = newClosestBuilding
+            tableView.reloadData()
+            viewModel?.buildings.forEach({ (building) in
+                building.currentFloor = building.floors.first
+                updatePredicates(forBuilding: building)
+            })
+        }
     }
     
     // MARK: TableViewDelegate & TableViewDataSource Methods
@@ -356,7 +331,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         guard let closestBuilding = closestBuilding else {
             return
         }
-        closestBuilding.currentFloor = closestBuilding.floors[indexPath.row]
+        closestBuilding.currentFloor = closestBuilding.floors[closestBuilding.floors.count - 1 - indexPath.row]
         updatePredicates(forBuilding: closestBuilding)
     }
 
@@ -371,7 +346,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             return UITableViewCell()
         }
         let cell = UITableViewCell()
-        cell.textLabel?.text = "\(closestBuilding.floors[indexPath.row].name)"
+        cell.textLabel?.text = "\(closestBuilding.floors[closestBuilding.floors.count - 1 - indexPath.row].name)"
         cell.textLabel?.textAlignment = .center
         let selectedBackgroundView = UIView()
         selectedBackgroundView.backgroundColor =  Asset.Colors.purple.color
@@ -383,13 +358,11 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 13.0, *) {
-            if previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) == false {
+            if UIScreen.main.traitCollection.userInterfaceStyle == previousTraitCollection?.userInterfaceStyle {
                 return
             }
-            let url = traitCollection.userInterfaceStyle == .light ? MGLStyle.lightStyleURL :  MGLStyle.darkStyleURL
-            if url == mapView.styleURL {
-                return
-            }
+            let url = UIScreen.main.traitCollection.userInterfaceStyle == .light ? MGLStyle.lightStyleURL :  MGLStyle.darkStyleURL
+
             guard let currentLayers = mapView.style?.layers, let viewModel = viewModel else { return }
             currentLayers.map { (layer) in
                 guard let mapStyle = mapView.style else { return }

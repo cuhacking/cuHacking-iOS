@@ -112,6 +112,7 @@
 		6BA9AC4F22C3395E002DED45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */; };
 		6BB8AA6723C627E40092BEF4 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB8AA6623C627E40092BEF4 /* Building.swift */; };
 		6BB8AA6923C6996F0092BEF4 /* CGPoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB8AA6823C6996E0092BEF4 /* CGPoint+Ext.swift */; };
+		6BB8AA6B23C6D1E60092BEF4 /* QRScannerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB8AA6A23C6D1E60092BEF4 /* QRScannerDataSource.swift */; };
 		6BBEAC7A235EAE9E004AAB17 /* ImageLabelSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBEAC79235EAE9E004AAB17 /* ImageLabelSubtitleView.swift */; };
 		6BC82A7E22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
 		6BC82A7F22E0ACB8006E2CFC /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */; };
@@ -274,6 +275,7 @@
 		6BA9AC4C22C3395E002DED45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6BB8AA6623C627E40092BEF4 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		6BB8AA6823C6996E0092BEF4 /* CGPoint+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Ext.swift"; sourceTree = "<group>"; };
+		6BB8AA6A23C6D1E60092BEF4 /* QRScannerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRScannerDataSource.swift; path = /Users/santos/Developer/Swift/cuHacking/cuHacking/QRScanner/QRScannerDataSource.swift; sourceTree = "<absolute>"; };
 		6BBEAC79235EAE9E004AAB17 /* ImageLabelSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelSubtitleView.swift; sourceTree = "<group>"; };
 		6BC82A7822E0ACB8006E2CFC /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		6BC82A8D22E11ABB006E2CFC /* MapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataSource.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		6B29893A22C5A92D00B1550C /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
+				6BB8AA6A23C6D1E60092BEF4 /* QRScannerDataSource.swift */,
 				6B26322F22C6514B0034CA72 /* QRScannerViewController.swift */,
 				6B6A61A323C56753008EEFDD /* QRScannerRepository.swift */,
 				6B6A61A723C5685B008EEFDD /* QRScannerDataSource.swift */,
@@ -1084,6 +1087,7 @@
 				6B6A646922F0DB12006CAD6D /* CardViewController.swift in Sources */,
 				6B9C99292375B284001B892C /* UserProfile.swift in Sources */,
 				6BF9291922C6FB1900007616 /* SettingsViewController.swift in Sources */,
+				6BB8AA6B23C6D1E60092BEF4 /* QRScannerDataSource.swift in Sources */,
 				6B8E075D23A53C5900C7702A /* HomeViewController.swift in Sources */,
 				6B51E8C4239316CF00B4454C /* HomeDataSource.swift in Sources */,
 				6BD6310623BE64EE00D6D060 /* UserSession.swift in Sources */,
