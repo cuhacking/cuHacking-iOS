@@ -29,6 +29,7 @@ class InformationViewController: CUCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadInformation()
+        refreshController.removeFromSuperview()
     }
 
     override func registerCells() {
@@ -42,16 +43,10 @@ class InformationViewController: CUCollectionViewController {
     }
 
     override func refreshData() {
-        refreshController.endRefreshing()
     }
 
     func loadInformation() {
         dataSource.getInformation { [weak self] (informationResult, error) in
-            DispatchQueue.main.async {
-                if self?.refreshController.isRefreshing == true{
-                    self?.refreshController.endRefreshing()
-                }
-             }
             if error != nil {
                 print("Error: \(error?.localizedDescription)")
             }

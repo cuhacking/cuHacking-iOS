@@ -27,9 +27,20 @@ class ScheduleViewController: CUCollectionViewController {
         loadEvents()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
     override func setupCollectionView() {
         super.setupCollectionView()
         collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
     override func registerCells() {
@@ -93,5 +104,16 @@ extension ScheduleViewController: UICollectionViewDataSource {
         }
         titleImageView.update(title: nil, image: nil)
         return titleImageView
+    }
+}
+
+extension ScheduleViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let days = days else {
+            return
+        }
+        let event = days[indexPath.section].events[indexPath.row]
+        let eventDetailsViewController = ScheduleDetailViewController(event: event)
+        navigationController?.pushViewController(eventDetailsViewController, animated: false)
     }
 }

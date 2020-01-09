@@ -19,9 +19,20 @@ enum HomeBuilder {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.headerCell.rawValue, for: indexPath) as? HeaderCell else {
                 fatalError("Headercell was not found.")
             }
-            print("started")
-            let hackathonDate = Date(timeIntervalSince1970: 1578725761).timeIntervalSince1970 - Date().timeIntervalSince1970
-            cell.startCountdown(from: hackathonDate, withMessage: "Hacking starts in", completedMessage: "Hacking has begun!")
+            if let hackingStarts = DateFormatter.RFC3339DateFormatter.date(from: "2020-01-11T12:00:00-05:00"),
+                let hackingEnds = DateFormatter.RFC3339DateFormatter.date(from: "2020-01-12T12:00:00-05:00"),
+                let now = DateFormatter.RFC3339DateFormatter.date(from: DateFormatter.RFC3339DateFormatter.string(from: Date())) {
+                if now <= hackingStarts {
+                    let countdownDate = hackingStarts.timeIntervalSince1970 - Date().timeIntervalSince1970
+                    cell.startCountdown(from: countdownDate, withMessage: "Hacking starts in", completedMessage: "Let the hacking begin!")
+
+                } else {
+                    let countdownDate = hackingEnds.timeIntervalSince1970 - Date().timeIntervalSince1970
+                    cell.startCountdown(from: countdownDate, withMessage: "Hacking ends in", completedMessage: "See you next year!")
+                }
+            }
+           // let hackathonDate = Date(timeIntervalSince1970: 1578725761).timeIntervalSince1970 - Date().timeIntervalSince1970
+            // cell.startCountdown(from: hackathonDate, withMessage: "Hacking starts in", completedMessage: "Hacking has begun!")
             return cell
         }
         static func onbaordingCell(collectionView: UICollectionView, indexPath: IndexPath) -> OnboardingCell {

@@ -24,7 +24,7 @@ enum ScheduleViewBuilder {
         let event = days[indexPath.section].events[indexPath.row]
         cell.eventDetailsView.backgroundColor = event.color
         cell.eventTimeLabel.text = event.formattedStartTime
-        cell.eventTimeLabel.text = event.formattedStartTime
+        cell.eventDetailsView.informationTextView.isUserInteractionEnabled = false
         cell.eventDetailsView.update(title: event.title,
                                      information: event.formattedDuration,
                                      buttonTitle: event.location,

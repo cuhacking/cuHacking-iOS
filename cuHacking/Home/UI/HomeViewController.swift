@@ -56,6 +56,11 @@ class HomeViewController: CUCollectionViewController {
         //let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
         //self.navigationItem.leftBarButtonItem = qrBarItem
     }
+    
+    override func refreshData() {
+        super.refreshData()
+        loadUpdates()
+    }
 
     private func loadUpdates() {
         HomeDataSource().getUpdates { [weak self] (updates, error) in

@@ -64,7 +64,7 @@ class ImageLabelView: UICollectionViewCell {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 25),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
@@ -84,7 +84,7 @@ class ImageLabelView: UICollectionViewCell {
         self.image = image
         self.text = text
     }
-    
+
     func roundImage() {
         imageView.layer.cornerRadius = imageView.frame.size.width/2
         imageView.clipsToBounds = true

@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
 
-
         //Creating inital screen
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = CUTabBarController()
@@ -165,7 +164,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
       print(userInfo)
 
       // Change this to your preferred presentation option
-      completionHandler([])
+    completionHandler([.badge, .alert])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

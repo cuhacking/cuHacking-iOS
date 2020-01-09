@@ -23,7 +23,8 @@ class CUTabBarController: UITabBarController {
 
         //Third tab - Schedule VC
         let scheduleViewController = ScheduleViewController()
-        scheduleViewController.tabBarItem = UITabBarItem(title: "Schedule", image: Asset.Images.scheduleIcon.image, tag: 2)
+        let scheduleNavigationController = UINavigationController(rootViewController: scheduleViewController)
+        scheduleNavigationController.tabBarItem = UITabBarItem(title: "Schedule", image: Asset.Images.scheduleIcon.image, tag: 2)
 
 //        Fourth tab - Map vc
         let mapViewController = MapViewController()
@@ -32,7 +33,7 @@ class CUTabBarController: UITabBarController {
         //Setting view controllers
         viewControllers = [navigationController,
                            informationViewController,
-                           scheduleViewController,
+                           scheduleNavigationController,
                             mapViewController]
         tabBar.tintColor =  Asset.Colors.purple.color
         tabBar.unselectedItemTintColor =  Asset.Colors.gray.color

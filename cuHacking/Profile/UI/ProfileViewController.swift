@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController {
                         return
                     }
                     self?.userProfile = profile
-                    if profile.data.role == "admin" || profile.data.role == "volunteer" {
+                    if profile.data.role == "admin" || profile.data.role == "Volunteer" {
                         UserAccess.isAdmin = true
                     }
                     DispatchQueue.main.async {
