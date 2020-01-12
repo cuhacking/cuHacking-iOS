@@ -75,18 +75,18 @@ import UIKit
 struct MagnetonAPIObject {
 
     struct UserProfile: Codable {
-        let operation: String
-        let status: String
+//        let operation: String
+//        let status: String
         let data: MagnetonAPIObject.Data
     }
     struct Data: Codable {
         let role: String
         let color: String
         let application: Application
-        let review: Review
+//        let review: Review
         let email: String
-        let rsvp: [String: String]
-        let appStatus: String
+//        let rsvp: [String: String]
+//        let appStatus: String
 
         var badgeColor: UIColor {
             switch color {
@@ -105,10 +105,10 @@ struct MagnetonAPIObject {
     }
     struct Application: Codable {
         let basicInfo: BasicInfo
-        let profile: Profile
+//        let profile: Profile
         let personalInfo: PersonalInfo
-        let terms: Terms
-        let skills: Skills
+//        let terms: Terms
+//        let skills: Skills
     }
     struct BasicInfo: Codable {
         let gender: String?
@@ -128,13 +128,13 @@ struct MagnetonAPIObject {
     }
 
     struct PersonalInfo: Codable {
-        let major: String?
-        let minor: String?
-        let expectedGraduation: Int
-        let degree: String?
-        let cityOfOrigin: String?
-        let tShirtSize: String?
-        let wantsShuttle: Bool
+//        let major: String?
+//        let minor: String?
+//        let expectedGraduation: Int
+//        let degree: String?
+//        let cityOfOrigin: String?
+//        let tShirtSize: String?
+//        let wantsShuttle: Bool
         let school: String?
         let dietaryRestrictions: DietaryRestrictions
     }

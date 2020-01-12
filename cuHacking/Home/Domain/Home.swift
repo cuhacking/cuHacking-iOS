@@ -16,15 +16,23 @@ extension MagnetonAPIObject {
                 return []
             }
             let keys = Array(updates.keys).sorted(by: >).filter { (key) -> Bool in
-                if let update = updates[key], let deliveryTime = update.formattedDeliveryTime {
+                if let update = updates[key], let deliveryTime = DateFormatter.AnnouncementFormatter.date(from: update.deliveryTime) {
                     return deliveryTime <= currentDate
                 } else {
                     return false
                 }
             }
-            let relevantUpdates = keys.map { (key) -> Update in
+            var relevantUpdates = keys.map { (key) -> Update in
                 return updates[key]!
             }
+            relevantUpdates = relevantUpdates.sorted(by: { (left, right) -> Bool in
+                guard let leftDate = DateFormatter.AnnouncementFormatter.date(from: left.deliveryTime),
+                    let rightDate = DateFormatter.AnnouncementFormatter.date(from: right.deliveryTime) else {
+                        return false
+                }
+                return leftDate >= rightDate
+            })
+  
             return relevantUpdates
         }
     }

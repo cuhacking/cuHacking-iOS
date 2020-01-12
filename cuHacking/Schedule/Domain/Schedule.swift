@@ -68,10 +68,10 @@ extension MagnetonAPIObject {
             })
             events = events.filter({ (event) -> Bool in
                 guard let now = DateFormatter.RFC3339DateFormatter.date(from: DateFormatter.RFC3339DateFormatter.string(from: Date())),
-                    let startDate = event.startDate else {
+                    let endDate = event.endDate else {
                     return false
                 }
-                return now <= startDate
+                return now <= endDate
             })
             events = events.sorted(by: { (left, right) -> Bool in
                 guard let leftDate = left.startDate, let rightDate = right.startDate else {

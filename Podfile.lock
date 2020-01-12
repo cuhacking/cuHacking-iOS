@@ -94,7 +94,6 @@ PODS:
   - nanopb/encode (0.3.9011)
   - Protobuf (3.11.2)
   - SwiftGen (6.1.0)
-  - SwiftLint (0.35.0)
   - SwiftyJSON (4.3.0)
   - Swinject (2.7.1)
 
@@ -107,7 +106,6 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Mapbox-iOS-SDK
   - SwiftGen (~> 6.0)
-  - SwiftLint
   - SwiftyJSON (~> 4.0)
   - Swinject
 
@@ -134,7 +132,6 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SwiftGen
-    - SwiftLint
     - SwiftyJSON
     - Swinject
 
@@ -160,10 +157,9 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: d68d47b13b63ed9dc6bd442a5659367294b7b376
+PODFILE CHECKSUM: c52450507dffa4a541da8f9a6a43e38d7873e25f
 
 COCOAPODS: 1.8.3

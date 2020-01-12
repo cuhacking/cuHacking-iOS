@@ -14,7 +14,6 @@ target 'cuHacking' do
   pod 'Crashlytics', '~> 3.13.2'
   pod 'Mapbox-iOS-SDK'
   pod 'Swinject'
-  pod 'SwiftLint'
   pod 'SwiftGen', '~> 6.0'
   pod 'SwiftyJSON', '~> 4.0'
 
@@ -31,7 +30,6 @@ target 'cuHacking' do
     pod 'Crashlytics', '~> 3.13.2'
     pod 'Mapbox-iOS-SDK'
     pod 'Swinject'
-    pod 'SwiftLint'
     pod 'SwiftGen', '~> 6.0'
   end
 

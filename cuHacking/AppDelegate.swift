@@ -202,6 +202,7 @@ extension AppDelegate {
                         guard let profile = profile else {
                             return
                         }
+                        
                         if profile.data.role == "admin" || profile.data.role == "Volunteer" {
                             UserAccess.isAdmin = true
                         }
