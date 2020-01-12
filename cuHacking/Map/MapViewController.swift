@@ -12,51 +12,21 @@ import Mapbox
 class MapViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MGLMapViewDelegate {
     // MARK: Instance Variables
     private var viewModel: MapViewModel?
-    private var levelsAdded = false
-    private var cardViewController: CardViewController!
-    private var visualEffectView: UIVisualEffectView!
-    private let cardHeight: CGFloat = 350
-    private var cardVisible = false
-    private var cardNextStae: CardState {
-        return cardVisible ? .expanded : .collapsed
-    }
-    private var runningCardAnimations = [UIViewPropertyAnimator]()
-    private var cardAnimationProgressWhenInterrupted: CGFloat = 0
-    private var levels = [MGLLineStyleLayer]()
+
     private var mapView: MGLMapView!
     private let tableViewCellWidth = 50
     private let tableViewCellHeight = 50
-    private var lineLayer: MGLLineStyleLayer!
-    private var fillLayer, backdropLayer: MGLFillStyleLayer!
-    private var symbolLayer: MGLSymbolStyleLayer!
    
     private var lineLayers: [String: MGLLineStyleLayer] = [:]
     private var fillLayers: [String: MGLFillStyleLayer] = [:]
     private var backdropLayers: [String: MGLFillStyleLayer] = [:]
     private var backdropLineLayers: [String: MGLLineStyleLayer] = [:]
     private var symbolLayers: [String: MGLSymbolStyleLayer] = [:]
+    private var floorPickerHeightAnchor: NSLayoutConstraint!
     
     var closestBuilding: Building?
 
-    private func closestBuilding(toPoint point: CLLocation) -> Building? {
-        guard let buildings = viewModel?.buildings,
-            let firstBuilding = buildings.first else {
-            return nil
-        }
-        var shortestDistance = point.distance(from: firstBuilding.center)
-        var closestBuilding = firstBuilding
-        buildings.forEach { (building) in
-            let distance = point.distance(from: building.center)
-            if distance < shortestDistance {
-                shortestDistance = distance
-                closestBuilding = building
-            }
-        }
-        return closestBuilding
-    }
-    
-
-    private var tableView: UITableView = {
+    private var floorPickerTableView: UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView(frame: .zero)
@@ -81,7 +51,6 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             DispatchQueue.main.async {
                 self.setupMap()
                 self.setupFloorPicker()
-                self.setupCard()
             }
         }
     }
@@ -94,15 +63,11 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         mapView.delegate = self
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.setCenter(CLLocationCoordinate2D(latitude: 45.382667477255127, longitude: -75.69630255230739), zoomLevel: 18, animated: false)
-        
-//        let singleTap = UITapGestureRecognizer(target: self, action: #selector(roomTapped(sender:)))
-//        for recognizer in mapView.gestureRecognizers! where recognizer is UITapGestureRecognizer {
-//            singleTap.require(toFail: recognizer)
-//        }
-//
-//        mapView.addGestureRecognizer(singleTap)
         view.addSubview(mapView)
     }
+    
+    /// Sets up the levels of the specified building by adding it to the map
+    /// - Parameter building: The building to be added to the map
     private func setupLevels(forBuilding building: Building) {
         guard let style = self.mapView.style else { return }
 
@@ -128,10 +93,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                                            Asset.Colors.hallway.color,
                                            Asset.Colors.stairs.color,
                                            defaultFill)
-        //NSExpression(format: "TERNARY(booleanProperty=YES, %@, MGL_MATCH(type, 'type1', %@, 'type2', %@, 'type3', %@, %@))", UIColor.red, UIColor.orange, UIColor.purple, UIColor.yellow, defaultColor)
-//        let symbolKeys = ["stairs", "elevator"]
-//        let noString = String.formatMGLMatchExpression(attribute: "roomType", keys: symbolKeys, stringFormat: "%@", includeDefault: true)
-//        symbolLayer.iconImageName = NSExpression(format: "TERNARY(roomType == washroom, %@, \(noString))", "stairs", "stairs", "washroom", "")
+
         let symbolLayer = MGLSymbolStyleLayer(identifier: "\(building.name)-symbol-layer", source: source)
         symbolLayer.iconImageName = NSExpression(format: building.symbolIconFormat, "washroom", "elevator", "stairs", "")
         symbolLayer.minimumZoomLevel = 19
@@ -153,7 +115,10 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         lineLayers[building.name] = lineLayer
         updatePredicates(forBuilding: building)
     }
-
+    
+    
+    /// Updates the predicates of the specified building. Predicates are what are used to filter out the map data (eg. Show a certain floor of the building)
+    /// - Parameter building: The building to be updated
     private func updatePredicates(forBuilding building: Building) {
         backdropLayers[building.name]?.predicate = building.backdropPredicate
         backdropLineLayers[building.name]?.predicate = building.backdropLinePredicate
@@ -161,139 +126,52 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         fillLayers[building.name]?.predicate = building.floorPredicate
         symbolLayers[building.name]?.predicate = building.symbolPredicate
     }
-    private var floorPickerHeightAnchor: NSLayoutConstraint!
     private func setupFloorPicker() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
+        floorPickerTableView.delegate = self
+        floorPickerTableView.dataSource = self
+        floorPickerTableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(floorPickerTableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            tableView.widthAnchor.constraint(equalToConstant: 45)
+            floorPickerTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            floorPickerTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            floorPickerTableView.widthAnchor.constraint(equalToConstant: 45)
         ])
         var height = tableViewCellHeight
         if let closestBuilding = closestBuilding {
             height = tableViewCellHeight*closestBuilding.floors.count
         }
-        floorPickerHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+        floorPickerHeightAnchor = floorPickerTableView.heightAnchor.constraint(equalToConstant: CGFloat(height))
         floorPickerHeightAnchor.isActive = true
-//        tableView.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 100, left: 0, bottom: 0, right: -20), size: CGSize(width: tableViewCellWidth, height: tableViewCellHeight*Level.allCases.count))
     }
 
-    private func setupCard() {
-//        visualEffectView = UIVisualEffectView(frame: self.view.frame)
-//        self.view.addSubview(visualEffectView)
-        cardViewController = CardViewController()
-        self.addChild(cardViewController)
-        cardViewController.view.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.bounds.width, height: cardHeight)
-        cardViewController.view.clipsToBounds = true
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(MapViewController.handleCardPan(recognizer:)))
-        cardViewController.view.addGestureRecognizer(panGesture)
-        self.view.addSubview(cardViewController.view)
-    }
-
-    func hideCard() {
-        let frameAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 1) {
-            self.cardViewController.view.frame.origin.y = self.view.frame.height
+    /// Calculates which building is closest to the specified point
+    /// - Parameter point: the target point
+    private func closestBuilding(toPoint point: CLLocation) -> Building? {
+        guard let buildings = viewModel?.buildings,
+            let firstBuilding = buildings.first else {
+            return nil
         }
-        frameAnimator.startAnimation()
-    }
-
-    func showCard() {
-        let frameAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 1) {
-            self.cardViewController.view.frame.origin.y = self.view.bounds.height-self.cardHeight
-        }
-        frameAnimator.startAnimation()
-        frameAnimator.addCompletion { (_) in
-            self.originalCenterY = self.cardViewController.view.center.y
-        }
-    }
-
-    var originalCenterY: CGFloat = 0
-    @objc func handleCardPan(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self.view)
-        if translation.y < 0 { return }
-        let newCenter = translation.y+originalCenterY
-        switch recognizer.state {
-        case .began, .changed:
-            self.cardViewController.view.center.y = newCenter
-        case .ended, .cancelled, .failed:
-            if originalCenterY/newCenter <= 0.90 {
-                hideCard()
-            } else {
-                self.cardViewController.view.center.y = originalCenterY
+        var shortestDistance = point.distance(from: firstBuilding.center)
+        var closestBuilding = firstBuilding
+        buildings.forEach { (building) in
+            let distance = point.distance(from: building.center)
+            if distance < shortestDistance {
+                shortestDistance = distance
+                closestBuilding = building
             }
-        default:
-            break
         }
-    }
-
-    private func animateCardTransitionIfNeeded(state: CardState, duration: TimeInterval) {
-        if runningCardAnimations.isEmpty {
-            let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
-                switch state {
-                case .expanded:
-                    self.cardViewController.view.frame.origin.y = self.view.frame.height - self.cardHeight
-                case .collapsed:
-                    self.cardViewController.view.frame.origin.y = self.view.frame.height
-                }
-            }
-            frameAnimator.addCompletion { (_) in
-                self.cardVisible = !self.cardVisible
-                self.runningCardAnimations.removeAll()
-            }
-            frameAnimator.startAnimation()
-            runningCardAnimations.append(frameAnimator)
-        }
-    }
-    private func startInteractiveTransition(state: CardState, duration: TimeInterval) {
-        if runningCardAnimations.isEmpty {
-            //run animations
-            animateCardTransitionIfNeeded(state: state, duration: duration)
-        }
-        for animator in runningCardAnimations {
-            animator.pauseAnimation() //sets speed to 0 (making it interactive)
-            cardAnimationProgressWhenInterrupted = animator.fractionComplete
-        }
-    }
-    private func updateInteractiveTransition(fractionCompleted: CGFloat) {
-        for animator in runningCardAnimations {
-            animator.fractionComplete = fractionCompleted
-        }
-    }
-    private func continueInteractiveTransition() {
-        for animator in runningCardAnimations {
-            animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-        }
-    }
-
-//    private func updateMapPredicates() {
-//        backdropLayer.predicate = viewModel.backdropPredicate
-//        lineLayer.predicate = viewModel.floorPredicate
-//        fillLayer.predicate = viewModel.floorPredicate
-//        symbolLayer.predicate = viewModel.floorPredicate
-//    }
-
-    @objc func roomTapped(sender: UITapGestureRecognizer) {
-        let spot = sender.location(in: mapView)
-        if let room = mapView.visibleFeatures(at: spot).last {
-            print(room)
-            cardViewController.titleLabel.text = room.attributes["room"] as? String ?? ""
-            showCard()
-        }
+        return closestBuilding
     }
 
     // MARK: MGLMapViewDelegate Methods
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
-        print("loaded")
+        //Adding the images to the mapView to make them accessible in the map.
         mapView.style?.setImage(Asset.Images.washroom.image, forName: "washroom")
         mapView.style?.setImage(Asset.Images.elevator.image, forName: "elevator")
         mapView.style?.setImage(Asset.Images.stairs.image, forName: "stairs")
     }
 
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
-        //setupLevels()
         guard let viewModel = self.viewModel else {
             return
         }
@@ -303,11 +181,12 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        //Finds which building the user is closest too and updates the floor picker to match that building
         let centerPoint = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         if let newClosestBuilding = closestBuilding(toPoint: centerPoint),
         newClosestBuilding.name != closestBuilding?.name {
             self.closestBuilding = newClosestBuilding
-            tableView.reloadData()
+            floorPickerTableView.reloadData()
             viewModel?.buildings.forEach({ (building) in
                 building.currentFloor = building.floors.first
                 updatePredicates(forBuilding: building)
@@ -354,20 +233,21 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         return cell
     }
 
-    // MARK: iOS 13 Dark Mode
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if mapView == nil, viewModel == nil {
             return
         }
         if #available(iOS 13.0, *) {
+            // UIScreen was used here because using the ViewController's traitCollection caused inconsistent behaviour.
+            // It would sometimes return light value when the user was in dark mode and vice-versa.
             if UIScreen.main.traitCollection.userInterfaceStyle == previousTraitCollection?.userInterfaceStyle {
                 return
             }
             let url = UIScreen.main.traitCollection.userInterfaceStyle == .light ? MGLStyle.lightStyleURL :  MGLStyle.darkStyleURL
 
             guard let currentLayers = mapView.style?.layers, let viewModel = viewModel else { return }
-            currentLayers.map { (layer) in
+            currentLayers.forEach { (layer) in
                 guard let mapStyle = mapView.style else { return }
                 if let styleLayer = mapStyle.layer(withIdentifier: layer.identifier) {
                      mapStyle.removeLayer(styleLayer)

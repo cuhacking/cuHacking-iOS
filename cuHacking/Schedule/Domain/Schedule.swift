@@ -79,9 +79,6 @@ extension MagnetonAPIObject {
                 }
                 return leftDate <= rightDate
             })
-//            events = events.filter({ (event) -> Bool in
-//                return event.id != nil
-//            })
             return events
         }
     }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//These objects represent the Information object returned from the api.
 extension MagnetonAPIObject {
     struct InformationResult: Codable {
         let version: String

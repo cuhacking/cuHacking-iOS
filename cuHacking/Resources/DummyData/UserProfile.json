@@ -1,9 +1,0 @@
-{
-    "operation": "GET",
-    "status": "200",
-    "data": {
-      "username": "Santos",
-      "role": "iOS Developer",
-      "uid": "bdc49bea-d968-43cf-ad14-3c7cc94bf1e1"
-    }
-  }

@@ -11,6 +11,7 @@ extension MagnetonAPIObject {
     struct Updates: Codable {
         let version: String
         let updates: [String: Update]
+        //Returns updates based on their delivery time and orders them by time.
         public var relevantUpdates: [Update] {
             guard let currentDate = DateFormatter.RFC3339DateFormatter.date(from: DateFormatter.RFC3339DateFormatter.string(from: Date())) else {
                 return []

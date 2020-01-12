@@ -1,5 +1,5 @@
 //
-//  UserToken.swift
+//  UserAcess.swift
 //  cuHacking
 //
 //  Created by Santos on 2020-01-02.
@@ -7,8 +7,6 @@
 //
 
 import Foundation
-extension MagnetonAPIObject {
-    struct UserToken: Codable {
-        let token: String
-    }
+class UserAccess {
+    static var isAdmin = false
 }

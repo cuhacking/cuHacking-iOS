@@ -151,20 +151,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
       withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-      let userInfo = notification.request.content.userInfo
+        let userInfo = notification.request.content.userInfo
 
-      // With swizzling disabled you must let Messaging know about the message, for Analytics
-      // Messaging.messaging().appDidReceiveMessage(userInfo)
-      // Print message ID.
-      if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
-      }
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
 
-      // Print full message.
-      print(userInfo)
+        // Print full message.
+        print(userInfo)
 
-      // Change this to your preferred presentation option
-    completionHandler([.badge, .alert])
+        // Change this to your preferred presentation option
+        completionHandler([.badge, .alert])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -194,6 +194,7 @@ extension AppDelegate: MessagingDelegate {
 }
 
 extension AppDelegate {
+    // If the user is logged in, checks their role to see if they should be considered an admin
     func verifyUserAccess() {
         if let currentUser = Auth.auth().currentUser {
             currentUser.getIDToken { (token, _) in
@@ -202,7 +203,6 @@ extension AppDelegate {
                         guard let profile = profile else {
                             return
                         }
-                        
                         if profile.data.role == "admin" || profile.data.role == "Volunteer" {
                             UserAccess.isAdmin = true
                         }

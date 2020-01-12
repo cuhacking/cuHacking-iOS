@@ -11,20 +11,9 @@ import Mapbox
 import SwiftyJSON
 
 class MapViewModel {
-//    private let mapDataSource: MapDataSource
-//    let shapeSource: MGLShapeSource
-//    var currentLevel: Level
-//    var floorPredicate: NSPredicate {
-//        return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type != 'backdrop'")
-//    }
-//    var backdropPredicate: NSPredicate {
-//        return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'backdrop'")
-//    }
-//    var fillFormat: String
-//    var symbolIconFormat: String
-//    var labelFormat: String
     var buildings: [Building] = []
-
+    
+    //Creates a view model object by fetching map data and using it to create building objects.
     public static func create(dataSource: MapRepository = MapDataSource(), completionHandler: @escaping(MapViewModel?, Error?) -> Void) {
         let mapViewModel = MapViewModel()
         dataSource.getMap { (json, error) in

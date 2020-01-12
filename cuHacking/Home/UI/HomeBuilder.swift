@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//The HomeBuilder is responsible for creating and formatting cells on the Home screen.
 enum HomeBuilder {
     enum Cells: String {
         case headerCell = "HeaderCell"
@@ -31,8 +32,6 @@ enum HomeBuilder {
                     cell.startCountdown(from: countdownDate, withMessage: "Hacking ends in", completedMessage: "See you next year!")
                 }
             }
-           // let hackathonDate = Date(timeIntervalSince1970: 1578725761).timeIntervalSince1970 - Date().timeIntervalSince1970
-            // cell.startCountdown(from: hackathonDate, withMessage: "Hacking starts in", completedMessage: "Hacking has begun!")
             return cell
         }
         static func onbaordingCell(collectionView: UICollectionView, indexPath: IndexPath) -> OnboardingCell {
@@ -51,7 +50,7 @@ enum HomeBuilder {
     enum Announcements {
         static func updateCell(updates: [MagnetonAPIObject.Update], collectionView: UICollectionView, indexPath: IndexPath) -> UpdateCell {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.updateCell.rawValue, for: indexPath) as? UpdateCell else {
-                fatalError("Update cell wsa not found.")
+                fatalError("Update cell was not found.")
             }
             let update = updates[indexPath.row]
             cell.informationView.backgroundColor = Asset.Colors.surface.color

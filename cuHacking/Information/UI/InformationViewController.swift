@@ -61,7 +61,7 @@ class InformationViewController: CUCollectionViewController {
         }
     }
     
-
+//  This method was not used because it was undetermined if the method works when the SSID contains spaces. 
 //    @objc func connectToWifi() {
 //        let hotSpotConfig = NEHotspotConfiguration(ssid: "HOME", passphrase: "cuhacking", isWEP: false)
 //        NEHotspotConfigurationManager.shared.apply(hotSpotConfig) { (error) in

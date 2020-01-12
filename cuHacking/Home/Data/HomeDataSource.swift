@@ -14,7 +14,9 @@ enum MagnentonError: Error {
 class HomeDataSource: HomeRepository {
     private static let baseURL = Environment.rootURL.absoluteString
     private static let okResponse = 200
-
+    
+    /// Gets the updates for the event. These updates are displayed on the Home tab under the Announcements section
+    /// - Parameter completionHandler: The method to be called once there is some results 
     func getUpdates(completionHandler: @escaping (MagnetonAPIObject.Updates?, Error?) -> Void) {
         print(HomeDataSource.baseURL)
         let baseURL = HomeDataSource.baseURL + "/updates"

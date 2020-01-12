@@ -44,11 +44,13 @@ class MapDataSource: MapRepository {
 
             do {
                 map = try JSON(data: data)
+                // Mapbox uses NSExpressions so when working with kebab-case values, it will fail to parse
+                // because it treats the `-` as if it were a minus sign so we had to replace the kebab with camel.
+                // This is onyl relevant if you plan on using the property in MapBox
                 if let cleanString = map?.rawString()?.replacingOccurrences(of: "room-type", with: "roomType"),
                     let cleanData = cleanString.data(using: .utf8){
                     map = try JSON(data: cleanData)
                 }
-                print(map)
                 completionHandler(map, nil)
 
             } catch {
@@ -56,22 +58,5 @@ class MapDataSource: MapRepository {
                 return
             }
         }.resume()
-    }
-
-    /// Loads a GeoJSON file
-    /// - Parameter name: name of the geoJSON file representing a building 
-    func loadBuilding(named name: String) throws -> MGLShapeCollectionFeature {
-        guard let url = Bundle.main.url(forResource: name, withExtension: "geojson") else {
-           throw MapDataSource.Error.invalidFileName(message: "\(name).geojson not found in bundle")
-        }
-
-        guard let data = try? Data(contentsOf: url) else {
-            throw MapDataSource.Error.invalidGeoJSON(message: "\(name).geojson could not be turned into data.")
-        }
-
-        guard let shapeCollectionFeature = try? MGLShape(data: data, encoding: String.Encoding.utf8.rawValue) as? MGLShapeCollectionFeature else {
-            throw MapDataSource.Error.deserializationFailed(message: "Failed to deserialize \(name).geojson into a MGLShapeCollectionFeature")
-        }
-        return shapeCollectionFeature
     }
 }

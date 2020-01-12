@@ -9,6 +9,7 @@
 import Foundation
 import Mapbox
 
+//This represents a building in Mapbox
 final class Building {
     struct Floor {
         let id: String
@@ -26,6 +27,8 @@ final class Building {
         }
         return nil
     }
+    // The following predicates are used as filter in Mapbox
+    // More info on predicates/expressions in MapBox can be found here: https://mapbox.github.io/mapbox-gl-native/macos/0.12.0/predicates-and-expressions.html
     var backdropLinePredicate: NSPredicate {
         return NSPredicate(format: "floor = '\(currentFloor?.id ?? "")' AND type = 'backdrop-line'")
     }

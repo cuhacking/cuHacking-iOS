@@ -10,6 +10,7 @@ import UIKit
 fileprivate var spinnerBackgroundView: UIView?
 
 extension UIViewController {
+    //This method shows a spinner icon which can be used when loading.
     func showSpinner() {
         removeSpinner()
         view.isUserInteractionEnabled = false
@@ -40,6 +41,7 @@ extension UIViewController {
         ])
         loadingIndicator.startAnimating()
     }
+    //This removes the spinner, if it exists.
     func removeSpinner() {
         spinnerBackgroundView?.removeFromSuperview()
         spinnerBackgroundView = nil

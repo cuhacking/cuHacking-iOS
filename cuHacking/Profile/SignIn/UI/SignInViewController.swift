@@ -14,18 +14,8 @@ class SignInViewController: UIViewController {
         case email = 0
         case password = 1
     }
-    private let signInRepository: SignInRepository
     private var errorLabelBottomConstraint: NSLayoutConstraint!
     private var keyboardIsVisible = false
-
-    init(signInRepository: SignInRepository = SignInDataSource()) {
-        self.signInRepository = signInRepository
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -68,7 +58,6 @@ class SignInViewController: UIViewController {
         let label = UILabel()
         label.textColor = .red
         label.font = UIFont.systemFont(ofSize: 11, weight: .light)
-        label.text = "Couldn't sign in"
         label.textAlignment = .center
         label.numberOfLines = 0
         label.isHidden = true
@@ -77,7 +66,6 @@ class SignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("framee:\(view.frame.origin.y)")
         view.backgroundColor = Asset.Colors.background.color
         setup()
         
@@ -163,7 +151,8 @@ class SignInViewController: UIViewController {
             }
         }
     }
-
+    
+    //Handles the sliding of the keyboard of the
     @objc func keyboardWillChange(notification: Notification) {
         guard let userInfo = notification.userInfo,
             let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {

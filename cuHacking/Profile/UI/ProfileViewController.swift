@@ -34,7 +34,6 @@ class ProfileViewController: UIViewController {
     }()
     private let qrImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = "placeholder_qr".qrCode
         return imageView
     }()
 

@@ -50,11 +50,6 @@ class HomeViewController: CUCollectionViewController {
         //Adding profile icon button to navigation bar
         let profileIconButton = UIBarButtonItem(image: Asset.Images.profileIcon.image, style: .plain, target: self, action: #selector(showProfile))
         self.navigationItem.rightBarButtonItem = profileIconButton
-//        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
-//        self.navigationItem.rightBarButtonItem = settingsIconBar
-        //Adding QR Scan icon to button navigation bar IF user is admin
-        //let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
-        //self.navigationItem.leftBarButtonItem = qrBarItem
     }
     
     override func refreshData() {
@@ -98,11 +93,6 @@ class HomeViewController: CUCollectionViewController {
         }
         self.navigationController?.pushViewController(desinationVC, animated: false)
     }
-
-    @objc func showQRScanner() {
-//        let qrScannerViewController = QRScannerViewController()
-//        navigationController?.pushViewController(qrScannerViewController, animated: false)
-    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -132,7 +122,7 @@ extension HomeViewController: UICollectionViewDataSource {
             default:
                 fatalError("Row out of range")
             }
-        case 1: //Info section
+        case 1: //Announcments section
             guard let updates = updates else {
                 fatalError("Asking for updates when none exist.")
             }

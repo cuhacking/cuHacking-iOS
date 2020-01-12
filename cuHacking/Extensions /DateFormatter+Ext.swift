@@ -15,7 +15,8 @@ extension DateFormatter {
        RFC3339DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         return RFC3339DateFormatter
     }
-    
+    // This uses RFC3339 Formatting, without the seconds. This was needed because the
+    // format of the announcement timestamps were different from the schedule timestamps.
     static var AnnouncementFormatter: DateFormatter {
         let RFC3339DateFormatter = DateFormatter()
         RFC3339DateFormatter.locale = Locale(identifier: "en_US_POSIX")

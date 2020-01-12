@@ -99,8 +99,6 @@ class ScheduleDetailViewController: UIViewController {
             eventDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -leadSpacing),
             eventDescription.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
-        print(eventTypeView.imageView.frame)
-//        eventTypeView.imageView.makeRounded()
     }
     func setupNavigationController() {
         self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color
@@ -148,12 +146,5 @@ fileprivate final class IconTitleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.makeRounded()
-    }
-}
-extension UIImageView {
-    func makeRounded() {
-        let radius = bounds.height/2
-        layer.cornerRadius = radius
-        layer.masksToBounds = true
     }
 }

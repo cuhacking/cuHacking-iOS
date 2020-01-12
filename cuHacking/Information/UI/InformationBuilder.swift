@@ -17,7 +17,6 @@ enum InformationBuilder {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.informationCell.rawValue, for: indexPath) as? InformationCell else {
                 fatalError("InformationCell was not found.")
             }
-            print("row:\(indexPath.row)")
             switch indexPath.row {
             case 0: //Wifi
                 let text = "Network:\(information.wifi.network)\nPassword:\(information.wifi.password)"
