@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-typealias HeaderCell = TitleSubtitleCollectionViewCell
+typealias HeaderCell = TimerLabel
 typealias OnboardingCell = InformationCollectionViewCell
 typealias UpdateCell = InformationCollectionViewCell
 
@@ -30,12 +31,12 @@ class HomeViewController: CUCollectionViewController {
         setupNavigationController()
         loadUpdates()
     }
-    
+
     override func setupCollectionView() {
         super.setupCollectionView()
         collectionView.dataSource = self
     }
-    
+
     override func registerCells() {
         super.registerCells()
         collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: HomeBuilder.Cells.onboardingCell.rawValue)
@@ -47,11 +48,13 @@ class HomeViewController: CUCollectionViewController {
         self.navigationController?.navigationBar.topItem?.title = "cuHacking"
         self.navigationController?.navigationBar.tintColor = Asset.Colors.primaryText.color
         //Adding profile icon button to navigation bar
-        let settingsIconBar = UIBarButtonItem(image: Asset.Images.settingsIcon.image, style: .plain, target: self, action: #selector(showSettings))
-        self.navigationItem.rightBarButtonItem = settingsIconBar
-        //Adding QR Scan icon to button navigation bar IF user is admin
-        //let qrBarItem = UIBarButtonItem(image: Asset.Images.qrIcon.image, style: .plain, target: self, action: #selector(showQRScanner))
-        //self.navigationItem.leftBarButtonItem = qrBarItem
+        let profileIconButton = UIBarButtonItem(image: Asset.Images.profileIcon.image, style: .plain, target: self, action: #selector(showProfile))
+        self.navigationItem.rightBarButtonItem = profileIconButton
+    }
+    
+    override func refreshData() {
+        super.refreshData()
+        loadUpdates()
     }
 
     private func loadUpdates() {
@@ -78,13 +81,17 @@ class HomeViewController: CUCollectionViewController {
 
     @objc func showSettings() {
         let settingsViewController = SettingsViewController()
-//        let profileViewController = SignInViewController(nibName: "SignInViewController", bundle: nil)
         self.navigationController?.pushViewController(settingsViewController, animated: false)
     }
 
-    @objc func showQRScanner() {
-        let qrScannerViewController = QRScannerViewController()
-        navigationController?.pushViewController(qrScannerViewController, animated: false)
+    @objc func showProfile() {
+        var desinationVC: UIViewController!
+        if let user = Auth.auth().currentUser {
+            desinationVC = ProfileViewController(currentUser: user)
+        } else {
+            desinationVC = SignInViewController()
+        }
+        self.navigationController?.pushViewController(desinationVC, animated: false)
     }
 }
 
@@ -115,7 +122,7 @@ extension HomeViewController: UICollectionViewDataSource {
             default:
                 fatalError("Row out of range")
             }
-        case 1: //Info section
+        case 1: //Announcments section
             guard let updates = updates else {
                 fatalError("Asking for updates when none exist.")
             }

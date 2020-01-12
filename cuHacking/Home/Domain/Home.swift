@@ -9,29 +9,42 @@
 import Foundation
 extension MagnetonAPIObject {
     struct Updates: Codable {
-        let version: Int
+        let version: String
         let updates: [String: Update]
+        //Returns updates based on their delivery time and orders them by time.
         public var relevantUpdates: [Update] {
-            let currentDate = Int64(Date().timeIntervalSince1970) * 1000
+            guard let currentDate = DateFormatter.RFC3339DateFormatter.date(from: DateFormatter.RFC3339DateFormatter.string(from: Date())) else {
+                return []
+            }
             let keys = Array(updates.keys).sorted(by: >).filter { (key) -> Bool in
-                if let update = updates[key] {
-                    return currentDate >= update.deliveryTime
+                if let update = updates[key], let deliveryTime = DateFormatter.AnnouncementFormatter.date(from: update.deliveryTime) {
+                    return deliveryTime <= currentDate
                 } else {
                     return false
                 }
             }
-            let relevantUpdates = keys.map { (key) -> Update in
+            var relevantUpdates = keys.map { (key) -> Update in
                 return updates[key]!
             }
+            relevantUpdates = relevantUpdates.sorted(by: { (left, right) -> Bool in
+                guard let leftDate = DateFormatter.AnnouncementFormatter.date(from: left.deliveryTime),
+                    let rightDate = DateFormatter.AnnouncementFormatter.date(from: right.deliveryTime) else {
+                        return false
+                }
+                return leftDate >= rightDate
+            })
+  
             return relevantUpdates
         }
     }
 
     struct Update: Codable {
-        let title: String
+        let name: String
+        let location: String?
         let description: String
-        let locationId: String
-        let deliveryTime: Int
-        let eventId: String
+        let deliveryTime: String
+        var formattedDeliveryTime: Date? {
+            return DateFormatter.RFC3339DateFormatter.date(from: deliveryTime)
+        }
     }
 }

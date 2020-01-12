@@ -8,35 +8,43 @@
 
 import Foundation
 import Mapbox
+import SwiftyJSON
+
 class MapViewModel {
-    private let mapDataSource: MapDataSource
-    let shapeSource: MGLShapeSource
-    var currentLevel: Level
-    var floorPredicate: NSPredicate {
-        return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type != 'backdrop'")
-    }
-    var backdropPredicate: NSPredicate {
-        return NSPredicate(format: "floor = \(currentLevel.rawValue) AND type = 'backdrop'")
-    }
-    var fillFormat: String
-    var symbolIconFormat: String
-    var labelFormat: String
-
-    public init?(mapDataSource: MapDataSource) {
-        self.currentLevel = .one
-        self.mapDataSource = mapDataSource
-        guard let building = try? mapDataSource.loadBuilding(named: "RiverBuilding") else {
-            return nil
+    var buildings: [Building] = []
+    
+    //Creates a view model object by fetching map data and using it to create building objects.
+    public static func create(dataSource: MapRepository = MapDataSource(), completionHandler: @escaping(MapViewModel?, Error?) -> Void) {
+        let mapViewModel = MapViewModel()
+        dataSource.getMap { (json, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+                completionHandler(nil, error)
+                return
+            }
+            guard let json = json else {
+                return
+            }
+            for (key, buildingJSON):(String, JSON) in json["map"]["map"] {
+                do {
+                    let buildingData = try buildingJSON["geometry"].rawData()
+                    if let shapeCollectionFeature = try MGLShape(data: buildingData, encoding: String.Encoding.utf8.rawValue) as? MGLShapeCollectionFeature {
+                        let center = CLLocation(latitude: Double(buildingJSON["center"][1].doubleValue),
+                                                              longitude: Double(buildingJSON["center"][0].doubleValue))
+                        var floors: [Building.Floor] = []
+                        for(_, floorJSON):(String, JSON) in buildingJSON["floors"] {
+                            floors.append(Building.Floor(id: floorJSON["id"].stringValue, name: floorJSON["name"].stringValue))
+                        }
+                        let building = Building(named: key, featureCollection: shapeCollectionFeature, center: center, floors: floors)
+                        mapViewModel.buildings.append(building)
+                    }
+                } catch {
+                    
+                }
+            }
+            completionHandler(mapViewModel, nil)
+            
         }
-        self.shapeSource = MGLShapeSource(identifier: "RiverBuilding", shape: building, options: nil)
-
-        let fillKeys = ["room", "washroom", "elevator", "hallway", "stairs", "open"]
-        fillFormat =  String.formatMGLMatchExpression(attribute: "type", keys: fillKeys, stringFormat: "%@", includeDefault: true)
-
-        let symbolKeys = ["washroom", "elevator", "stairs"]
-        symbolIconFormat = String.formatMGLMatchExpression(attribute: "type", keys: symbolKeys, stringFormat: "%@", includeDefault: true)
-        labelFormat = ""
-
-//        labelFormat = String.formatMGLMatchExpression(attribute: "label", keys: [], stringFormat: <#T##String#>, includeDefault: <#T##Bool#>)
     }
+
 }

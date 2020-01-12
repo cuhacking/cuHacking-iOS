@@ -31,6 +31,7 @@ class InformationView: UIView {
 
     let titleLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.textAlignment = .left
         label.font = UIFont(font: Fonts.ReemKufi.regular, size: 17)
         label.textColor = Asset.Colors.primaryText.color
@@ -106,9 +107,12 @@ class InformationView: UIView {
         }
     }
 
-    func update(title: String? = nil, information: String? = nil, buttonTitle: String? = nil, buttonIcon: UIImage? = nil) {
+    func update(title: String? = nil, information: String? = nil, attributedInformation: NSAttributedString? = nil, buttonTitle: String? = nil, buttonIcon: UIImage? = nil) {
         titleLabel.text = title
         informationTextView.text = information
+        if information == nil {
+            informationTextView.attributedText = attributedInformation
+        }
         if let buttonTitle = buttonTitle {
             if let buttonIcon = buttonIcon {
                 button.tintColor = Asset.Colors.background.color

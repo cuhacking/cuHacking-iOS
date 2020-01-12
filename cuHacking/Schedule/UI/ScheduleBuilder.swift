@@ -17,16 +17,17 @@ enum ScheduleViewBuilder {
     enum Cells: String {
         case eventCell = "EventCell"
     }
-    static func eventCell(events: [MagnetonAPIObject.Event], collectionView: UICollectionView, indexPath: IndexPath) -> EventCollectionViewCell {
+    static func eventCell(days: [Day], collectionView: UICollectionView, indexPath: IndexPath) -> EventCollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.eventCell.rawValue, for: indexPath) as? EventCollectionViewCell else {
             fatalError("Could not find event cell")
         }
-        let event = events[indexPath.row]
-        cell.eventDetailsView.backgroundColor = ScheduleViewBuilder.colors[indexPath.row%ScheduleViewBuilder.colors.count]
+        let event = days[indexPath.section].events[indexPath.row]
+        cell.eventDetailsView.backgroundColor = event.color
         cell.eventTimeLabel.text = event.formattedStartTime
+        cell.eventDetailsView.informationTextView.isUserInteractionEnabled = false
         cell.eventDetailsView.update(title: event.title,
                                      information: event.formattedDuration,
-                                     buttonTitle: event.locationName,
+                                     buttonTitle: event.location,
                                      buttonIcon: Asset.Images.mapPinPoint.image)
         return cell
     }
